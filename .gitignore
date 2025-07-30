@@ -85,7 +85,9 @@ jspm_packages/
 
 # Gatsby files
 .cache/
-public
+
+# Next.js - only ignore build artifacts, not static assets
+# public/ is intentionally NOT ignored as it contains static assets
 
 # Storybook build outputs
 .out

@@ -9,9 +9,7 @@ export default function HomePage() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">A</span>
-                </div>
+                <img src="/img/logo.svg" alt="Compliance Simplified Logo" className="h-8 w-8" />
                 <span className="font-semibold text-lg">Compliance Simplified</span>
               </div>
             </div>
@@ -204,7 +202,14 @@ export default function HomePage() {
       <footer className="border-t border-border/40 bg-background/95">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2024 Audit Site. All rights reserved.</p>
+            <p>&copy; 2025 Compliance Simplified. Licensed under AGPL-3.0.</p>
+            <p className="mt-2 text-sm">
+              Based on "Compliance Simplified" by Arvid Berndtsson (
+              <a href="https://github.com/arvid-berndtsson/compliance-simplified" className="text-primary hover:text-primary/80">
+                https://github.com/arvid-berndtsson/compliance-simplified
+              </a>
+              ) licensed under AGPL-3.0
+            </p>
           </div>
         </div>
       </footer>

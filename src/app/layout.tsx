@@ -5,8 +5,18 @@ import '../css/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Audit Site - ISO 27001 & SOC 2 Compliance',
+  title: 'Compliance Simplified - ISO 27001 & SOC 2 Compliance',
   description: 'Comprehensive guidance for ISO 27001 and SOC 2 compliance implementation',
+  icons: {
+    icon: '/img/logo.svg',
+    shortcut: '/img/logo.svg',
+    apple: '/img/logo.svg',
+  },
+  openGraph: {
+    title: 'Compliance Simplified',
+    description: 'Comprehensive guidance for ISO 27001 and SOC 2 compliance implementation',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

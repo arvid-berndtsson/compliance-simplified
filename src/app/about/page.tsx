@@ -11,10 +11,8 @@ export default function AboutPage() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/" className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">A</span>
-                </div>
-                <span className="font-semibold text-lg">Audit Site</span>
+                <img src="/img/logo.svg" alt="Compliance Simplified Logo" className="h-8 w-8" />
+                <span className="font-semibold text-lg">Compliance Simplified</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
@@ -41,7 +39,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
               About
-              <span className="block text-primary">Audit Site</span>
+              <span className="block text-primary">Compliance Simplified</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
               A community-driven project dedicated to democratizing compliance knowledge and making security accessible to all organizations.

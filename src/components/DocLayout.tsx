@@ -38,10 +38,8 @@ export default function DocLayout({ children, title, description }: DocLayoutPro
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/" className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">A</span>
-                </div>
-                <span className="font-semibold text-lg">Audit Site</span>
+                <img src="/img/logo.svg" alt="Compliance Simplified Logo" className="h-8 w-8" />
+                <span className="font-semibold text-lg">Compliance Simplified</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
