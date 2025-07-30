@@ -52,6 +52,8 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    
+
           navbar: {
         title: 'Compliance Made Simple',
       logo: {
@@ -134,6 +136,10 @@ const config: Config = {
           title: 'Community',
           items: [
             {
+              label: 'Contribute',
+              href: 'https://github.com/arvid-berndtsson/audit-site',
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/arvid-berndtsson/audit-site',
             },
@@ -148,7 +154,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Arvid Berndtsson. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Arvid Berndtsson. Community-driven compliance guides. Licensed under AGPL-3.0.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -157,7 +163,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
-      respectPrefersColorScheme: false,
+      respectPrefersColorScheme: true,
     },
   } satisfies Preset.ThemeConfig,
 } satisfies Config;
