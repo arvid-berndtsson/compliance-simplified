@@ -947,57 +947,57 @@ body {
 
 /* Documentation heading styles - High specificity to override defaults */
 .theme-doc-markdown h1 {
-  font-size: 2.25rem !important;
-  line-height: 2.5rem !important;
-  font-weight: 700 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 2rem !important;
-  margin-top: 0 !important;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: #e5e5e5;
+  margin-bottom: 2rem;
+  margin-top: 0;
 }
 
 .theme-doc-markdown h2 {
-  font-size: 1.875rem !important;
-  line-height: 2.25rem !important;
-  font-weight: 700 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 1.5rem !important;
-  margin-top: 3rem !important;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #e5e5e5;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
 }
 
 .theme-doc-markdown h3 {
-  font-size: 1.5rem !important;
-  line-height: 2rem !important;
-  font-weight: 600 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 1rem !important;
-  margin-top: 2rem !important;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .theme-doc-markdown h4 {
-  font-size: 1.125rem !important;
-  line-height: 1.75rem !important;
-  font-weight: 600 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 0.75rem !important;
-  margin-top: 1.5rem !important;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .theme-doc-markdown h5 {
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-  font-weight: 600 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 0.5rem !important;
-  margin-top: 1rem !important;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 .theme-doc-markdown h6 {
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
-  font-weight: 600 !important;
-  color: #e5e5e5 !important;
-  margin-bottom: 0.5rem !important;
-  margin-top: 1rem !important;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 /* Light theme heading styles */
@@ -1007,29 +1007,29 @@ body {
 [data-theme='light'] .theme-doc-markdown h4,
 [data-theme='light'] .theme-doc-markdown h5,
 [data-theme='light'] .theme-doc-markdown h6 {
-  color: #1e293b !important;
+  color: #1e293b;
 }
 
 /* Responsive heading styles for mobile devices */
 @media (max-width: 768px) {
   .theme-doc-markdown h1 {
-    font-size: 1.875rem !important;
-    line-height: 2.25rem !important;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
   
   .theme-doc-markdown h2 {
-    font-size: 1.5rem !important;
-    line-height: 2rem !important;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   
   .theme-doc-markdown h3 {
-    font-size: 1.25rem !important;
-    line-height: 1.75rem !important;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
   
   .theme-doc-markdown h4 {
-    font-size: 1.125rem !important;
-    line-height: 1.75rem !important;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
