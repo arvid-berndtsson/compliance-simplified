@@ -1,4 +1,4 @@
-# Audit.arvid.tech
+# Compliance Simplified
 
 A jargon-free, practitioner-oriented site that demystifies ISO/IEC 27001:2022 and SOC 2 Trust Services Criteria.
 
@@ -23,7 +23,7 @@ This project is licensed under the **GNU Affero General Public License v3.0** (A
 
 **Example attribution:**
 ```
-Based on "Audit.arvid.tech" by Arvid Berndtsson (https://github.com/arvid-berndtsson/audit-site) 
+Based on "Compliance Simplified" by Arvid Berndtsson (https://github.com/arvid-berndtsson/compliance-simplified) 
 licensed under AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.en.html)
 ```
 
@@ -38,8 +38,8 @@ licensed under AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/arvid-berndtsson/audit-site.git
-   cd audit-site
+   git clone https://github.com/arvid-berndtsson/compliance-simplified.git
+   cd compliance-simplified
    ```
 
 2. **Install dependencies**
@@ -61,7 +61,7 @@ licensed under AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.en.html)
 pnpm run build
 ```
 
-The built site will be in the `build/` directory.
+The built site will be in the `out/` directory.
 
 ### Type Checking
 
@@ -72,7 +72,7 @@ pnpm run typecheck
 ## 📁 Project Structure
 
 ```
-audit-site/
+compliance-simplified/
 ├── docs/                    # Documentation pages
 │   ├── intro.md            # Landing page
 │   ├── explanation/        # Overview pages
@@ -93,7 +93,7 @@ audit-site/
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Next.js 14
+- **Framework**: Next.js 15
 - **Language**: TypeScript
 - **Package Manager**: pnpm
 - **Styling**: Tailwind CSS
@@ -122,13 +122,13 @@ We welcome contributions! Please ensure you follow the AGPL-3.0 license terms.
 
 The site is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
 
-- **Production URL**: https://audit.arvid.tech
-- **GitHub Pages URL**: https://arvid-berndtsson.github.io/audit-site
+- **Production URL**: https://compliance.arvid.tech
+- **GitHub Pages URL**: https://arvid-berndtsson.github.io/compliance-simplified
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/arvid-berndtsson/audit-site/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/arvid-berndtsson/audit-site/discussions)
+- **Issues**: [GitHub Issues](https://github.com/arvid-berndtsson/compliance-simplified/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/arvid-berndtsson/compliance-simplified/discussions)
 - **Licensing**: arvid@arvid.tech
 
 ## 🗺️ Roadmap

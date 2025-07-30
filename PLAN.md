@@ -1,4 +1,4 @@
-# Audit.arvid.tech – Website Outline
+# Compliance Simplified – Website Outline
 
 *(An easy introduction to ISO27001 and SOC 2 track)*
 

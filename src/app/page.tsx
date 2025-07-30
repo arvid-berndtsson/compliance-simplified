@@ -12,7 +12,7 @@ export default function HomePage() {
                 <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
                   <span className="text-primary-foreground font-bold text-sm">A</span>
                 </div>
-                <span className="font-semibold text-lg">Audit Site</span>
+                <span className="font-semibold text-lg">Compliance Simplified</span>
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
@@ -154,7 +154,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://github.com/arvid-berndtsson/audit-site"
+                href="https://github.com/arvid-berndtsson/compliance-simplified"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-sm hover:bg-foreground/90 transition-colors"

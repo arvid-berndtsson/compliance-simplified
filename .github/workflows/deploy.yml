@@ -25,11 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # If you're using a monorepo, you may want to add the following line
-          # submodules: true
-          # Or, if you're using a different branch for your docs, change main to your branch name
-          # ref: your-branch-name
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -47,14 +42,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build with Docusaurus
+      - name: Build with Next.js
         run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository to github-pages environment
-          path: './build'
+          # Upload the out directory for Next.js static export
+          path: './out'
 
   # Deployment job
   deploy:

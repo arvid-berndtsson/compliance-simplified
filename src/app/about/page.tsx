@@ -242,7 +242,7 @@ export default function AboutPage() {
 
             <div className="mt-12 text-center">
               <a
-                href="https://github.com/arvid-berndtsson/audit-site"
+                href="https://github.com/arvid-berndtsson/compliance-simplified"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
@@ -269,7 +269,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://github.com/arvid-berndtsson/audit-site/issues"
+                href="https://github.com/arvid-berndtsson/compliance-simplified/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-sm hover:bg-foreground/90 transition-colors"
@@ -297,11 +297,11 @@ export default function AboutPage() {
       <footer className="border-t border-border/40 bg-background/95">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 Audit Site. Licensed under AGPL-3.0.</p>
+            <p>&copy; 2025 Compliance Simplified. Licensed under AGPL-3.0.</p>
             <p className="mt-2 text-sm">
-              Based on "Audit.arvid.tech" by Arvid Berndtsson (
-              <a href="https://github.com/arvid-berndtsson/audit-site" className="text-primary hover:text-primary/80">
-                https://github.com/arvid-berndtsson/audit-site
+              Based on "Compliance Simplified" by Arvid Berndtsson (
+              <a href="https://github.com/arvid-berndtsson/compliance-simplified" className="text-primary hover:text-primary/80">
+                https://github.com/arvid-berndtsson/compliance-simplified
               </a>
               ) licensed under AGPL-3.0
             </p>
