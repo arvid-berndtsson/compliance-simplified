@@ -187,10 +187,30 @@ body {
   }
   
   /* Fix external link icons */
-  .navbar__item svg,
-  .navbar__link svg {
-    @apply inline-block ml-1;
-  }
+.navbar__item svg,
+.navbar__link svg {
+  @apply inline-block ml-1;
+}
+
+/* Fix external link icons in footer and other areas */
+.footer__link-item svg,
+.theme-doc-markdown a[target="_blank"] svg,
+a[target="_blank"] svg,
+a[href^="http"] svg {
+  @apply inline-block ml-1;
+  vertical-align: middle;
+  display: inline;
+}
+
+/* Ensure external links display icons inline */
+.footer__link-item,
+.theme-doc-markdown a[target="_blank"],
+a[target="_blank"],
+a[href^="http"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
   
   /* Ensure proper spacing in navbar */
   .navbar__brand {
@@ -1157,6 +1177,17 @@ body {
 /* Link styling */
 .theme-doc-markdown a {
   @apply text-[#5e6ad2] hover:text-[#7a85e0] transition-colors duration-200 underline decoration-[#5e6ad2]/30 hover:decoration-[#7a85e0]/50;
+}
+
+/* Fix external link icon alignment globally */
+svg[data-icon="external-link-alt"],
+svg[data-icon="external-link"],
+svg[class*="external"],
+svg[class*="External"] {
+  display: inline !important;
+  vertical-align: middle !important;
+  margin-left: 0.25rem !important;
+  flex-shrink: 0 !important;
 }
 
 /* Button styling in markdown */
