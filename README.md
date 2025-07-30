@@ -75,29 +75,28 @@ pnpm run typecheck
 audit-site/
 ├── docs/                    # Documentation pages
 │   ├── intro.md            # Landing page
-│   ├── basics/             # Overview pages
-│   ├── iso27001/           # ISO 27001 guide
-│   ├── soc2/               # SOC 2 guide
-│   └── tools/              # Interactive tools
+│   ├── explanation/        # Overview pages
+│   ├── tutorials/          # Step-by-step guides
+│   ├── how-to/             # Task-oriented guides
+│   └── reference/          # Technical references
 ├── src/
+│   ├── app/                # Next.js app directory
 │   ├── css/                # Custom styles with Tailwind
 │   └── components/         # React components (TypeScript)
 ├── static/                 # Static assets
-├── docusaurus.config.ts    # Docusaurus configuration (TypeScript)
-├── sidebars.ts            # Documentation sidebar (TypeScript)
-├── tailwind.config.js     # Tailwind CSS configuration
-├── postcss.config.js      # PostCSS configuration
-├── tsconfig.json          # TypeScript configuration
-├── pnpm-workspace.yaml    # pnpm workspace configuration
-└── package.json           # Dependencies and scripts
+├── next.config.js          # Next.js configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+├── postcss.config.js       # PostCSS configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Dependencies and scripts
 ```
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Docusaurus v3
+- **Framework**: Next.js 14
 - **Language**: TypeScript
 - **Package Manager**: pnpm
-- **Styling**: Tailwind CSS + daisyUI
+- **Styling**: Tailwind CSS
 - **Deployment**: GitHub Pages
 - **CI/CD**: GitHub Actions
 
