@@ -16,6 +16,13 @@ html {
   height: 100%;
 }
 
+/* Override Docusaurus default heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.6;
@@ -355,22 +362,6 @@ body {
   /* Main content area */
   .theme-doc-markdown {
     @apply bg-[#0a0a0a]/30 backdrop-blur-sm;
-  }
-  
-  .theme-doc-markdown h1 {
-    @apply text-3xl md:text-4xl font-bold text-[#e5e5e5] mb-8 leading-tight;
-  }
-  
-  .theme-doc-markdown h2 {
-    @apply text-2xl md:text-3xl font-bold text-[#e5e5e5] mb-6 mt-12 leading-tight;
-  }
-  
-  .theme-doc-markdown h3 {
-    @apply text-xl md:text-2xl font-semibold text-[#e5e5e5] mb-4 mt-8 leading-tight;
-  }
-  
-  .theme-doc-markdown h4 {
-    @apply text-lg font-semibold text-[#e5e5e5] mb-3 mt-6 leading-tight;
   }
   
   .theme-doc-markdown p {
@@ -953,6 +944,95 @@ body {
 }
 
 /* Enhanced Docusaurus components */
+
+/* Documentation heading styles - High specificity to override defaults */
+.theme-doc-markdown h1 {
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 2rem !important;
+  margin-top: 0 !important;
+}
+
+.theme-doc-markdown h2 {
+  font-size: 1.875rem !important;
+  line-height: 2.25rem !important;
+  font-weight: 700 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 1.5rem !important;
+  margin-top: 3rem !important;
+}
+
+.theme-doc-markdown h3 {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+  font-weight: 600 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 1rem !important;
+  margin-top: 2rem !important;
+}
+
+.theme-doc-markdown h4 {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+  font-weight: 600 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 0.75rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.theme-doc-markdown h5 {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 0.5rem !important;
+  margin-top: 1rem !important;
+}
+
+.theme-doc-markdown h6 {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #e5e5e5 !important;
+  margin-bottom: 0.5rem !important;
+  margin-top: 1rem !important;
+}
+
+/* Light theme heading styles */
+[data-theme='light'] .theme-doc-markdown h1,
+[data-theme='light'] .theme-doc-markdown h2,
+[data-theme='light'] .theme-doc-markdown h3,
+[data-theme='light'] .theme-doc-markdown h4,
+[data-theme='light'] .theme-doc-markdown h5,
+[data-theme='light'] .theme-doc-markdown h6 {
+  color: #1e293b !important;
+}
+
+/* Responsive heading styles for mobile devices */
+@media (max-width: 768px) {
+  .theme-doc-markdown h1 {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+  
+  .theme-doc-markdown h2 {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+  
+  .theme-doc-markdown h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+  
+  .theme-doc-markdown h4 {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+}
+
 .hero {
   @apply py-24 md:py-40 relative z-10;
 }
