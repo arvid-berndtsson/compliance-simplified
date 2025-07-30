@@ -3,9 +3,9 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Audit.arvid.tech',
+  title: 'Compliance Made Simple',
   tagline: 'ISO27001 and SOC 2 Compliance Made Simple',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   // Set the production url of your site here
   url: 'https://audit.arvid.tech',
@@ -52,10 +52,10 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
-    navbar: {
-      title: 'Audit.arvid.tech',
+          navbar: {
+        title: 'Compliance Made Simple',
       logo: {
-        alt: 'Audit Site Logo',
+        alt: 'Compliance Made Simple Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -63,7 +63,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Guide',
+          label: 'Documentation',
         },
         {
           href: 'https://github.com/arvid-berndtsson/audit-site',
@@ -83,16 +83,16 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: 'ISO 27001 Overview',
-              to: '/docs/basics/iso27001-overview',
+              label: 'Quick Start Tutorial',
+              to: '/docs/tutorials/quick-start',
             },
             {
-              label: 'SOC 2 Trust Services',
-              to: '/docs/soc2/trust-services-criteria',
+              label: 'ISO 27001 Walkthrough',
+              to: '/docs/tutorials/iso27001-walkthrough',
             },
             {
-              label: 'Implementation Steps',
-              to: '/docs/soc2/implementation-steps',
+              label: 'SOC 2 Walkthrough',
+              to: '/docs/tutorials/soc2-walkthrough',
             },
           ],
         },
@@ -101,15 +101,15 @@ const config: Config = {
           items: [
             {
               label: 'Executive Buy-in',
-              to: '/docs/iso27001/step1-buyin',
+              to: '/docs/how-to/executive-buyin',
             },
             {
               label: 'Scope Definition',
-              to: '/docs/iso27001/step2-scope',
+              to: '/docs/how-to/scope-definition',
             },
             {
-              label: '2022 Standard',
-              to: '/docs/basics/iso27001-overview',
+              label: 'Controls Reference',
+              to: '/docs/reference/iso27001-controls',
             },
           ],
         },
@@ -118,15 +118,15 @@ const config: Config = {
           items: [
             {
               label: 'Trust Services Criteria',
-              to: '/docs/soc2/trust-services-criteria',
+              to: '/docs/reference/soc2-criteria',
             },
             {
-              label: 'Implementation Steps',
-              to: '/docs/soc2/implementation-steps',
+              label: 'Implementation Guide',
+              to: '/docs/tutorials/soc2-walkthrough',
             },
             {
-              label: 'Type II Certification',
-              to: '/docs/soc2/trust-services-criteria',
+              label: 'Glossary',
+              to: '/docs/reference/glossary',
             },
           ],
         },

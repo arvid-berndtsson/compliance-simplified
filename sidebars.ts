@@ -5,39 +5,41 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Tutorials',
+      description: 'Learn by doing. Hands-on guides to get you started.',
       items: [
-        'intro',
-        'basics/iso27001-overview',
+        'tutorials/quick-start',
+        'tutorials/iso27001-walkthrough',
+        'tutorials/soc2-walkthrough',
       ],
     },
     {
       type: 'category',
-      label: 'ISO 27001 Guide',
+      label: 'How-to Guides',
+      description: 'Task-oriented guides for specific compliance activities.',
       items: [
-        'iso27001/step1-buyin',
-        'iso27001/step2-scope',
+        'how-to/executive-buyin',
+        'how-to/scope-definition',
       ],
     },
     {
       type: 'category',
-      label: 'SOC 2 Guide',
+      label: 'Reference',
+      description: 'Technical details, specifications, and quick lookups.',
       items: [
-        'soc2/trust-services-criteria',
-        'soc2/implementation-steps',
+        'reference/iso27001-controls',
+        'reference/soc2-criteria',
+        'reference/glossary',
       ],
     },
-    // TODO: Add more sections as documentation grows
-    // {
-    //   type: 'category',
-    //   label: 'Tools & Resources',
-    //   items: [
-    //     'tools/controls-explorer',
-    //     'tools/gap-assessment',
-    //     'tools/templates',
-    //     'tools/faq',
-    //   ],
-    // },
+    {
+      type: 'category',
+      label: 'Explanation',
+      description: 'Understanding-oriented content about concepts and principles.',
+      items: [
+        'explanation/iso27001-overview',
+      ],
+    },
   ],
 };
 

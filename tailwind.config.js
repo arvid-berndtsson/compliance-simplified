@@ -7,31 +7,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Linear-inspired color palette
+        // Linear's actual color palette
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#f0f4ff',
+          100: '#e0e9ff',
+          200: '#c7d6ff',
+          300: '#a5b8ff',
+          400: '#7a85e0',
+          500: '#5e6ad2',
+          600: '#4f5bb8',
+          700: '#4752a8',
+          800: '#3a4288',
+          900: '#2f3569',
         },
+        // Linear's refined gray palette
         gray: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#1a1a1a',
+          950: '#0a0a0a',
         },
         accent: {
           50: '#fdf4ff',
@@ -47,7 +48,7 @@ module.exports = {
         },
         // Linear-style gradients
         linear: {
-          blue: '#0ea5e9',
+          blue: '#5e6ad2',
           purple: '#8b5cf6',
           pink: '#ec4899',
           cyan: '#06b6d4',
@@ -89,8 +90,8 @@ module.exports = {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.3)' },
-          '100%': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.6)' },
+          '0%': { boxShadow: '0 0 20px rgba(94, 106, 210, 0.3)' },
+          '100%': { boxShadow: '0 0 30px rgba(94, 106, 210, 0.6)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
@@ -103,7 +104,7 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'linear-gradient': 'linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 50%, #ec4899 100%)',
+        'linear-gradient': 'linear-gradient(135deg, #5e6ad2 0%, #8b5cf6 50%, #ec4899 100%)',
         'shimmer': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
       },
     },
