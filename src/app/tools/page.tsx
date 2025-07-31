@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import LandingLayout from "@/components/LandingLayout";
+import { CONTACT_EMAIL } from '@/config/constants';
 
 interface Pricing {
   min: number;

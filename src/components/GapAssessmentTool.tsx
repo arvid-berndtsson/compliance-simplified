@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { AssessmentQuestion, assessmentQuestions } from '../data/assessmentQuestions'
+import { ASSESSMENT_VERSION } from '@/config/constants'
 
 interface Toast {
   id: string
@@ -783,16 +784,72 @@ export default function GapAssessmentTool() {
     setToasts(prev => prev.filter(toast => toast.id !== id))
   }
 
-  // Load saved progress from localStorage
+  // Load saved progress from localStorage with migration support
   useEffect(() => {
     const savedAnswers = localStorage.getItem('gap-assessment-answers')
     const savedStep = localStorage.getItem('gap-assessment-step')
     const savedOrg = localStorage.getItem('gap-assessment-org')
     const savedIndex = localStorage.getItem('gap-assessment-index')
+    const savedVersion = localStorage.getItem('gap-assessment-version')
     
-    if (savedAnswers) {
-      setAnswers(JSON.parse(savedAnswers))
-    }
+    // Current data version - increment this when making breaking changes
+    const CURRENT_VERSION = ASSESSMENT_VERSION
+    
+          if (savedAnswers) {
+        try {
+          const parsedAnswers = JSON.parse(savedAnswers)
+          
+          // Check if migration is needed
+          const needsMigration = !savedVersion || savedVersion !== CURRENT_VERSION
+          
+          if (needsMigration) {
+            console.log(`Migrating assessment data from version ${savedVersion || 'unknown'} to ${CURRENT_VERSION}`)
+          }
+          
+          // Migration: Handle old data format that doesn't include 'skip' option
+          const migratedAnswers = parsedAnswers.map((answer: any) => {
+            // Ensure the answer has the correct structure
+            if (typeof answer === 'object' && answer.questionId && answer.answer !== undefined) {
+              // Validate that the answer value is one of the allowed options
+              const validAnswers = ['yes', 'no', 'partial', 'skip', null]
+              if (!validAnswers.includes(answer.answer)) {
+                // If it's an invalid answer, set it to null (unanswered)
+                console.warn(`Invalid answer value found for question ${answer.questionId}: ${answer.answer}. Setting to null.`)
+                return {
+                  questionId: answer.questionId,
+                  answer: null,
+                  notes: answer.notes || ''
+                }
+              }
+              
+              // Ensure notes field exists
+              return {
+                questionId: answer.questionId,
+                answer: answer.answer,
+                notes: answer.notes || ''
+              }
+            } else {
+              // Invalid answer structure, skip it
+              console.warn('Invalid answer structure found:', answer)
+              return null
+            }
+          }).filter(Boolean) // Remove any null entries
+          
+          setAnswers(migratedAnswers)
+          
+          // Save the migrated data back to localStorage with version
+          localStorage.setItem('gap-assessment-answers', JSON.stringify(migratedAnswers))
+          localStorage.setItem('gap-assessment-version', CURRENT_VERSION)
+          
+        } catch (error) {
+          console.error('Error parsing saved answers:', error)
+          // If there's an error parsing, clear the corrupted data
+          localStorage.removeItem('gap-assessment-answers')
+          localStorage.removeItem('gap-assessment-version')
+          setAnswers([])
+        }
+      }
+    
     if (savedStep) {
       setCurrentStep(savedStep as 'intro' | 'assessment' | 'results')
     }
@@ -1115,10 +1172,17 @@ export default function GapAssessmentTool() {
     setCurrentStep('intro')
     setCurrentQuestionIndex(0)
     setOrganizationName('')
+    setNotes('')
+    setToasts([])
+    
+    // Clear localStorage including version
     localStorage.removeItem('gap-assessment-answers')
     localStorage.removeItem('gap-assessment-step')
     localStorage.removeItem('gap-assessment-org')
     localStorage.removeItem('gap-assessment-index')
+    localStorage.removeItem('gap-assessment-version')
+    
+    showToast('Assessment reset successfully', 'success')
   }
 
   const continueAssessment = () => {

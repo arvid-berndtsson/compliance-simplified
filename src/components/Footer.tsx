@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { CONTACT_EMAIL } from '@/config/constants'
 
 
 export default function Footer() {
@@ -93,7 +94,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:compliance@arvid.tech"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Contact Us

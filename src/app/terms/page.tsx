@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CONTACT_EMAIL } from '@/config/constants';
 
 export default function TermsPage() {
   return (
@@ -351,10 +352,10 @@ export default function TermsPage() {
                 <p>
                   <strong>Email:</strong>{" "}
                   <a
-                    href="mailto:compliance@arvid.tech"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-primary hover:text-primary/80"
                   >
-                    compliance@arvid.tech
+                    {CONTACT_EMAIL}
                   </a>
                 </p>
                 <p>
@@ -494,7 +495,7 @@ export default function TermsPage() {
                 </li>
                 <li>
                   <a
-                    href="mailto:compliance@arvid.tech"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Contact Us
