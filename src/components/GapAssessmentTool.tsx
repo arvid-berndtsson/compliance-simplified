@@ -135,9 +135,13 @@ function QuestionNavigation({ currentIndex, answers, onQuestionSelect }: Questio
 interface ResultsVisualizationProps {
   score: { totalScore: number; maxScore: number; percentage: number }
   categoryScores: CategoryScore[]
+  organizationName: string
 }
 
-function ResultsVisualization({ score, categoryScores }: ResultsVisualizationProps) {
+function ResultsVisualization({ score, categoryScores, organizationName }: ResultsVisualizationProps) {
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const [selectedView, setSelectedView] = useState<'overview' | 'details' | 'timeline' | 'actions'>('overview')
+
   const getScoreColor = (percentage: number) => {
     if (percentage >= 80) return 'text-green-600'
     if (percentage >= 60) return 'text-blue-600'
@@ -152,74 +156,361 @@ function ResultsVisualization({ score, categoryScores }: ResultsVisualizationPro
     return 'bg-red-100'
   }
 
+  const getRiskLevel = (percentage: number) => {
+    if (percentage >= 80) return { level: 'Low', color: 'text-green-600', bgColor: 'bg-green-100', description: 'Minimal risk' }
+    if (percentage >= 60) return { level: 'Medium', color: 'text-blue-600', bgColor: 'bg-blue-100', description: 'Moderate risk' }
+    if (percentage >= 40) return { level: 'High', color: 'text-yellow-600', bgColor: 'bg-yellow-100', description: 'High risk' }
+    return { level: 'Critical', color: 'text-red-600', bgColor: 'bg-red-100', description: 'Critical risk' }
+  }
+
+  const getTimelineEstimate = (percentage: number) => {
+    if (percentage >= 80) return { months: '3-6', effort: 'Low', description: 'Minor improvements needed' }
+    if (percentage >= 60) return { months: '6-12', effort: 'Medium', description: 'Moderate implementation effort' }
+    if (percentage >= 40) return { months: '12-18', effort: 'High', description: 'Significant implementation required' }
+    return { months: '18-24', effort: 'Very High', description: 'Major transformation needed' }
+  }
+
+  const toggleCategory = (category: string) => {
+    const newExpanded = new Set(expandedCategories)
+    if (newExpanded.has(category)) {
+      newExpanded.delete(category)
+    } else {
+      newExpanded.add(category)
+    }
+    setExpandedCategories(newExpanded)
+  }
+
+  const getPriorityScore = (category: CategoryScore) => {
+    // Calculate priority based on score and number of questions
+    const scoreWeight = (100 - category.percentage) / 100 // Lower score = higher priority
+    const questionWeight = category.questions.length / Math.max(...categoryScores.map(c => c.questions.length))
+    return (scoreWeight * 0.7 + questionWeight * 0.3) * 100
+  }
+
+  const sortedCategories = [...categoryScores].sort((a, b) => getPriorityScore(b) - getPriorityScore(a))
+
   return (
-    <div className="space-y-6">
-      {/* Overall Score Circle */}
-      <div className="flex justify-center">
-        <div className="relative w-32 h-32">
-          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-            <circle
-              cx="60"
-              cy="60"
-              r="54"
-              fill="none"
-              stroke="#e5e7eb"
-              strokeWidth="8"
-            />
-            <circle
-              cx="60"
-              cy="60"
-              r="54"
-              fill="none"
-              stroke={score.percentage >= 80 ? '#10b981' : score.percentage >= 60 ? '#3b82f6' : score.percentage >= 40 ? '#f59e0b' : '#ef4444'}
-              strokeWidth="8"
-              strokeDasharray={`${2 * Math.PI * 54}`}
-              strokeDashoffset={`${2 * Math.PI * 54 * (1 - score.percentage / 100)}`}
-              strokeLinecap="round"
-              className="transition-all duration-1000 ease-out"
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className={`text-2xl font-bold ${getScoreColor(score.percentage)}`}>
-                {score.percentage.toFixed(0)}%
+    <div className="space-y-8">
+      {/* View Toggle */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {(['overview', 'details', 'timeline', 'actions'] as const).map((view) => (
+          <button
+            key={view}
+            onClick={() => setSelectedView(view)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              selectedView === view
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+            }`}
+          >
+            {view.charAt(0).toUpperCase() + view.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {/* Overview View */}
+      {selectedView === 'overview' && (
+        <div className="space-y-6">
+          {/* Enhanced Score Summary */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Overall Score */}
+            <div className="bg-card border border-border rounded-lg p-6 text-center">
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Overall Score</h4>
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 120 120">
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    fill="none"
+                    stroke="#e5e7eb"
+                    strokeWidth="8"
+                  />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    fill="none"
+                    stroke={score.percentage >= 80 ? '#10b981' : score.percentage >= 60 ? '#3b82f6' : score.percentage >= 40 ? '#f59e0b' : '#ef4444'}
+                    strokeWidth="8"
+                    strokeDasharray={`${2 * Math.PI * 54}`}
+                    strokeDashoffset={`${2 * Math.PI * 54 * (1 - score.percentage / 100)}`}
+                    strokeLinecap="round"
+                    className="transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className={`text-xl font-bold ${getScoreColor(score.percentage)}`}>
+                    {score.percentage.toFixed(0)}%
+                  </div>
+                </div>
               </div>
-              <div className="text-xs text-muted-foreground">
-                {score.totalScore}/{score.maxScore}
+              <div className="text-sm text-muted-foreground">
+                {score.totalScore}/{score.maxScore} points
+              </div>
+            </div>
+
+            {/* Risk Assessment */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Risk Level</h4>
+              {(() => {
+                const risk = getRiskLevel(score.percentage)
+                return (
+                  <div className="text-center">
+                    <div className={`text-2xl font-bold ${risk.color} mb-1`}>
+                      {risk.level}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {risk.description}
+                    </div>
+                  </div>
+                )
+              })()}
+            </div>
+
+            {/* Timeline Estimate */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">Implementation Timeline</h4>
+              {(() => {
+                const timeline = getTimelineEstimate(score.percentage)
+                return (
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-foreground mb-1">
+                      {timeline.months} months
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {timeline.description}
+                    </div>
+                  </div>
+                )
+              })()}
+            </div>
+          </div>
+
+          {/* Priority Heat Map */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h4 className="text-lg font-semibold mb-4">Priority Heat Map</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sortedCategories.map((category, index) => {
+                const priorityScore = getPriorityScore(category)
+                const priorityColor = priorityScore > 70 ? 'bg-red-100 border-red-200' :
+                                    priorityScore > 50 ? 'bg-yellow-100 border-yellow-200' :
+                                    priorityScore > 30 ? 'bg-blue-100 border-blue-200' :
+                                    'bg-green-100 border-green-200'
+                const textColor = priorityScore > 70 ? 'text-red-800' :
+                                priorityScore > 50 ? 'text-yellow-800' :
+                                priorityScore > 30 ? 'text-blue-800' :
+                                'text-green-800'
+                
+                return (
+                  <div key={category.category} className={`p-4 rounded-lg border ${priorityColor}`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <h5 className={`font-medium ${textColor}`}>{category.category}</h5>
+                      <span className={`text-xs font-bold ${textColor}`}>
+                        {priorityScore.toFixed(0)}%
+                      </span>
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {category.percentage.toFixed(0)}% complete
+                    </div>
+                    <div className="mt-2 w-full bg-white/50 rounded-full h-2">
+                      <div 
+                        className={`h-2 rounded-full ${
+                          category.percentage >= 80 ? 'bg-green-500' :
+                          category.percentage >= 60 ? 'bg-blue-500' :
+                          category.percentage >= 40 ? 'bg-yellow-500' : 'bg-red-500'
+                        }`}
+                        style={{ width: `${category.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Details View */}
+      {selectedView === 'details' && (
+        <div className="space-y-6">
+          {categoryScores.map(category => (
+            <div key={category.category} className="bg-card border border-border rounded-lg p-6">
+              <div 
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleCategory(category.category)}
+              >
+                <div className="flex items-center space-x-3">
+                  <h4 className="text-lg font-semibold">{category.category}</h4>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getScoreBgColor(category.percentage)} ${getScoreColor(category.percentage)}`}>
+                    {category.percentage.toFixed(0)}%
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm text-muted-foreground">
+                    {category.score.toFixed(0)}/{category.maxScore} points
+                  </span>
+                  <svg 
+                    className={`w-5 h-5 text-muted-foreground transition-transform ${
+                      expandedCategories.has(category.category) ? 'rotate-180' : ''
+                    }`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <div className="w-full bg-muted rounded-full h-3 mb-4">
+                  <div 
+                    className={`h-3 rounded-full transition-all duration-1000 ease-out ${
+                      category.percentage >= 80 ? 'bg-green-500' :
+                      category.percentage >= 60 ? 'bg-blue-500' :
+                      category.percentage >= 40 ? 'bg-yellow-500' : 'bg-red-500'
+                    }`}
+                    style={{ width: `${category.percentage}%` }}
+                  />
+                </div>
+                
+                {expandedCategories.has(category.category) && (
+                  <div className="mt-4 space-y-3">
+                    <h5 className="font-medium text-muted-foreground">Questions in this category:</h5>
+                    <div className="space-y-2">
+                      {category.questions.map(question => {
+                        const answer = category.answers.find(a => a.questionId === question.id)
+                        const statusColor = answer?.answer === 'yes' ? 'text-green-600' :
+                                          answer?.answer === 'partial' ? 'text-yellow-600' :
+                                          answer?.answer === 'no' ? 'text-red-600' :
+                                          answer?.answer === 'skip' ? 'text-gray-500' : 'text-gray-400'
+                        const statusText = answer?.answer === 'yes' ? '✓ Yes' :
+                                         answer?.answer === 'partial' ? '○ Partial' :
+                                         answer?.answer === 'no' ? '✗ No' :
+                                         answer?.answer === 'skip' ? '⏭ Skip' : 'Not answered'
+                        
+                        return (
+                          <div key={question.id} className="flex justify-between items-start p-3 bg-muted/30 rounded-lg">
+                            <div className="flex-1">
+                              <div className="text-sm font-medium">{question.question}</div>
+                              {answer?.notes && (
+                                <div className="text-xs text-muted-foreground mt-1">
+                                  Note: {answer.notes}
+                                </div>
+                              )}
+                            </div>
+                            <div className={`text-xs font-medium ${statusColor} ml-3`}>
+                              {statusText}
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Timeline View */}
+      {selectedView === 'timeline' && (
+        <div className="space-y-6">
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h4 className="text-lg font-semibold mb-4">Implementation Roadmap</h4>
+            <div className="space-y-6">
+              {(() => {
+                const timeline = getTimelineEstimate(score.percentage)
+                const phases = [
+                  { name: 'Phase 1: Foundation', duration: '1-3 months', focus: 'Leadership commitment, basic policies, initial training' },
+                  { name: 'Phase 2: Core Implementation', duration: '3-9 months', focus: 'Risk assessment, control implementation, monitoring setup' },
+                  { name: 'Phase 3: Optimization', duration: '3-6 months', focus: 'Process refinement, advanced controls, continuous improvement' },
+                  { name: 'Phase 4: Certification', duration: '3-6 months', focus: 'Audit preparation, certification process, ongoing compliance' }
+                ]
+                
+                return phases.map((phase, index) => (
+                  <div key={phase.name} className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-medium">{phase.name}</h5>
+                      <div className="text-sm text-muted-foreground mb-1">{phase.duration}</div>
+                      <div className="text-sm">{phase.focus}</div>
+                    </div>
+                  </div>
+                ))
+              })()}
+            </div>
+          </div>
+
+          {/* Resource Requirements */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h4 className="text-lg font-semibold mb-4">Resource Requirements</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <h5 className="font-medium mb-2">Personnel</h5>
+                <ul className="text-sm space-y-1 text-muted-foreground">
+                  <li>• Information Security Officer</li>
+                  <li>• IT Security Team</li>
+                  <li>• Risk Management Specialist</li>
+                  <li>• Training Coordinator</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <h5 className="font-medium mb-2">Budget Estimate</h5>
+                <div className="text-sm space-y-1 text-muted-foreground">
+                  <div>• Implementation: $50K - $200K</div>
+                  <div>• Annual maintenance: $20K - $80K</div>
+                  <div>• Certification: $15K - $50K</div>
+                  <div>• Training: $5K - $20K</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Category Progress Bars */}
-      <div className="space-y-6">
-        {categoryScores.map(category => (
-          <div key={category.category} className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm font-medium">{category.category}</span>
-              <div className="flex items-center space-x-2">
-                <span className={`text-sm font-semibold ${getScoreColor(category.percentage)}`}>
-                  {category.percentage.toFixed(0)}%
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  ({category.score.toFixed(0)}/{category.maxScore})
-                </span>
-              </div>
-            </div>
-            <div className="w-full bg-muted rounded-full h-3">
-              <div 
-                className={`h-3 rounded-full transition-all duration-1000 ease-out ${
-                  category.percentage >= 80 ? 'bg-green-500' :
-                  category.percentage >= 60 ? 'bg-blue-500' :
-                  category.percentage >= 40 ? 'bg-yellow-500' : 'bg-red-500'
-                }`}
-                style={{ width: `${category.percentage}%` }}
-              />
+      {/* Actions View */}
+      {selectedView === 'actions' && (
+        <div className="space-y-6">
+          {/* Immediate Actions */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h4 className="text-lg font-semibold mb-4">Immediate Actions (Next 30 Days)</h4>
+            <div className="space-y-3">
+              {sortedCategories.slice(0, 3).map(category => (
+                <div key={category.category} className="p-4 bg-muted/30 rounded-lg">
+                  <h5 className="font-medium mb-2">{category.category}</h5>
+                  <div className="text-sm text-muted-foreground">
+                    Priority: {getPriorityScore(category).toFixed(0)}% - Focus on lowest scoring areas
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+
+          {/* Success Metrics */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h4 className="text-lg font-semibold mb-4">Success Metrics</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-muted/30 rounded-lg">
+                <div className="text-2xl font-bold text-primary">80%+</div>
+                <div className="text-sm text-muted-foreground">Target Score</div>
+              </div>
+              <div className="text-center p-4 bg-muted/30 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">100%</div>
+                <div className="text-sm text-muted-foreground">Training Completion</div>
+              </div>
+              <div className="text-center p-4 bg-muted/30 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">0</div>
+                <div className="text-sm text-muted-foreground">Security Incidents</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -635,6 +926,42 @@ export default function GapAssessmentTool() {
     window.URL.revokeObjectURL(url)
   }
 
+  const exportToJSON = () => {
+    const score = calculateScore()
+    const scoreLevel = getScoreLevel(score.percentage)
+    const categoryScores = getCategoryScores()
+    const recommendations = getDetailedRecommendations()
+    
+    const exportData = {
+      organization: organizationName || 'Unknown',
+      assessmentDate: new Date().toISOString(),
+      score: {
+        total: score.totalScore,
+        max: score.maxScore,
+        percentage: score.percentage,
+        level: scoreLevel.level
+      },
+      categories: categoryScores,
+      recommendations: recommendations,
+      answers: answers,
+      questions: assessmentQuestions
+    }
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `iso27001-gap-assessment-${organizationName || 'organization'}-${new Date().toISOString().split('T')[0]}.json`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const exportToPDF = () => {
+    // This would require a PDF library like jsPDF or react-pdf
+    // For now, we'll show a message that this feature is coming soon
+    alert('PDF export feature coming soon! This will generate a professional report with charts and detailed analysis.')
+  }
+
   const resetAssessment = () => {
     setAnswers([])
     setCurrentStep('intro')
@@ -929,123 +1256,241 @@ export default function GapAssessmentTool() {
     const skippedCount = getSkippedQuestionsCount()
 
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-card border border-border rounded-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold mb-6">Assessment Results</h2>
+      <div className="max-w-7xl mx-auto">
+        {/* Header with Organization Info */}
+        <div className="bg-card border border-border rounded-lg p-8 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <div>
+              <h2 className="text-3xl font-bold mb-2">Assessment Results</h2>
+              {organizationName && (
+                <p className="text-lg text-muted-foreground">
+                  {organizationName} • {new Date().toLocaleDateString()}
+                </p>
+              )}
+            </div>
+            <div className="mt-4 md:mt-0">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-muted-foreground">Assessment Complete</span>
+              </div>
+            </div>
+          </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Score Summary */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Enhanced Score Summary */}
             <div className={`${scoreLevel.bgColor} rounded-lg p-6`} role="region" aria-label="Assessment score summary">
               <div className="text-center">
-                <div className={`text-4xl font-bold ${scoreLevel.color} mb-2`}>
+                <div className={`text-5xl font-bold ${scoreLevel.color} mb-3`}>
                   {score.percentage.toFixed(1)}%
                 </div>
-                <div className={`text-xl font-semibold ${scoreLevel.color} mb-2`}>
+                <div className={`text-2xl font-semibold ${scoreLevel.color} mb-3`}>
                   {scoreLevel.level}
                 </div>
-                <div className="text-muted-foreground mb-2">
+                <div className="text-muted-foreground mb-3">
                   Score: {score.totalScore} out of {score.maxScore} points
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-muted-foreground mb-4">
                   {scoreLevel.description}
                 </div>
-              </div>
-            </div>
-
-            {/* Assessment Summary */}
-            <div className="grid grid-cols-3 gap-4" role="region" aria-label="Assessment statistics">
-              <div className="bg-muted/50 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-primary">{answeredCount}</div>
-                <div className="text-sm text-muted-foreground">Answered</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-600">{skippedCount}</div>
-                <div className="text-sm text-muted-foreground">Skipped</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">{assessmentQuestions.length - answeredCount - skippedCount}</div>
-                <div className="text-sm text-muted-foreground">Remaining</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Results Visualization */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4">Detailed Analysis</h3>
-            <ResultsVisualization score={score} categoryScores={categoryScores} />
-          </div>
-
-          {/* Recommendations */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
-            <div className="space-y-4">
-              {recommendations.map((rec, index) => (
-                <div key={index} className={`border rounded-lg p-4 ${
-                  rec.type === 'priority' ? 'bg-red-50 border-red-200' :
-                  rec.type === 'category' ? 'bg-yellow-50 border-yellow-200' :
-                  'bg-blue-50 border-blue-200'
-                }`}>
-                  <h4 className={`font-semibold mb-2 ${
-                    rec.type === 'priority' ? 'text-red-800' :
-                    rec.type === 'category' ? 'text-yellow-800' :
-                    'text-blue-800'
-                  }`}>
-                    {rec.title}
-                  </h4>
-                  <ul className={`text-sm space-y-1 ${
-                    rec.type === 'priority' ? 'text-red-700' :
-                    rec.type === 'category' ? 'text-yellow-700' :
-                    'text-blue-700'
-                  }`}>
-                    {rec.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>• {item}</li>
-                    ))}
-                  </ul>
+                <div className="flex justify-center space-x-4 text-xs">
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Excellent (80%+)</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>Good (60-79%)</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span>Fair (40-59%)</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span>Needs Work (&lt;40%)</span>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
+
+            {/* Enhanced Assessment Summary */}
+            <div className="space-y-4" role="region" aria-label="Assessment statistics">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-muted/50 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-primary">{answeredCount}</div>
+                  <div className="text-sm text-muted-foreground">Answered</div>
+                </div>
+                <div className="bg-muted/50 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-yellow-600">{skippedCount}</div>
+                  <div className="text-sm text-muted-foreground">Skipped</div>
+                </div>
+                <div className="bg-muted/50 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-blue-600">{assessmentQuestions.length - answeredCount - skippedCount}</div>
+                  <div className="text-sm text-muted-foreground">Remaining</div>
+                </div>
+              </div>
+              
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-muted/30 rounded-lg p-4">
+                  <div className="text-sm font-medium text-muted-foreground mb-1">Completion Rate</div>
+                  <div className="text-xl font-bold">
+                    {Math.round(((answeredCount + skippedCount) / assessmentQuestions.length) * 100)}%
+                  </div>
+                </div>
+                <div className="bg-muted/30 rounded-lg p-4">
+                  <div className="text-sm font-medium text-muted-foreground mb-1">Categories Assessed</div>
+                  <div className="text-xl font-bold">
+                    {categoryScores.filter(c => c.percentage > 0).length}/6
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+        {/* Results Visualization */}
+        <div className="bg-card border border-border rounded-lg p-8 mb-6">
+          <h3 className="text-2xl font-semibold mb-6">Detailed Analysis</h3>
+          <ResultsVisualization score={score} categoryScores={categoryScores} organizationName={organizationName} />
+        </div>
+
+        {/* Enhanced Recommendations */}
+        <div className="bg-card border border-border rounded-lg p-8 mb-6">
+          <h3 className="text-2xl font-semibold mb-6">Strategic Recommendations</h3>
+          <div className="space-y-6">
+            {recommendations.map((rec, index) => (
+              <div key={index} className={`border rounded-lg p-6 ${
+                rec.type === 'priority' ? 'bg-red-50 border-red-200' :
+                rec.type === 'category' ? 'bg-yellow-50 border-yellow-200' :
+                'bg-blue-50 border-blue-200'
+              }`}>
+                <div className="flex items-start space-x-3">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    rec.type === 'priority' ? 'bg-red-100 text-red-600' :
+                    rec.type === 'category' ? 'bg-yellow-100 text-yellow-600' :
+                    'bg-blue-100 text-blue-600'
+                  }`}>
+                    {rec.type === 'priority' ? '⚡' : rec.type === 'category' ? '🎯' : '📋'}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className={`text-lg font-semibold mb-3 ${
+                      rec.type === 'priority' ? 'text-red-800' :
+                      rec.type === 'category' ? 'text-yellow-800' :
+                      'text-blue-800'
+                    }`}>
+                      {rec.title}
+                    </h4>
+                    <ul className={`space-y-2 ${
+                      rec.type === 'priority' ? 'text-red-700' :
+                      rec.type === 'category' ? 'text-yellow-700' :
+                      'text-blue-700'
+                    }`}>
+                      {rec.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start space-x-2">
+                          <span className="text-sm mt-1">•</span>
+                          <span className="text-sm">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Enhanced Action Buttons */}
+        <div className="bg-card border border-border rounded-lg p-8">
+          <h3 className="text-xl font-semibold mb-6">Next Steps</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             <button
               onClick={exportToCSV}
-              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-describedby="export-help"
+              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="export-csv-help"
             >
-              Export Results (CSV)
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center mb-2">
+                📊
+              </div>
+              <span className="font-medium">Export CSV</span>
+              <span className="text-xs text-muted-foreground text-center">Spreadsheet format</span>
             </button>
-            <div id="export-help" className="sr-only">
+            <div id="export-csv-help" className="sr-only">
               Download assessment results as a CSV file
             </div>
+
+            <button
+              onClick={exportToJSON}
+              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="export-json-help"
+            >
+              <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center mb-2">
+                📄
+              </div>
+              <span className="font-medium">Export JSON</span>
+              <span className="text-xs text-muted-foreground text-center">Data format</span>
+            </button>
+            <div id="export-json-help" className="sr-only">
+              Download assessment results as a JSON file
+            </div>
+
+            <button
+              onClick={exportToPDF}
+              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="export-pdf-help"
+            >
+              <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mb-2">
+                📋
+              </div>
+              <span className="font-medium">Export PDF</span>
+              <span className="text-xs text-muted-foreground text-center">Coming soon</span>
+            </button>
+            <div id="export-pdf-help" className="sr-only">
+              Download assessment results as a PDF report
+            </div>
+            
             {answeredCount + skippedCount < assessmentQuestions.length && (
               <button
                 onClick={continueAssessment}
-                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 aria-describedby="continue-help"
               >
-                Continue Assessment
+                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mb-2">
+                  ➡️
+                </div>
+                <span className="font-medium">Continue</span>
+                <span className="text-xs text-muted-foreground text-center">Complete remaining questions</span>
               </button>
             )}
             <div id="continue-help" className="sr-only">
               Return to complete remaining questions
             </div>
+            
             <button
               onClick={resetAssessment}
-              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-describedby="reset-help"
             >
-              Start New Assessment
+              <div className="w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center mb-2">
+                🔄
+              </div>
+              <span className="font-medium">New Assessment</span>
+              <span className="text-xs text-muted-foreground text-center">Start fresh assessment</span>
             </button>
             <div id="reset-help" className="sr-only">
               Clear all answers and start a new assessment
             </div>
+            
             <button
               onClick={() => window.history.back()}
-              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-describedby="back-help"
             >
-              ← Go Back
+              <div className="w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center mb-2">
+                ←
+              </div>
+              <span className="font-medium">Go Back</span>
+              <span className="text-xs text-muted-foreground text-center">Return to previous page</span>
             </button>
             <div id="back-help" className="sr-only">
               Return to the previous page
