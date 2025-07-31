@@ -847,10 +847,10 @@ export default function ToolsPage() {
                     To have your tool assessed and potentially featured, please reach out to:
                   </p>
                   <a
-                    href="mailto:compliance@arvid.tech"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="inline-block bg-secondary text-secondary-foreground py-2 px-6 rounded-lg font-medium hover:bg-secondary/90 transition-colors"
                   >
-                    compliance@arvid.tech
+                    {CONTACT_EMAIL}
                   </a>
                   <p className="text-xs text-muted-foreground mt-2">
                     We'll review your tool for relevance, quality, and value to the ISO 27001 compliance community.
