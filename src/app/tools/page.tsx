@@ -99,7 +99,7 @@ const tools: Tool[] = [
     id: 'policy-management-3',
     name: 'Vanta',
     category: 'Governance & Policy Management',
-    description: 'Industry-leading automated compliance platform that helps companies get and stay compliant with ISO 27001, SOC 2, and other frameworks. Premium pricing reflects enterprise-grade automation and support.',
+    description: 'A widely used automated compliance platform that helps companies achieve and maintain compliance with ISO 27001, SOC 2, and other frameworks. Designed for enterprise-level automation and support.',
     features: [
       'Automated compliance monitoring',
       'Real-time control testing',
