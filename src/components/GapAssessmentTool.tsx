@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { AssessmentQuestion, assessmentQuestions } from '../data/assessmentQuestions'
 
 interface AssessmentAnswer {
@@ -45,11 +45,27 @@ function QuestionNavigation({ currentIndex, answers, onQuestionSelect }: Questio
     }
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onQuestionSelect(index)
+    }
+  }
+
   return (
     <div className="mb-6">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsExpanded(!isExpanded)
+          }
+        }}
+        className="flex items-center justify-between w-full p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        aria-expanded={isExpanded}
+        aria-controls="question-navigation-grid"
+        aria-label={`Question navigation - ${isExpanded ? 'Hide' : 'Show'} (${answers.filter(a => a.answer && a.answer !== 'skip').length}/${assessmentQuestions.length} answered)`}
       >
         <span className="font-medium">Question Navigation</span>
         <span className="text-sm text-muted-foreground">
@@ -58,7 +74,12 @@ function QuestionNavigation({ currentIndex, answers, onQuestionSelect }: Questio
       </button>
       
       {isExpanded && (
-        <div className="mt-3 p-4 bg-muted/30 rounded-lg">
+        <div 
+          id="question-navigation-grid"
+          className="mt-3 p-4 bg-muted/30 rounded-lg"
+          role="region"
+          aria-label="Question navigation grid"
+        >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {assessmentQuestions.map((question, index) => {
               const status = getQuestionStatus(index)
@@ -68,13 +89,19 @@ function QuestionNavigation({ currentIndex, answers, onQuestionSelect }: Questio
                 <button
                   key={question.id}
                   onClick={() => onQuestionSelect(index)}
-                  className={`flex items-center space-x-2 p-2 rounded text-left text-sm transition-colors ${
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  className={`flex items-center space-x-2 p-2 rounded text-left text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 ${
                     isCurrent 
                       ? 'bg-primary text-primary-foreground' 
                       : 'hover:bg-muted'
                   }`}
+                  aria-label={`Question ${index + 1}: ${question.category.split(' ')[0]} - ${status}`}
+                  aria-current={isCurrent ? 'true' : undefined}
                 >
-                  <div className={`w-2 h-2 rounded-full ${getStatusColor(status)}`} />
+                  <div 
+                    className={`w-2 h-2 rounded-full ${getStatusColor(status)}`}
+                    aria-hidden="true"
+                  />
                   <span className="truncate">
                     {index + 1}. {question.category.split(' ')[0]}
                   </span>
@@ -86,15 +113,15 @@ function QuestionNavigation({ currentIndex, answers, onQuestionSelect }: Questio
           <div className="mt-3 pt-3 border-t border-border">
             <div className="flex items-center justify-center space-x-4 text-xs text-muted-foreground">
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <div className="w-2 h-2 rounded-full bg-green-500" aria-hidden="true" />
                 <span>Answered</span>
               </div>
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                <div className="w-2 h-2 rounded-full bg-yellow-500" aria-hidden="true" />
                 <span>Skipped</span>
               </div>
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-gray-300" />
+                <div className="w-2 h-2 rounded-full bg-gray-300" aria-hidden="true" />
                 <span>Unanswered</span>
               </div>
             </div>
@@ -203,6 +230,123 @@ export default function GapAssessmentTool() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [organizationName, setOrganizationName] = useState('')
   const [notes, setNotes] = useState('')
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  
+  // Refs for focus management
+  const questionRef = useRef<HTMLDivElement>(null)
+  const yesButtonRef = useRef<HTMLInputElement>(null)
+  const partialButtonRef = useRef<HTMLInputElement>(null)
+  const noButtonRef = useRef<HTMLInputElement>(null)
+  const skipButtonRef = useRef<HTMLButtonElement>(null)
+  const notesRef = useRef<HTMLTextAreaElement>(null)
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50
+
+  // Touch handlers for swipe gestures
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe && currentQuestionIndex < assessmentQuestions.length - 1) {
+      // Swipe left - next question
+      const currentAnswer = getCurrentAnswer()
+      if (currentAnswer) {
+        answerQuestion(currentAnswer, notes)
+      }
+    } else if (isRightSwipe && currentQuestionIndex > 0) {
+      // Swipe right - previous question
+      goToPreviousQuestion()
+    }
+  }, [touchStart, touchEnd, currentQuestionIndex, notes])
+
+  // Keyboard navigation handler
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (currentStep !== 'assessment') return
+
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault()
+        if (currentQuestionIndex > 0) {
+          goToPreviousQuestion()
+        }
+        break
+      case 'ArrowRight':
+        e.preventDefault()
+        if (currentQuestionIndex < assessmentQuestions.length - 1) {
+          const currentAnswer = getCurrentAnswer()
+          if (currentAnswer) {
+            answerQuestion(currentAnswer, notes)
+          }
+        }
+        break
+      case '1':
+      case 'y':
+      case 'Y':
+        e.preventDefault()
+        answerQuestion('yes', notes)
+        break
+      case '2':
+      case 'p':
+      case 'P':
+        e.preventDefault()
+        answerQuestion('partial', notes)
+        break
+      case '3':
+      case 'n':
+      case 'N':
+        e.preventDefault()
+        answerQuestion('no', notes)
+        break
+      case 's':
+      case 'S':
+        e.preventDefault()
+        skipQuestion()
+        break
+      case 'Tab':
+        // Allow normal tab navigation
+        break
+      default:
+        // Ignore other keys
+        break
+    }
+  }, [currentStep, currentQuestionIndex, notes])
+
+  // Add keyboard event listener
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [handleKeyDown])
+
+  // Focus management when question changes
+  useEffect(() => {
+    if (currentStep === 'assessment' && questionRef.current) {
+      // Focus the question container for screen readers
+      questionRef.current.focus()
+    }
+  }, [currentQuestionIndex, currentStep])
+
+  // Haptic feedback for mobile devices
+  const triggerHapticFeedback = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50) // Short vibration
+    }
+  }
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -244,6 +388,7 @@ export default function GapAssessmentTool() {
   const startAssessment = () => {
     setCurrentStep('assessment')
     setCurrentQuestionIndex(0)
+    triggerHapticFeedback()
   }
 
   const answerQuestion = (answer: 'yes' | 'no' | 'partial' | 'skip', notes?: string) => {
@@ -258,6 +403,7 @@ export default function GapAssessmentTool() {
     }
     
     setAnswers(newAnswers)
+    triggerHapticFeedback()
     
     // Add delay to show the checkmark animation
     setTimeout(() => {
@@ -272,11 +418,13 @@ export default function GapAssessmentTool() {
   const goToPreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1)
+      triggerHapticFeedback()
     }
   }
 
   const goToQuestion = (index: number) => {
     setCurrentQuestionIndex(index)
+    triggerHapticFeedback()
   }
 
   const skipQuestion = () => {
@@ -522,9 +670,13 @@ export default function GapAssessmentTool() {
                 id="org-name"
                 value={organizationName}
                 onChange={(e) => setOrganizationName(e.target.value)}
-                className="w-full px-3 py-2 border border-border rounded-md bg-background"
+                className="w-full px-3 py-2 border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 placeholder="Enter your organization name"
+                aria-describedby="org-name-help"
               />
+              <div id="org-name-help" className="sr-only">
+                Enter your organization name for the assessment report
+              </div>
             </div>
           </div>
 
@@ -538,19 +690,35 @@ export default function GapAssessmentTool() {
               <li>• Export results to CSV</li>
               <li>• Option to skip questions you're unsure about</li>
               <li>• Question navigation to jump between questions</li>
+              <li>• Keyboard shortcuts and touch gestures for navigation</li>
             </ul>
+          </div>
+
+          {/* Keyboard shortcuts help */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <h3 className="font-semibold mb-2 text-blue-800">Keyboard Shortcuts:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
+              <div>• <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">←</kbd> <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">→</kbd> Navigate questions</div>
+              <div>• <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">Y</kbd> Yes, <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">P</kbd> Partial, <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">N</kbd> No</div>
+              <div>• <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">S</kbd> Skip question</div>
+              <div>• <kbd className="px-1 py-0.5 bg-blue-100 rounded text-xs">Tab</kbd> Navigate form elements</div>
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={startAssessment}
-              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="start-assessment-help"
             >
               Start Assessment
             </button>
+            <div id="start-assessment-help" className="sr-only">
+              Begin the ISO 27001 gap assessment
+            </div>
             <button
               onClick={() => window.history.back()}
-              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
+              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               ← Go Back
             </button>
@@ -569,6 +737,14 @@ export default function GapAssessmentTool() {
     return (
       <div className="max-w-4xl mx-auto">
         <div className="bg-card border border-border rounded-lg p-8">
+          {/* Skip link for keyboard users */}
+          <a 
+            href="#question-content" 
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg z-50"
+          >
+            Skip to question content
+          </a>
+
           {/* Question Navigation */}
           <QuestionNavigation
             currentIndex={currentQuestionIndex}
@@ -586,6 +762,11 @@ export default function GapAssessmentTool() {
               <div 
                 className="bg-primary h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentQuestionIndex + 1) / assessmentQuestions.length) * 100}%` }}
+                role="progressbar"
+                aria-valuenow={currentQuestionIndex + 1}
+                aria-valuemin={1}
+                aria-valuemax={assessmentQuestions.length}
+                aria-label="Assessment progress"
               />
             </div>
             <div className="flex justify-between text-xs text-muted-foreground">
@@ -595,102 +776,144 @@ export default function GapAssessmentTool() {
             </div>
           </div>
 
-          {/* Category */}
-          <div className="mb-4">
-            <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-              {question.category}
-            </span>
-          </div>
+          {/* Question Content */}
+          <div 
+            id="question-content"
+            ref={questionRef}
+            tabIndex={-1}
+            className="focus:outline-none"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            role="region"
+            aria-label={`Question ${currentQuestionIndex + 1} of ${assessmentQuestions.length}`}
+          >
+            {/* Category */}
+            <div className="mb-4">
+              <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                {question.category}
+              </span>
+            </div>
 
-          {/* Question */}
-          <h2 className="text-xl font-semibold mb-4">{question.question}</h2>
-          {question.description && (
-            <p className="text-muted-foreground mb-6">{question.description}</p>
-          )}
+            {/* Question */}
+            <h2 className="text-xl font-semibold mb-4">{question.question}</h2>
+            {question.description && (
+              <p className="text-muted-foreground mb-6">{question.description}</p>
+            )}
 
-          {/* Answer Options */}
-          <div className="space-y-3 mb-6">
-            {(['yes', 'partial', 'no'] as const).map((option) => (
-              <label key={option} className="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-muted/50 transition-colors relative">
-                <input
-                  type="radio"
-                  name="answer"
-                  value={option}
-                  checked={currentAnswer === option}
-                  onChange={() => answerQuestion(option, notes)}
-                  className="text-primary"
-                />
-                <div className="flex-1">
-                  <span className="font-medium">
-                    {option === 'yes' ? 'Yes' : option === 'partial' ? 'Partially' : 'No'}
-                  </span>
-                  <div className="text-sm text-muted-foreground">
-                    {option === 'yes' ? 'We have this fully implemented' : 
-                     option === 'partial' ? 'We have this partially implemented' : 
-                     'We do not have this implemented'}
-                  </div>
-                </div>
-                {currentAnswer === option && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 animate-in slide-in-from-right-2 duration-300">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+            {/* Answer Options */}
+            <fieldset className="space-y-3 mb-6">
+              <legend className="sr-only">Select your answer</legend>
+              {(['yes', 'partial', 'no'] as const).map((option, index) => (
+                <label 
+                  key={option} 
+                  className="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-muted/50 transition-colors relative focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
+                >
+                  <input
+                    ref={index === 0 ? yesButtonRef : index === 1 ? partialButtonRef : noButtonRef}
+                    type="radio"
+                    name="answer"
+                    value={option}
+                    checked={currentAnswer === option}
+                    onChange={() => answerQuestion(option, notes)}
+                    className="text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    aria-describedby={`answer-${option}-description`}
+                  />
+                  <div className="flex-1">
+                    <span className="font-medium">
+                      {option === 'yes' ? 'Yes' : option === 'partial' ? 'Partially' : 'No'}
+                    </span>
+                    <div id={`answer-${option}-description`} className="text-sm text-muted-foreground">
+                      {option === 'yes' ? 'We have this fully implemented' : 
+                       option === 'partial' ? 'We have this partially implemented' : 
+                       'We do not have this implemented'}
                     </div>
                   </div>
-                )}
-              </label>
-            ))}
-          </div>
+                  {currentAnswer === option && (
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 animate-in slide-in-from-right-2 duration-300">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                </label>
+              ))}
+            </fieldset>
 
-          {/* Skip Option */}
-          <div className="mb-6">
-            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="text-sm text-yellow-800 mb-2">
-                Not sure about this question? You can skip it and return later.
-              </p>
-              <button
-                onClick={skipQuestion}
-                className="text-sm text-yellow-700 hover:text-yellow-900 font-medium bg-yellow-100 hover:bg-yellow-200 px-3 py-1 rounded transition-colors"
-              >
-                Skip this question →
-              </button>
+            {/* Skip Option */}
+            <div className="mb-6">
+              <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p className="text-sm text-yellow-800 mb-2">
+                  Not sure about this question? You can skip it and return later.
+                </p>
+                <button
+                  ref={skipButtonRef}
+                  onClick={skipQuestion}
+                  className="text-sm text-yellow-700 hover:text-yellow-900 font-medium bg-yellow-100 hover:bg-yellow-200 px-3 py-1 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                >
+                  Skip this question →
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Notes */}
-          <div className="mb-6">
-            <label htmlFor="notes" className="block text-sm font-medium mb-2">
-              Additional Notes (optional)
-            </label>
-            <textarea
-              id="notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              className="w-full px-3 py-2 border border-border rounded-md bg-background resize-none"
-              rows={3}
-              placeholder="Add any notes or context about your answer..."
-            />
-          </div>
+            {/* Notes */}
+            <div className="mb-6">
+              <label htmlFor="notes" className="block text-sm font-medium mb-2">
+                Additional Notes (optional)
+              </label>
+              <textarea
+                ref={notesRef}
+                id="notes"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="w-full px-3 py-2 border border-border rounded-md bg-background resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                rows={3}
+                placeholder="Add any notes or context about your answer..."
+                aria-describedby="notes-help"
+              />
+              <div id="notes-help" className="sr-only">
+                Optional field to add additional context or notes about your answer
+              </div>
+            </div>
 
-          {/* Navigation */}
-          <div className="flex justify-between">
-            <button
-              onClick={goToPreviousQuestion}
-              disabled={currentQuestionIndex === 0}
-              className="px-4 py-2 text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              ← Previous
-            </button>
-            
-            {currentAnswer && (
+            {/* Mobile swipe indicator */}
+            <div className="md:hidden mb-4 text-center">
+              <div className="text-xs text-muted-foreground">
+                <span className="inline-flex items-center space-x-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <span>Swipe left/right to navigate</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <div className="flex justify-between">
               <button
-                onClick={() => answerQuestion(currentAnswer, notes)}
-                className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                onClick={goToPreviousQuestion}
+                disabled={currentQuestionIndex === 0}
+                className="px-4 py-2 text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+                aria-label="Go to previous question"
               >
-                {currentQuestionIndex === assessmentQuestions.length - 1 ? 'Finish Assessment' : 'Next Question →'}
+                ← Previous
               </button>
-            )}
+              
+              {currentAnswer && (
+                <button
+                  onClick={() => answerQuestion(currentAnswer, notes)}
+                  className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  aria-label={currentQuestionIndex === assessmentQuestions.length - 1 ? 'Finish assessment' : 'Go to next question'}
+                >
+                  {currentQuestionIndex === assessmentQuestions.length - 1 ? 'Finish Assessment' : 'Next Question →'}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -712,7 +935,7 @@ export default function GapAssessmentTool() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             {/* Score Summary */}
-            <div className={`${scoreLevel.bgColor} rounded-lg p-6`}>
+            <div className={`${scoreLevel.bgColor} rounded-lg p-6`} role="region" aria-label="Assessment score summary">
               <div className="text-center">
                 <div className={`text-4xl font-bold ${scoreLevel.color} mb-2`}>
                   {score.percentage.toFixed(1)}%
@@ -730,7 +953,7 @@ export default function GapAssessmentTool() {
             </div>
 
             {/* Assessment Summary */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4" role="region" aria-label="Assessment statistics">
               <div className="bg-muted/50 rounded-lg p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{answeredCount}</div>
                 <div className="text-sm text-muted-foreground">Answered</div>
@@ -787,30 +1010,46 @@ export default function GapAssessmentTool() {
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={exportToCSV}
-              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="export-help"
             >
               Export Results (CSV)
             </button>
+            <div id="export-help" className="sr-only">
+              Download assessment results as a CSV file
+            </div>
             {answeredCount + skippedCount < assessmentQuestions.length && (
               <button
                 onClick={continueAssessment}
-                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-describedby="continue-help"
               >
                 Continue Assessment
               </button>
             )}
+            <div id="continue-help" className="sr-only">
+              Return to complete remaining questions
+            </div>
             <button
               onClick={resetAssessment}
-              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
+              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="reset-help"
             >
               Start New Assessment
             </button>
+            <div id="reset-help" className="sr-only">
+              Clear all answers and start a new assessment
+            </div>
             <button
               onClick={() => window.history.back()}
-              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
+              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-describedby="back-help"
             >
               ← Go Back
             </button>
+            <div id="back-help" className="sr-only">
+              Return to the previous page
+            </div>
           </div>
         </div>
       </div>
