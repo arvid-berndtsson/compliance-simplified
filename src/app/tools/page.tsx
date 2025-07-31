@@ -3,13 +3,20 @@
 import { useState } from 'react';
 import LandingLayout from "@/components/LandingLayout";
 
+interface Pricing {
+  min: number;
+  max: number;
+  model: 'per user/month' | 'per user/year' | 'per month' | 'per year' | 'per GB/month' | 'free';
+  currency?: string;
+}
+
 interface Tool {
   id: string;
   name: string;
   category: string;
   description: string;
   features: string[];
-  pricing: string;
+  pricing: Pricing;
   website: string;
   pros: string[];
   cons: string[];
@@ -32,7 +39,12 @@ const tools: Tool[] = [
       'Compliance mapping to ISO 27001',
       'Employee training integration'
     ],
-    pricing: '$5-15/user/month',
+    pricing: {
+      min: 5,
+      max: 15,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://policyhub.com',
     pros: [
       'Excellent policy templating',
@@ -61,7 +73,12 @@ const tools: Tool[] = [
       'Audit trail and reporting',
       'Integration with popular tools'
     ],
-    pricing: '$3-10/user/month',
+    pricing: {
+      min: 3,
+      max: 10,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://compliancemanager.io',
     pros: [
       'Affordable pricing',
@@ -93,7 +110,12 @@ const tools: Tool[] = [
       'Custom control mapping',
       'Audit-ready reporting'
     ],
-    pricing: '$25,000-150,000/year',
+    pricing: {
+      min: 25000,
+      max: 150000,
+      model: 'per year',
+      currency: 'USD'
+    },
     website: 'https://vanta.com',
     pros: [
       'Community favorite and industry leader',
@@ -126,7 +148,12 @@ const tools: Tool[] = [
       'Risk reporting and dashboards',
       'Integration with GRC tools'
     ],
-    pricing: '$25,000-100,000/year',
+    pricing: {
+      min: 25000,
+      max: 100000,
+      model: 'per year',
+      currency: 'USD'
+    },
     website: 'https://risklens.com',
     pros: [
       'Industry-leading quantitative analysis',
@@ -155,7 +182,12 @@ const tools: Tool[] = [
       'Compliance reporting',
       'Third-party risk management'
     ],
-    pricing: '$8-20/user/month',
+    pricing: {
+      min: 8,
+      max: 20,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://riskwatch.com',
     pros: [
       'Good ISO 27001 integration',
@@ -186,7 +218,12 @@ const tools: Tool[] = [
       'API access management',
       'Advanced security policies'
     ],
-    pricing: '$2-15/user/month',
+    pricing: {
+      min: 2,
+      max: 15,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://okta.com',
     pros: [
       'Industry leader in IAM',
@@ -215,7 +252,12 @@ const tools: Tool[] = [
       'User management',
       'Advanced security features'
     ],
-    pricing: '$30-750/month',
+    pricing: {
+      min: 30,
+      max: 750,
+      model: 'per month',
+      currency: 'USD'
+    },
     website: 'https://auth0.com',
     pros: [
       'Developer-friendly',
@@ -246,7 +288,12 @@ const tools: Tool[] = [
       'Compliance reporting',
       'Threat intelligence integration'
     ],
-    pricing: '$2,000-4,500/GB/month',
+    pricing: {
+      min: 2000,
+      max: 4500,
+      model: 'per GB/month',
+      currency: 'USD'
+    },
     website: 'https://splunk.com',
     pros: [
       'Industry-leading SIEM',
@@ -275,7 +322,12 @@ const tools: Tool[] = [
       'Asset discovery',
       'Vulnerability assessment'
     ],
-    pricing: '$1,075-2,995/month',
+    pricing: {
+      min: 1075,
+      max: 2995,
+      model: 'per month',
+      currency: 'USD'
+    },
     website: 'https://alienvault.com',
     pros: [
       'All-in-one security platform',
@@ -306,7 +358,12 @@ const tools: Tool[] = [
       'Compliance reporting',
       'Integration with security tools'
     ],
-    pricing: '$4,500-25,000/year',
+    pricing: {
+      min: 4500,
+      max: 25000,
+      model: 'per year',
+      currency: 'USD'
+    },
     website: 'https://qualys.com',
     pros: [
       'Comprehensive vulnerability coverage',
@@ -335,7 +392,12 @@ const tools: Tool[] = [
       'Detailed reporting',
       'Community support'
     ],
-    pricing: 'Free',
+    pricing: {
+      min: 0,
+      max: 0,
+      model: 'free',
+      currency: 'USD'
+    },
     website: 'https://openvas.org',
     pros: [
       'Completely free',
@@ -367,7 +429,12 @@ const tools: Tool[] = [
       'Incident response automation',
       'Integration with monitoring tools'
     ],
-    pricing: '$15-75/user/month',
+    pricing: {
+      min: 15,
+      max: 75,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://pagerduty.com',
     pros: [
       'Excellent incident management',
@@ -396,7 +463,12 @@ const tools: Tool[] = [
       'Compliance reporting',
       'Integration with security tools'
     ],
-    pricing: '$75-300/user/month',
+    pricing: {
+      min: 75,
+      max: 300,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://servicenow.com',
     pros: [
       'Comprehensive security operations',
@@ -427,7 +499,12 @@ const tools: Tool[] = [
       'Progress tracking',
       'Automated training campaigns'
     ],
-    pricing: '$4-12/user/month',
+    pricing: {
+      min: 4,
+      max: 12,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://knowbe4.com',
     pros: [
       'Comprehensive training content',
@@ -456,7 +533,12 @@ const tools: Tool[] = [
       'Expert-led training',
       'Ongoing content updates'
     ],
-    pricing: '$7-20/user/month',
+    pricing: {
+      min: 7,
+      max: 20,
+      model: 'per user/month',
+      currency: 'USD'
+    },
     website: 'https://sans.org',
     pros: [
       'Industry-leading content',
@@ -503,9 +585,9 @@ export default function ToolsPage() {
       case 'rating':
         return b.rating - a.rating;
       case 'price':
-        // Extract numeric price for sorting (simplified)
-        const aPrice = a.pricing.includes('Free') ? 0 : parseFloat(a.pricing.replace(/[^0-9.]/g, ''));
-        const bPrice = b.pricing.includes('Free') ? 0 : parseFloat(b.pricing.replace(/[^0-9.]/g, ''));
+        // Extract numeric price for sorting using structured pricing
+        const aPrice = a.pricing.model === 'free' ? 0 : a.pricing.min;
+        const bPrice = b.pricing.model === 'free' ? 0 : b.pricing.min;
         return aPrice - bPrice;
       case 'name':
         return a.name.localeCompare(b.name);
@@ -514,10 +596,25 @@ export default function ToolsPage() {
     }
   });
 
-  const getPriceColor = (pricing: string) => {
-    if (pricing.includes('Free')) return 'text-green-600';
-    if (pricing.includes('$') && parseFloat(pricing.replace(/[^0-9.]/g, '')) < 10) return 'text-blue-600';
-    if (pricing.includes('$') && parseFloat(pricing.replace(/[^0-9.]/g, '')) < 50) return 'text-yellow-600';
+  const formatPricing = (pricing: Pricing): string => {
+    if (pricing.model === 'free') {
+      return 'Free';
+    }
+    
+    const currency = pricing.currency || 'USD';
+    const symbol = currency === 'USD' ? '$' : currency;
+    
+    if (pricing.min === pricing.max) {
+      return `${symbol}${pricing.min.toLocaleString()}/${pricing.model}`;
+    }
+    
+    return `${symbol}${pricing.min.toLocaleString()}-${pricing.max.toLocaleString()}/${pricing.model}`;
+  };
+
+  const getPriceColor = (pricing: Pricing) => {
+    if (pricing.model === 'free') return 'text-green-600';
+    if (pricing.min < 10) return 'text-blue-600';
+    if (pricing.min < 50) return 'text-yellow-600';
     return 'text-red-600';
   };
 
@@ -628,7 +725,7 @@ export default function ToolsPage() {
                 {/* Pricing */}
                 <div className="mb-4">
                   <span className={`font-semibold ${getPriceColor(tool.pricing)}`}>
-                    {tool.pricing}
+                    {formatPricing(tool.pricing)}
                   </span>
                 </div>
 
