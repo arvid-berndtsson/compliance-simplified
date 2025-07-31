@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react'
 import { AssessmentQuestion, assessmentQuestions } from '../data/assessmentQuestions'
 
+
 interface AssessmentAnswer {
   questionId: string
   answer: 'yes' | 'no' | 'partial' | null
   notes?: string
 }
+
 
 export default function GapAssessmentTool() {
   const [currentStep, setCurrentStep] = useState<'intro' | 'assessment' | 'results'>('intro')
@@ -15,6 +17,7 @@ export default function GapAssessmentTool() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [organizationName, setOrganizationName] = useState('')
   const [notes, setNotes] = useState('')
+
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -47,6 +50,7 @@ export default function GapAssessmentTool() {
       setNotes(currentNotes)
     }
   }, [currentQuestionIndex, currentStep])
+
 
   const startAssessment = () => {
     setCurrentStep('assessment')

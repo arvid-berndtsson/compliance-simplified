@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { SearchResult, searchIndex } from '../data/searchIndex'
 
+
 interface SearchContextType {
   searchQuery: string
   setSearchQuery: (query: string) => void

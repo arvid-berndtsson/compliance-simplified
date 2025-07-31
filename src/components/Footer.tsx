@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+
 export default function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95">
