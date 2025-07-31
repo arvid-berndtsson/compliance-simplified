@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
+
 
 export default function Footer() {
   return (
@@ -10,9 +12,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img
+              <Image
                 src="/img/logo.svg"
                 alt="Compliance Simplified Logo"
+                width={32}
+                height={32}
                 className="h-8 w-8"
               />
               <span className="font-semibold text-lg">

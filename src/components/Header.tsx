@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
+
 import { useSearch } from './SearchProvider'
 import SearchResults from './SearchResults'
 
@@ -17,7 +19,7 @@ export default function Header({ showSearch = false, variant = 'landing' }: Head
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center space-x-2">
-              <img src="/img/logo.svg" alt="Compliance Simplified Logo" className="h-8 w-8" />
+              <Image src="/img/logo.svg" alt="Compliance Simplified Logo" width={32} height={32} className="h-8 w-8" />
               <span className="font-semibold text-lg">Compliance Simplified</span>
             </Link>
           </div>
