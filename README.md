@@ -75,35 +75,14 @@ The built site will be in the `out/` directory.
 pnpm run typecheck
 ```
 
-## 📁 Project Structure
-
-```
-compliance-simplified/
-├── docs/                    # Documentation pages
-│   ├── intro.md            # Landing page
-│   ├── explanation/        # Overview pages
-│   ├── tutorials/          # Step-by-step guides
-│   ├── how-to/             # Task-oriented guides
-│   └── reference/          # Technical references
-├── src/
-│   ├── app/                # Next.js app directory
-│   ├── css/                # Custom styles with Tailwind
-│   └── components/         # React components (TypeScript)
-├── static/                 # Static assets
-├── next.config.js          # Next.js configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-├── postcss.config.js       # PostCSS configuration
-├── tsconfig.json           # TypeScript configuration
-└── package.json            # Dependencies and scripts
-```
-
 ## 🛠️ Technology Stack
 
-- **Framework**: Next.js 15
+- **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Package Manager**: pnpm
 - **Styling**: Tailwind CSS
-- **Deployment**: GitHub Pages
+- **Content**: MDX for documentation
+- **Deployment**: Static export to GitHub Pages
 - **CI/CD**: GitHub Actions
 
 ## 📝 Content Guidelines
@@ -139,9 +118,12 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 
 ## 🗺️ Roadmap
 
-- [ ] Complete ISO 27001 step-by-step guide
-- [ ] Interactive Controls Explorer
-- [ ] Gap self-assessment tool
+- [x] Complete ISO 27001 documentation (overview, quick-start, implementation, controls)
+- [x] Complete SOC 2 documentation (overview, quick-start, implementation, criteria)
+- [x] Interactive Gap self-assessment tool
+- [x] Collapsible sidebar navigation
+- [x] Search functionality across documentation
 - [ ] Policy template library
-- [ ] SOC 2 implementation guide
+- [ ] Interactive Controls Explorer
 - [ ] Community forum integration
+- [ ] Additional compliance frameworks (NIST, GDPR, etc.)
