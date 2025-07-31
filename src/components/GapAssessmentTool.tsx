@@ -509,6 +509,69 @@ function ResultsVisualization({ score, categoryScores, organizationName }: Resul
               </div>
             </div>
           </div>
+
+          {/* Tools Recommendations */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-lg font-semibold">Recommended Tools</h4>
+              <a
+                href="/tools"
+                className="text-sm text-primary hover:text-primary/80 font-medium"
+              >
+                View All Tools →
+              </a>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(() => {
+                // Get top 4 categories that need improvement
+                const priorityCategories = sortedCategories.slice(0, 4);
+                const toolRecommendations = [
+                  { category: 'Governance & Policy Management', tool: 'Vanta', description: 'Community favorite - automated compliance platform' },
+                  { category: 'Risk Assessment & Management', tool: 'RiskWatch', description: 'ISO 27001 risk assessment and management' },
+                  { category: 'Access Control & Identity Management', tool: 'Okta', description: 'Identity and access management platform' },
+                  { category: 'Security Monitoring & SIEM', tool: 'AlienVault USM', description: 'Unified security monitoring' },
+                  { category: 'Vulnerability Management', tool: 'Qualys', description: 'Vulnerability scanning and management' },
+                  { category: 'Incident Response', tool: 'PagerDuty', description: 'Incident management and response' },
+                  { category: 'Training & Awareness', tool: 'KnowBe4', description: 'Security awareness training' }
+                ];
+
+                return priorityCategories.map(category => {
+                  const toolRec = toolRecommendations.find(t => t.category === category.category);
+                  return toolRec ? (
+                    <div key={category.category} className="p-4 bg-muted/30 rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <h5 className="font-medium text-sm">{category.category}</h5>
+                        <span className="text-xs text-muted-foreground">
+                          {category.percentage.toFixed(0)}% complete
+                        </span>
+                      </div>
+                      <div className="text-sm text-muted-foreground mb-2">
+                        {toolRec.tool} - {toolRec.description}
+                      </div>
+                      <div className="w-full bg-white/50 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full ${
+                            category.percentage >= 80 ? 'bg-green-500' :
+                            category.percentage >= 60 ? 'bg-blue-500' :
+                            category.percentage >= 40 ? 'bg-yellow-500' : 'bg-red-500'
+                          }`}
+                          style={{ width: `${category.percentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  ) : null;
+                });
+              })()}
+            </div>
+            <div className="mt-4 text-center">
+              <a
+                href="/tools"
+                className="inline-block bg-primary text-primary-foreground py-2 px-4 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                Browse All Tools
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -1403,7 +1466,7 @@ export default function GapAssessmentTool() {
         {/* Enhanced Action Buttons */}
         <div className="bg-card border border-border rounded-lg p-8">
           <h3 className="text-xl font-semibold mb-6">Next Steps</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <button
               onClick={exportToCSV}
               className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -1448,6 +1511,8 @@ export default function GapAssessmentTool() {
             <div id="export-pdf-help" className="sr-only">
               Download assessment results as a PDF report
             </div>
+
+
             
             {answeredCount + skippedCount < assessmentQuestions.length && (
               <button
@@ -1481,20 +1546,7 @@ export default function GapAssessmentTool() {
               Clear all answers and start a new assessment
             </div>
             
-            <button
-              onClick={() => window.history.back()}
-              className="flex flex-col items-center p-4 border border-border rounded-lg hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-describedby="back-help"
-            >
-              <div className="w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center mb-2">
-                ←
-              </div>
-              <span className="font-medium">Go Back</span>
-              <span className="text-xs text-muted-foreground text-center">Return to previous page</span>
-            </button>
-            <div id="back-help" className="sr-only">
-              Return to the previous page
-            </div>
+
           </div>
         </div>
       </div>
