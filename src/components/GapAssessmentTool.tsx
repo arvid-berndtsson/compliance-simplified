@@ -203,7 +203,6 @@ export default function GapAssessmentTool() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [organizationName, setOrganizationName] = useState('')
   const [notes, setNotes] = useState('')
-  const [showSkipOption, setShowSkipOption] = useState(false)
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -260,11 +259,14 @@ export default function GapAssessmentTool() {
     
     setAnswers(newAnswers)
     
-    if (currentQuestionIndex < assessmentQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
-    } else {
-      setCurrentStep('results')
-    }
+    // Add delay to show the checkmark animation
+    setTimeout(() => {
+      if (currentQuestionIndex < assessmentQuestions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1)
+      } else {
+        setCurrentStep('results')
+      }
+    }, 400) // 0.4 second delay
   }
 
   const goToPreviousQuestion = () => {
@@ -539,12 +541,20 @@ export default function GapAssessmentTool() {
             </ul>
           </div>
 
-          <button
-            onClick={startAssessment}
-            className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-          >
-            Start Assessment
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={startAssessment}
+              className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+            >
+              Start Assessment
+            </button>
+            <button
+              onClick={() => window.history.back()}
+              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
+            >
+              ← Go Back
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -601,7 +611,7 @@ export default function GapAssessmentTool() {
           {/* Answer Options */}
           <div className="space-y-3 mb-6">
             {(['yes', 'partial', 'no'] as const).map((option) => (
-              <label key={option} className="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-muted/50 transition-colors">
+              <label key={option} className="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-muted/50 transition-colors relative">
                 <input
                   type="radio"
                   name="answer"
@@ -610,7 +620,7 @@ export default function GapAssessmentTool() {
                   onChange={() => answerQuestion(option, notes)}
                   className="text-primary"
                 />
-                <div>
+                <div className="flex-1">
                   <span className="font-medium">
                     {option === 'yes' ? 'Yes' : option === 'partial' ? 'Partially' : 'No'}
                   </span>
@@ -620,31 +630,32 @@ export default function GapAssessmentTool() {
                      'We do not have this implemented'}
                   </div>
                 </div>
+                {currentAnswer === option && (
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 animate-in slide-in-from-right-2 duration-300">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </label>
             ))}
           </div>
 
           {/* Skip Option */}
           <div className="mb-6">
-            <button
-              onClick={() => setShowSkipOption(!showSkipOption)}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {showSkipOption ? 'Hide skip option' : 'Not sure? Skip this question'}
-            </button>
-            {showSkipOption && (
-              <div className="mt-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <p className="text-sm text-yellow-800 mb-2">
-                  You can skip questions you're unsure about and return to them later.
-                </p>
-                <button
-                  onClick={skipQuestion}
-                  className="text-sm text-yellow-700 hover:text-yellow-900 font-medium"
-                >
-                  Skip this question →
-                </button>
-              </div>
-            )}
+            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm text-yellow-800 mb-2">
+                Not sure about this question? You can skip it and return later.
+              </p>
+              <button
+                onClick={skipQuestion}
+                className="text-sm text-yellow-700 hover:text-yellow-900 font-medium bg-yellow-100 hover:bg-yellow-200 px-3 py-1 rounded transition-colors"
+              >
+                Skip this question →
+              </button>
+            </div>
           </div>
 
           {/* Notes */}
@@ -793,6 +804,12 @@ export default function GapAssessmentTool() {
               className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
             >
               Start New Assessment
+            </button>
+            <button
+              onClick={() => window.history.back()}
+              className="flex-1 border border-border py-3 px-6 rounded-lg font-semibold hover:bg-muted transition-colors"
+            >
+              ← Go Back
             </button>
           </div>
         </div>
