@@ -16,7 +16,7 @@ export default function GapAssessmentTool() {
   const [answers, setAnswers] = useState<AssessmentAnswer[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [organizationName, setOrganizationName] = useState('')
-  const [notes, setNotes] = useState('')
+  const [notes, setNotes] = useState(() => getCurrentNotes())
 
 
   // Load saved progress from localStorage
