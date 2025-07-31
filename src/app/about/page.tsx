@@ -204,7 +204,7 @@ export default function AboutPage() {
                 <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-lg">AB</span>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-1">Arvid Berndtsson</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-1"><a href="https://arvid.tech" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Arvid Berndtsson</a></h3>
                 <p className="text-sm text-muted-foreground mb-3">Project Founder & Lead</p>
                 <p className="text-sm text-muted-foreground">
                   Security professional passionate about democratizing compliance knowledge and making security accessible to all organizations.
