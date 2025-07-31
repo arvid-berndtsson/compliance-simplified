@@ -1,3 +1,5 @@
+'use client'
+
 import DocsLayout from "@/components/DocsLayout"
 import QuickStartMDX from "./quick-start.mdx"
 

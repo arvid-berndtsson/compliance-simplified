@@ -1,3 +1,5 @@
+'use client'
+
 import DocsLayout from "@/components/DocsLayout"
 import CriteriaMDX from "./criteria.mdx"
 

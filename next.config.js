@@ -16,7 +16,7 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    mdxRs: false,
+    mdxRs: true,
   },
 };
 
