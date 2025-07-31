@@ -49,7 +49,7 @@ export default function GapAssessmentTool() {
       const currentNotes = getCurrentNotes()
       setNotes(currentNotes)
     }
-  }, [currentQuestionIndex, currentStep])
+  }, [currentQuestionIndex, currentStep, answers])
 
 
   const startAssessment = () => {
