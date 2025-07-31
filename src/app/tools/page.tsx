@@ -586,8 +586,14 @@ export default function ToolsPage() {
         return b.rating - a.rating;
       case 'price':
         // Extract numeric price for sorting using structured pricing
-        const aPrice = a.pricing.model === 'free' ? 0 : a.pricing.min;
-        const bPrice = b.pricing.model === 'free' ? 0 : b.pricing.min;
+        const normalizePrice = (pricing: Pricing): number => {
+          if (pricing.model === 'free') return 0;
+          const monthlyFactor = pricing.model.includes('year') ? 1 / 12 : 1;
+          return pricing.min * monthlyFactor;
+        };
+
+        const aPrice = normalizePrice(a.pricing);
+        const bPrice = normalizePrice(b.pricing);
         return aPrice - bPrice;
       case 'name':
         return a.name.localeCompare(b.name);
