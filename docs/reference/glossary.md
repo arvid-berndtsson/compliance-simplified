@@ -238,4 +238,4 @@ This glossary provides definitions for key terms used in ISO 27001, SOC 2, and g
 
 ---
 
-*This glossary provides definitions for key terms used in compliance contexts. For more detailed explanations, refer to the relevant standards and guidance documents.* 
+_This glossary provides definitions for key terms used in compliance contexts. For more detailed explanations, refer to the relevant standards and guidance documents._

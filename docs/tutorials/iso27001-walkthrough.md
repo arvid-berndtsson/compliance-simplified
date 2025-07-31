@@ -18,6 +18,7 @@ This tutorial guides you through a complete ISO 27001 implementation, from initi
 ## What You'll Build
 
 By the end of this tutorial, you'll have:
+
 - A complete ISMS framework
 - Risk assessment and treatment plan
 - Control implementation roadmap
@@ -37,6 +38,7 @@ Create your leadership commitment document:
 **Organization**: [Your Company]
 
 We commit to:
+
 - Establishing an Information Security Management System
 - Providing necessary resources
 - Supporting continuous improvement
@@ -56,12 +58,14 @@ Expand your scope from the quick start:
 # ISMS Scope Statement
 
 **In Scope**:
+
 - Customer data processing systems
 - Employee information systems
 - Development and production environments
 - Third-party service providers
 
 **Out of Scope**:
+
 - Personal devices (BYOD)
 - Legacy systems (scheduled for retirement)
 - Non-digital information assets
@@ -75,12 +79,12 @@ Expand your scope from the quick start:
 
 Create a comprehensive asset inventory:
 
-| Asset ID | Name | Type | Owner | Location | Criticality |
-|----------|------|------|-------|----------|-------------|
-| ASST-001 | Customer Database | Data | CTO | Cloud | High |
-| ASST-002 | Source Code Repository | Data | CTO | Cloud | High |
-| ASST-003 | Employee Directory | Data | HR | Cloud | Medium |
-| ASST-004 | Office Network | System | IT | On-premise | Medium |
+| Asset ID | Name                   | Type   | Owner | Location   | Criticality |
+| -------- | ---------------------- | ------ | ----- | ---------- | ----------- |
+| ASST-001 | Customer Database      | Data   | CTO   | Cloud      | High        |
+| ASST-002 | Source Code Repository | Data   | CTO   | Cloud      | High        |
+| ASST-003 | Employee Directory     | Data   | HR    | Cloud      | Medium      |
+| ASST-004 | Office Network         | System | IT    | On-premise | Medium      |
 
 **Action**: Complete your asset inventory with at least 10 assets.
 
@@ -113,12 +117,12 @@ For each high-criticality asset, assess risks:
 
 Map your risks to ISO 27001:2022 controls:
 
-| Risk | Control | Implementation |
-|------|---------|----------------|
-| Data breach | A.5.1 Information security policies | Create security policy |
-| Unauthorized access | A.5.15 Access control | Implement MFA |
-| Data loss | A.5.10 Cryptography | Encrypt sensitive data |
-| System compromise | A.5.7 Human resource security | Security training |
+| Risk                | Control                             | Implementation         |
+| ------------------- | ----------------------------------- | ---------------------- |
+| Data breach         | A.5.1 Information security policies | Create security policy |
+| Unauthorized access | A.5.15 Access control               | Implement MFA          |
+| Data loss           | A.5.10 Cryptography                 | Encrypt sensitive data |
+| System compromise   | A.5.7 Human resource security       | Security training      |
 
 **Action**: Map your top risks to specific controls.
 
@@ -131,7 +135,8 @@ Create your first security policy:
 
 **Purpose**: Protect our information assets
 **Scope**: All employees and systems
-**Policy**: 
+**Policy**:
+
 - Use strong passwords (12+ characters)
 - Enable multi-factor authentication
 - Encrypt sensitive data
@@ -158,6 +163,7 @@ Set up your audit program:
 **Q4**: Management review
 
 **Audit Checklist**:
+
 - [ ] Policies documented
 - [ ] Controls implemented
 - [ ] Training completed
@@ -177,6 +183,7 @@ Prepare for your first management review:
 **Attendees**: [Leadership Team]
 
 **Topics**:
+
 1. ISMS performance review
 2. Risk assessment updates
 3. Control effectiveness
@@ -194,7 +201,7 @@ Prepare for your first management review:
 ✅ Completed comprehensive risk assessment  
 ✅ Implemented key security controls  
 ✅ Created monitoring and review processes  
-✅ Built a certification-ready framework  
+✅ Built a certification-ready framework
 
 ## Next Steps
 
@@ -207,20 +214,23 @@ Your ISMS is now operational! Continue with:
 ## Troubleshooting
 
 **"Risk assessment is taking too long"**
+
 - Focus on top 10 assets first
 - Use simplified risk matrix (1-5 scale)
 - Get help from security professionals
 
 **"Controls seem overwhelming"**
+
 - Start with the 20 most critical controls
 - Implement incrementally
 - Document everything you do
 
 **"Management review seems formal"**
+
 - Keep it simple and practical
 - Focus on business value
 - Use regular team meetings as a start
 
 ---
 
-*This tutorial follows the Linear Method's systematic approach to building quality systems. Each phase builds on the previous one, creating a solid foundation for your ISMS.* 
+_This tutorial follows the Linear Method's systematic approach to building quality systems. Each phase builds on the previous one, creating a solid foundation for your ISMS._

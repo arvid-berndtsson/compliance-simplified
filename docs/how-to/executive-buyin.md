@@ -11,12 +11,14 @@ This guide provides specific steps to get executive buy-in for ISO 27001 or SOC 
 ## Before You Start
 
 **What you need**:
+
 - Understanding of your organization's business objectives
 - Basic compliance knowledge
 - Access to leadership team
 - 30-60 minutes for presentation
 
 **What you'll get**:
+
 - Executive commitment statement
 - Budget approval (if needed)
 - Resource allocation
@@ -39,12 +41,12 @@ Answer these questions before approaching leadership:
 
 Map your organization's decision-makers:
 
-| Role | Name | Influence | Interest | Approach |
-|------|------|-----------|----------|----------|
-| CEO | [Name] | High | [High/Medium/Low] | Business benefits |
-| CTO | [Name] | High | [High/Medium/Low] | Technical details |
-| CFO | [Name] | Medium | [High/Medium/Low] | Cost/ROI |
-| Legal | [Name] | Medium | [High/Medium/Low] | Risk mitigation |
+| Role  | Name   | Influence | Interest          | Approach          |
+| ----- | ------ | --------- | ----------------- | ----------------- |
+| CEO   | [Name] | High      | [High/Medium/Low] | Business benefits |
+| CTO   | [Name] | High      | [High/Medium/Low] | Technical details |
+| CFO   | [Name] | Medium    | [High/Medium/Low] | Cost/ROI          |
+| Legal | [Name] | Medium    | [High/Medium/Low] | Risk mitigation   |
 
 **Action**: Complete this stakeholder map.
 
@@ -63,11 +65,13 @@ Write a one-page executive summary:
 **ROI**: [Specific business benefits]
 
 **Key Benefits**:
+
 1. [Customer requirement/competitive advantage]
 2. [Risk reduction/regulatory compliance]
 3. [Operational efficiency/process improvement]
 
 **Risks of Not Acting**:
+
 - [Specific customer loss scenarios]
 - [Regulatory penalties]
 - [Competitive disadvantage]
@@ -196,17 +200,19 @@ You've succeeded when you have:
 ✅ Budget approved (if required)  
 ✅ Project sponsor assigned  
 ✅ Core team identified  
-✅ Kickoff meeting scheduled  
+✅ Kickoff meeting scheduled
 
 ## Common Mistakes to Avoid
 
 **Don't**:
+
 - Lead with technical details
 - Present without business context
 - Ignore stakeholder concerns
 - Rush the decision process
 
 **Do**:
+
 - Focus on business value
 - Address specific pain points
 - Listen to feedback
@@ -223,4 +229,4 @@ With executive buy-in secured:
 
 ---
 
-*This how-to guide follows the Linear Method's task-oriented approach. Each step is actionable and builds toward your goal of securing executive buy-in.* 
+_This how-to guide follows the Linear Method's task-oriented approach. Each step is actionable and builds toward your goal of securing executive buy-in._

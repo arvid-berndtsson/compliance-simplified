@@ -104,22 +104,22 @@ Annex A provides 93 controls organized into 4 domains:
 
 ### ISO 27001 vs. SOC 2
 
-| Aspect | ISO 27001 | SOC 2 |
-|--------|-----------|-------|
-| **Focus** | Information security management | Trust services criteria |
-| **Scope** | Global standard | Primarily US market |
-| **Certification** | Third-party certification | CPA attestation |
-| **Duration** | 3-year certification | Annual renewal |
-| **Controls** | 93 specific controls | 5 trust service criteria |
+| Aspect            | ISO 27001                       | SOC 2                    |
+| ----------------- | ------------------------------- | ------------------------ |
+| **Focus**         | Information security management | Trust services criteria  |
+| **Scope**         | Global standard                 | Primarily US market      |
+| **Certification** | Third-party certification       | CPA attestation          |
+| **Duration**      | 3-year certification            | Annual renewal           |
+| **Controls**      | 93 specific controls            | 5 trust service criteria |
 
 ### ISO 27001 vs. NIST Cybersecurity Framework
 
-| Aspect | ISO 27001 | NIST CSF |
-|--------|-----------|----------|
-| **Purpose** | Certification standard | Framework for improvement |
-| **Structure** | Management system | 5 functions (Identify, Protect, Detect, Respond, Recover) |
-| **Certification** | Yes | No |
-| **Flexibility** | Structured approach | Highly flexible |
+| Aspect            | ISO 27001              | NIST CSF                                                  |
+| ----------------- | ---------------------- | --------------------------------------------------------- |
+| **Purpose**       | Certification standard | Framework for improvement                                 |
+| **Structure**     | Management system      | 5 functions (Identify, Protect, Detect, Respond, Recover) |
+| **Certification** | Yes                    | No                                                        |
+| **Flexibility**   | Structured approach    | Highly flexible                                           |
 
 ## The Certification Process
 
@@ -167,11 +167,13 @@ Auditors focus on:
 ### Cost-Benefit Analysis
 
 **Implementation Costs**:
+
 - Initial setup: $50,000 - $200,000
 - Annual maintenance: $20,000 - $100,000
 - Certification: $15,000 - $50,000
 
 **Business Benefits**:
+
 - Reduced risk of data breaches
 - Improved customer trust
 - Competitive advantage
@@ -238,4 +240,4 @@ The standard provides a proven framework for organizations of all sizes to impro
 
 ---
 
-*This explanation follows the Linear Method's understanding-oriented approach, helping you grasp the concepts and principles behind ISO 27001 rather than just the technical requirements.* 
+_This explanation follows the Linear Method's understanding-oriented approach, helping you grasp the concepts and principles behind ISO 27001 rather than just the technical requirements._

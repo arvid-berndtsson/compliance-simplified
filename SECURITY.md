@@ -12,6 +12,7 @@ If you discover a security vulnerability in this software, please report it to:
 - **Subject**: [SECURITY] Vulnerability Report
 
 Please include:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
@@ -20,6 +21,7 @@ Please include:
 ## License Compliance
 
 This project is licensed under AGPL-3.0. Users are required to:
+
 - Preserve copyright notices and license information
 - Share any modifications under AGPL-3.0
 - Provide source code when running on a server accessible to users
@@ -27,4 +29,4 @@ This project is licensed under AGPL-3.0. Users are required to:
 
 ## Legal Notice
 
-This software is licensed under the GNU Affero General Public License v3.0. Please ensure compliance with the license terms when using, modifying, or distributing this work. 
+This software is licensed under the GNU Affero General Public License v3.0. Please ensure compliance with the license terms when using, modifying, or distributing this work.

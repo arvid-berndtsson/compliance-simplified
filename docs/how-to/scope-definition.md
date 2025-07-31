@@ -11,12 +11,14 @@ This guide provides specific steps to define your compliance scope for ISO 27001
 ## Before You Start
 
 **What you need**:
+
 - Understanding of your organization's structure
 - Access to key stakeholders
 - Knowledge of your systems and processes
 - 1-2 hours for scope definition
 
 **What you'll get**:
+
 - Clear scope statement
 - System boundaries defined
 - Stakeholder alignment
@@ -54,6 +56,7 @@ Create an organizational map:
 # Organizational Scope Template
 
 **In Scope**:
+
 - [ ] IT Department
 - [ ] Security Team
 - [ ] Development Team
@@ -61,6 +64,7 @@ Create an organizational map:
 - [ ] Finance (for customer data processing)
 
 **Out of Scope**:
+
 - [ ] Marketing (no access to customer data)
 - [ ] Sales (limited system access)
 - [ ] Legal (separate systems)
@@ -106,12 +110,14 @@ Map your geographic scope:
 # Geographic Scope Template
 
 **In Scope Locations**:
+
 - [ ] Primary office (San Francisco)
 - [ ] Secondary office (New York)
 - [ ] Data center (AWS US-East-1)
 - [ ] Cloud regions (AWS, GCP)
 
 **Out of Scope Locations**:
+
 - [ ] Home offices (BYOD policy applies)
 - [ ] Partner locations (separate agreements)
 - [ ] Legacy systems (scheduled for retirement)
@@ -129,11 +135,13 @@ For data residency requirements:
 # Data Residency Assessment
 
 **Data Types by Region**:
+
 - **US**: Customer data, business data
 - **EU**: EU customer data only
 - **Other**: Limited business data
 
 **Compliance Requirements**:
+
 - **GDPR**: EU data processing
 - **CCPA**: California data
 - **Industry**: [Specific requirements]
@@ -155,6 +163,7 @@ Write your system description:
 
 **System Boundaries**:
 **Included**:
+
 - Customer-facing web application
 - Customer data processing
 - Payment processing
@@ -162,12 +171,14 @@ Write your system description:
 - Data storage and backup
 
 **Excluded**:
+
 - Marketing systems
 - Internal HR systems
 - Development environments
 - Legacy systems
 
 **Key System Components**:
+
 - Web servers (AWS EC2)
 - Database (AWS RDS)
 - Load balancer (AWS ALB)
@@ -175,6 +186,7 @@ Write your system description:
 - Monitoring (CloudWatch)
 
 **Key Subservice Organizations**:
+
 - AWS (infrastructure)
 - Stripe (payments)
 - SendGrid (email)
@@ -191,24 +203,28 @@ Map your data flows:
 # Data Flow Mapping
 
 **Data Inputs**:
+
 - Customer registration data
 - Payment information
 - User activity data
 - System logs
 
 **Data Processing**:
+
 - User authentication
 - Payment processing
 - Data analytics
 - Reporting
 
 **Data Outputs**:
+
 - Customer dashboards
 - Payment confirmations
 - System reports
 - Audit logs
 
 **Data Storage**:
+
 - Customer database
 - Payment records
 - System logs
@@ -227,6 +243,7 @@ Review scope with key stakeholders:
 # Stakeholder Review Template
 
 **Stakeholders to Consult**:
+
 - [ ] Executive leadership
 - [ ] IT management
 - [ ] Security team
@@ -235,6 +252,7 @@ Review scope with key stakeholders:
 - [ ] External auditors (if available)
 
 **Key Questions**:
+
 1. Does this scope cover our critical systems?
 2. Are we excluding anything important?
 3. Is this scope manageable for implementation?
@@ -242,6 +260,7 @@ Review scope with key stakeholders:
 5. Are there any regulatory considerations?
 
 **Feedback and Changes**:
+
 - [Document stakeholder feedback]
 - [Document scope adjustments]
 - [Document rationale for changes]
@@ -254,16 +273,19 @@ Review scope with key stakeholders:
 Common scope challenges and solutions:
 
 **"Scope is too broad"**
+
 - Focus on customer-facing systems first
 - Implement in phases
 - Start with highest-risk areas
 
 **"Scope is too narrow"**
+
 - Include all customer data processing
 - Consider regulatory requirements
 - Include critical business systems
 
 **"Third-party dependencies"**
+
 - Include subservice organizations
 - Document shared responsibilities
 - Establish monitoring procedures
@@ -319,6 +341,7 @@ Prepare supporting documentation:
 # Scope Documentation Checklist
 
 **Required Documents**:
+
 - [ ] Scope statement
 - [ ] System description
 - [ ] Organizational chart
@@ -328,6 +351,7 @@ Prepare supporting documentation:
 - [ ] Management approval
 
 **Supporting Materials**:
+
 - [ ] Network diagrams
 - [ ] Application architecture
 - [ ] Data classification
@@ -345,11 +369,12 @@ You've succeeded when you have:
 ✅ System boundaries defined  
 ✅ Stakeholder alignment achieved  
 ✅ Documentation complete  
-✅ Management approval obtained  
+✅ Management approval obtained
 
 ## Common Mistakes to Avoid
 
 **Don't**:
+
 - Define scope too broadly initially
 - Exclude critical customer-facing systems
 - Ignore third-party dependencies
@@ -357,6 +382,7 @@ You've succeeded when you have:
 - Forget to document exclusions
 
 **Do**:
+
 - Start with customer-facing systems
 - Include all data processing activities
 - Document third-party relationships
@@ -391,6 +417,7 @@ Document scope changes:
 # Scope Change Process
 
 **Change Request**:
+
 - [ ] Document proposed change
 - [ ] Assess impact
 - [ ] Get stakeholder approval
@@ -400,4 +427,4 @@ Document scope changes:
 
 ---
 
-*This how-to guide follows the Linear Method's task-oriented approach. Each step is actionable and builds toward your goal of defining a clear, defensible compliance scope.* 
+_This how-to guide follows the Linear Method's task-oriented approach. Each step is actionable and builds toward your goal of defining a clear, defensible compliance scope._

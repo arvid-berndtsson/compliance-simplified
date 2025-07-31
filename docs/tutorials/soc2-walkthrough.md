@@ -18,6 +18,7 @@ This tutorial guides you through a complete SOC 2 implementation, from initial p
 ## What You'll Build
 
 By the end of this tutorial, you'll have:
+
 - A complete Trust Services Criteria framework
 - Control objectives and activities
 - Testing and monitoring procedures
@@ -31,6 +32,7 @@ By the end of this tutorial, you'll have:
 SOC 2 is built around five Trust Services Criteria:
 
 **Security (Common Criteria)**: Always required
+
 - **Availability**: System availability for operation and use
 - **Processing Integrity**: System processing is complete, accurate, timely, and authorized
 - **Confidentiality**: Information designated as confidential is protected
@@ -64,16 +66,19 @@ The control environment sets the tone for your organization:
 # Control Environment Assessment
 
 **Commitment to Integrity and Ethical Values**:
+
 - [ ] Code of conduct established
 - [ ] Ethics training provided
 - [ ] Violations addressed promptly
 
 **Board Oversight**:
+
 - [ ] Security committee established
 - [ ] Regular reporting to board
 - [ ] Board receives security updates
 
 **Management Philosophy and Operating Style**:
+
 - [ ] Security-first approach
 - [ ] Risk-aware decision making
 - [ ] Continuous improvement culture
@@ -86,6 +91,7 @@ The control environment sets the tone for your organization:
 For each Trust Services Criteria, define control objectives:
 
 **Security (Common Criteria)**:
+
 - **CC1.0**: Control Environment
 - **CC2.0**: Communication and Information
 - **CC3.0**: Risk Assessment
@@ -112,6 +118,7 @@ Start with the Common Criteria (Security):
 **Control Objective**: CC6.1 - The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events to meet the entity's security objectives.
 
 **Control Activities**:
+
 - [ ] User access provisioning procedures
 - [ ] Authentication mechanisms (MFA)
 - [ ] Authorization controls
@@ -119,6 +126,7 @@ Start with the Common Criteria (Security):
 - [ ] Segregation of duties
 
 **Evidence Requirements**:
+
 - Access request forms
 - User access reviews
 - Authentication logs
@@ -132,12 +140,14 @@ Start with the Common Criteria (Security):
 If applicable, implement other Trust Services Criteria:
 
 **Availability**:
+
 ```markdown
 # Availability Controls
 
 **Control Objective**: A1.1 - The entity maintains, monitors, and evaluates current processing capacity and use of system components (infrastructure, data, and software) to manage capacity demand and to enable the implementation of additional capacity to help meet its objectives.
 
 **Control Activities**:
+
 - [ ] Capacity monitoring
 - [ ] Performance baselines
 - [ ] Scalability planning
@@ -158,6 +168,7 @@ Create testing procedures for your controls:
 **Control**: User Access Review
 **Test Objective**: Verify that user access is reviewed quarterly
 **Test Procedure**:
+
 1. Obtain list of system users
 2. Verify access review was performed
 3. Check for approval signatures
@@ -178,21 +189,25 @@ Set up ongoing monitoring:
 # Monitoring Schedule
 
 **Daily**:
+
 - [ ] Security event monitoring
 - [ ] System availability checks
 - [ ] Access attempt monitoring
 
 **Weekly**:
+
 - [ ] Vulnerability scans
 - [ ] Backup verification
 - [ ] Performance monitoring
 
 **Monthly**:
+
 - [ ] User access reviews
 - [ ] Policy compliance checks
 - [ ] Risk assessment updates
 
 **Quarterly**:
+
 - [ ] Control testing
 - [ ] Management review
 - [ ] Training updates
@@ -219,6 +234,7 @@ Create your management assertion:
 3. The controls met the applicable trust services criteria throughout the period.
 
 **Basis for Assertion**:
+
 - Regular control testing
 - Ongoing monitoring activities
 - Management review processes
@@ -239,6 +255,7 @@ Get ready for your SOC 2 audit:
 # Audit Preparation Checklist
 
 **Documentation Ready**:
+
 - [ ] System description
 - [ ] Control objectives
 - [ ] Control activities
@@ -247,6 +264,7 @@ Get ready for your SOC 2 audit:
 - [ ] Management assertion
 
 **Evidence Organized**:
+
 - [ ] Policy documents
 - [ ] Procedure manuals
 - [ ] Training records
@@ -255,6 +273,7 @@ Get ready for your SOC 2 audit:
 - [ ] Incident logs
 
 **Key Personnel Available**:
+
 - [ ] System administrators
 - [ ] Security personnel
 - [ ] Management representatives
@@ -269,7 +288,7 @@ Get ready for your SOC 2 audit:
 ✅ Implemented security controls  
 ✅ Created testing and monitoring procedures  
 ✅ Prepared management assertion  
-✅ Built audit-ready documentation  
+✅ Built audit-ready documentation
 
 ## Next Steps
 
@@ -282,20 +301,23 @@ Your SOC 2 framework is now operational! Continue with:
 ## Troubleshooting
 
 **"Which Trust Services Criteria should I include?"**
+
 - Start with Security (Common Criteria) only
 - Add others based on customer requirements
 - Consider your business model and data types
 
 **"Control testing seems overwhelming"**
+
 - Focus on key controls first
 - Use sampling for large populations
 - Document everything you test
 
 **"Management assertion seems formal"**
+
 - Keep it simple and accurate
 - Base it on actual testing results
 - Have management review and approve
 
 ---
 
-*This tutorial follows the Linear Method's systematic approach to building quality systems. Each phase builds on the previous one, creating a solid foundation for your SOC 2 framework.* 
+_This tutorial follows the Linear Method's systematic approach to building quality systems. Each phase builds on the previous one, creating a solid foundation for your SOC 2 framework._

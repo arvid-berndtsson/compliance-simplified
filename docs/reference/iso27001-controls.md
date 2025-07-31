@@ -24,12 +24,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define information security policies.
 
 **Implementation**:
+
 - Document security policies
 - Review annually
 - Communicate to all staff
 - Maintain version control
 
 **Evidence**:
+
 - Policy documents
 - Review records
 - Communication logs
@@ -40,12 +42,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define and assign security roles.
 
 **Implementation**:
+
 - Define security responsibilities
 - Assign roles to individuals
 - Document role descriptions
 - Review assignments regularly
 
 **Evidence**:
+
 - Role descriptions
 - Assignment matrix
 - Review records
@@ -55,12 +59,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Separate conflicting duties.
 
 **Implementation**:
+
 - Identify conflicting functions
 - Assign to different people
 - Monitor compliance
 - Review periodically
 
 **Evidence**:
+
 - Duty matrix
 - Assignment records
 - Review logs
@@ -70,12 +76,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Ensure management support.
 
 **Implementation**:
+
 - Define management roles
 - Establish reporting lines
 - Provide resources
 - Monitor performance
 
 **Evidence**:
+
 - Role descriptions
 - Resource allocation
 - Performance metrics
@@ -85,12 +93,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Maintain regulatory contacts.
 
 **Implementation**:
+
 - Identify relevant authorities
 - Establish contacts
 - Document procedures
 - Test communication
 
 **Evidence**:
+
 - Contact list
 - Communication procedures
 - Test records
@@ -100,12 +110,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Engage with security communities.
 
 **Implementation**:
+
 - Identify relevant groups
 - Establish membership
 - Participate actively
 - Share information
 
 **Evidence**:
+
 - Membership records
 - Participation logs
 - Information sharing
@@ -115,12 +127,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Gather threat information.
 
 **Implementation**:
+
 - Subscribe to threat feeds
 - Monitor threat landscape
 - Analyze threats
 - Update controls
 
 **Evidence**:
+
 - Threat feeds
 - Analysis reports
 - Control updates
@@ -130,12 +144,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Integrate security into projects.
 
 **Implementation**:
+
 - Include security requirements
 - Conduct security reviews
 - Document security decisions
 - Monitor compliance
 
 **Evidence**:
+
 - Project documentation
 - Review records
 - Decision logs
@@ -145,12 +161,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Maintain asset inventory.
 
 **Implementation**:
+
 - Identify all assets
 - Document details
 - Assign ownership
 - Review regularly
 
 **Evidence**:
+
 - Asset inventory
 - Ownership records
 - Review logs
@@ -160,12 +178,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define acceptable use.
 
 **Implementation**:
+
 - Document acceptable use
 - Communicate to users
 - Monitor compliance
 - Enforce violations
 
 **Evidence**:
+
 - Acceptable use policy
 - Communication records
 - Violation reports
@@ -175,12 +195,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Ensure asset return.
 
 **Implementation**:
+
 - Document return procedures
 - Collect assets on exit
 - Verify completeness
 - Update inventory
 
 **Evidence**:
+
 - Return procedures
 - Collection records
 - Inventory updates
@@ -190,12 +212,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Classify information assets.
 
 **Implementation**:
+
 - Define classification scheme
 - Apply classifications
 - Mark documents
 - Review classifications
 
 **Evidence**:
+
 - Classification scheme
 - Marked documents
 - Review records
@@ -205,12 +229,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Label information appropriately.
 
 **Implementation**:
+
 - Define labelling scheme
 - Apply labels
 - Train users
 - Monitor compliance
 
 **Evidence**:
+
 - Labelling scheme
 - Labelled documents
 - Training records
@@ -220,12 +246,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure information transfer.
 
 **Implementation**:
+
 - Define transfer procedures
 - Use secure methods
 - Monitor transfers
 - Log activities
 
 **Evidence**:
+
 - Transfer procedures
 - Security measures
 - Activity logs
@@ -235,12 +263,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control access to information.
 
 **Implementation**:
+
 - Define access policies
 - Implement controls
 - Monitor access
 - Review regularly
 
 **Evidence**:
+
 - Access policies
 - Control logs
 - Review records
@@ -250,12 +280,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Verify user identities.
 
 **Implementation**:
+
 - Define verification methods
 - Implement procedures
 - Monitor effectiveness
 - Update as needed
 
 **Evidence**:
+
 - Verification procedures
 - Implementation logs
 - Effectiveness metrics
@@ -265,12 +297,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage authentication data.
 
 **Implementation**:
+
 - Define requirements
 - Implement securely
 - Monitor usage
 - Update regularly
 
 **Evidence**:
+
 - Requirements document
 - Implementation logs
 - Update records
@@ -280,12 +314,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage access permissions.
 
 **Implementation**:
+
 - Define access rights
 - Assign appropriately
 - Review regularly
 - Remove when needed
 
 **Evidence**:
+
 - Access rights matrix
 - Assignment records
 - Review logs
@@ -295,12 +331,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage supplier security.
 
 **Implementation**:
+
 - Assess supplier security
 - Define requirements
 - Monitor compliance
 - Review relationships
 
 **Evidence**:
+
 - Assessment reports
 - Requirements documents
 - Compliance records
@@ -310,12 +348,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Include security in contracts.
 
 **Implementation**:
+
 - Define security clauses
 - Include in agreements
 - Monitor compliance
 - Enforce violations
 
 **Evidence**:
+
 - Contract templates
 - Compliance records
 - Violation reports
@@ -325,12 +365,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure ICT supply chain.
 
 **Implementation**:
+
 - Assess suppliers
 - Define requirements
 - Monitor compliance
 - Manage risks
 
 **Evidence**:
+
 - Assessment reports
 - Requirements documents
 - Risk management
@@ -340,12 +382,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Monitor supplier services.
 
 **Implementation**:
+
 - Define monitoring procedures
 - Review services
 - Manage changes
 - Document decisions
 
 **Evidence**:
+
 - Monitoring procedures
 - Review records
 - Change logs
@@ -355,12 +399,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure cloud services.
 
 **Implementation**:
+
 - Assess cloud providers
 - Define requirements
 - Monitor compliance
 - Manage risks
 
 **Evidence**:
+
 - Assessment reports
 - Requirements documents
 - Compliance records
@@ -370,12 +416,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Prepare for incidents.
 
 **Implementation**:
+
 - Define incident procedures
 - Train staff
 - Test procedures
 - Update regularly
 
 **Evidence**:
+
 - Incident procedures
 - Training records
 - Test results
@@ -385,12 +433,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Assess security events.
 
 **Implementation**:
+
 - Define assessment criteria
 - Evaluate events
 - Make decisions
 - Document actions
 
 **Evidence**:
+
 - Assessment criteria
 - Evaluation records
 - Decision logs
@@ -400,12 +450,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Respond to incidents.
 
 **Implementation**:
+
 - Follow procedures
 - Contain incidents
 - Eradicate threats
 - Recover systems
 
 **Evidence**:
+
 - Response logs
 - Containment records
 - Recovery reports
@@ -415,12 +467,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Learn from incidents.
 
 **Implementation**:
+
 - Conduct post-incident reviews
 - Identify lessons learned
 - Update procedures
 - Share knowledge
 
 **Evidence**:
+
 - Review reports
 - Lessons learned
 - Procedure updates
@@ -430,12 +484,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Collect incident evidence.
 
 **Implementation**:
+
 - Define collection procedures
 - Preserve evidence
 - Document chain of custody
 - Store securely
 
 **Evidence**:
+
 - Collection procedures
 - Evidence logs
 - Chain of custody
@@ -445,12 +501,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Maintain security during disruptions.
 
 **Implementation**:
+
 - Define continuity procedures
 - Test procedures
 - Train staff
 - Update regularly
 
 **Evidence**:
+
 - Continuity procedures
 - Test results
 - Training records
@@ -460,12 +518,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Ensure ICT continuity.
 
 **Implementation**:
+
 - Define ICT procedures
 - Test systems
 - Document procedures
 - Update regularly
 
 **Evidence**:
+
 - ICT procedures
 - Test results
 - Documentation
@@ -475,12 +535,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Comply with requirements.
 
 **Implementation**:
+
 - Identify requirements
 - Assess compliance
 - Implement controls
 - Monitor compliance
 
 **Evidence**:
+
 - Requirements list
 - Compliance assessments
 - Control implementations
@@ -490,12 +552,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect intellectual property.
 
 **Implementation**:
+
 - Identify IP assets
 - Define protection measures
 - Monitor compliance
 - Enforce rights
 
 **Evidence**:
+
 - IP inventory
 - Protection measures
 - Compliance records
@@ -505,12 +569,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect important records.
 
 **Implementation**:
+
 - Identify important records
 - Define protection measures
 - Implement controls
 - Monitor compliance
 
 **Evidence**:
+
 - Records inventory
 - Protection measures
 - Compliance records
@@ -520,12 +586,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect personal data.
 
 **Implementation**:
+
 - Identify PII
 - Define protection measures
 - Implement controls
 - Monitor compliance
 
 **Evidence**:
+
 - PII inventory
 - Protection measures
 - Compliance records
@@ -535,12 +603,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Conduct independent reviews.
 
 **Implementation**:
+
 - Define review scope
 - Select reviewers
 - Conduct reviews
 - Document findings
 
 **Evidence**:
+
 - Review scope
 - Reviewer qualifications
 - Review reports
@@ -550,12 +620,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Ensure policy compliance.
 
 **Implementation**:
+
 - Define compliance procedures
 - Monitor compliance
 - Address violations
 - Report status
 
 **Evidence**:
+
 - Compliance procedures
 - Monitoring records
 - Violation reports
@@ -565,12 +637,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Document procedures.
 
 **Implementation**:
+
 - Define procedures
 - Document clearly
 - Review regularly
 - Update as needed
 
 **Evidence**:
+
 - Procedure documents
 - Review records
 - Update logs
@@ -582,12 +656,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Screen personnel.
 
 **Implementation**:
+
 - Define screening criteria
 - Conduct screenings
 - Document results
 - Review regularly
 
 **Evidence**:
+
 - Screening criteria
 - Screening results
 - Review records
@@ -597,12 +673,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define employment terms.
 
 **Implementation**:
+
 - Include security requirements
 - Communicate clearly
 - Monitor compliance
 - Update regularly
 
 **Evidence**:
+
 - Employment contracts
 - Communication records
 - Compliance monitoring
@@ -612,12 +690,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Train personnel.
 
 **Implementation**:
+
 - Define training requirements
 - Conduct training
 - Assess effectiveness
 - Update content
 
 **Evidence**:
+
 - Training materials
 - Attendance records
 - Effectiveness assessments
@@ -627,12 +707,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define disciplinary procedures.
 
 **Implementation**:
+
 - Define procedures
 - Communicate clearly
 - Apply consistently
 - Document actions
 
 **Evidence**:
+
 - Disciplinary procedures
 - Communication records
 - Action logs
@@ -642,12 +724,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage post-employment.
 
 **Implementation**:
+
 - Define procedures
 - Collect assets
 - Revoke access
 - Document actions
 
 **Evidence**:
+
 - Termination procedures
 - Asset collection records
 - Access revocation logs
@@ -657,12 +741,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Use confidentiality agreements.
 
 **Implementation**:
+
 - Define agreements
 - Require signatures
 - Monitor compliance
 - Enforce violations
 
 **Evidence**:
+
 - Agreement templates
 - Signed agreements
 - Compliance records
@@ -672,12 +758,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure remote work.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor compliance
 - Update procedures
 
 **Evidence**:
+
 - Remote work policies
 - Control implementations
 - Compliance records
@@ -687,12 +775,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Report security events.
 
 **Implementation**:
+
 - Define reporting procedures
 - Train personnel
 - Monitor compliance
 - Review reports
 
 **Evidence**:
+
 - Reporting procedures
 - Training records
 - Report logs
@@ -704,12 +794,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Define security perimeters.
 
 **Implementation**:
+
 - Define perimeters
 - Implement controls
 - Monitor effectiveness
 - Review regularly
 
 **Evidence**:
+
 - Perimeter definitions
 - Control implementations
 - Monitoring records
@@ -719,12 +811,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control physical access.
 
 **Implementation**:
+
 - Define entry procedures
 - Implement controls
 - Monitor access
 - Review regularly
 
 **Evidence**:
+
 - Entry procedures
 - Control logs
 - Review records
@@ -734,12 +828,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure physical spaces.
 
 **Implementation**:
+
 - Define security measures
 - Implement controls
 - Monitor effectiveness
 - Update as needed
 
 **Evidence**:
+
 - Security measures
 - Implementation records
 - Effectiveness assessments
@@ -749,12 +845,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Monitor physical security.
 
 **Implementation**:
+
 - Define monitoring procedures
 - Implement systems
 - Monitor activities
 - Review logs
 
 **Evidence**:
+
 - Monitoring procedures
 - System logs
 - Review records
@@ -764,12 +862,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect against threats.
 
 **Implementation**:
+
 - Identify threats
 - Implement protections
 - Monitor effectiveness
 - Update as needed
 
 **Evidence**:
+
 - Threat assessments
 - Protection measures
 - Effectiveness records
@@ -779,12 +879,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure work areas.
 
 **Implementation**:
+
 - Define procedures
 - Train personnel
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Work procedures
 - Training records
 - Compliance logs
@@ -794,12 +896,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Maintain clear workspaces.
 
 **Implementation**:
+
 - Define requirements
 - Train personnel
 - Monitor compliance
 - Enforce violations
 
 **Evidence**:
+
 - Clear desk policy
 - Training records
 - Compliance monitoring
@@ -809,12 +913,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect equipment.
 
 **Implementation**:
+
 - Define protection measures
 - Implement controls
 - Monitor effectiveness
 - Update as needed
 
 **Evidence**:
+
 - Protection measures
 - Implementation records
 - Effectiveness assessments
@@ -824,12 +930,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure off-site assets.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Off-site policies
 - Control implementations
 - Compliance records
@@ -839,12 +947,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure storage media.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Dispose securely
 
 **Evidence**:
+
 - Storage procedures
 - Control logs
 - Disposal records
@@ -854,12 +964,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure utilities.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor effectiveness
 - Maintain systems
 
 **Evidence**:
+
 - Utility requirements
 - Control implementations
 - Maintenance records
@@ -869,12 +981,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure cabling.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor effectiveness
 - Maintain systems
 
 **Evidence**:
+
 - Cabling requirements
 - Control implementations
 - Maintenance records
@@ -884,12 +998,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Maintain equipment.
 
 **Implementation**:
+
 - Define procedures
 - Schedule maintenance
 - Conduct maintenance
 - Document activities
 
 **Evidence**:
+
 - Maintenance procedures
 - Schedule records
 - Activity logs
@@ -899,12 +1015,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Dispose equipment securely.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Document disposal
 
 **Evidence**:
+
 - Disposal procedures
 - Control implementations
 - Disposal records
@@ -916,12 +1034,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure endpoint devices.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor compliance
 - Update regularly
 
 **Evidence**:
+
 - Device requirements
 - Control implementations
 - Compliance records
@@ -931,12 +1051,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage privileged access.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor usage
 - Review regularly
 
 **Evidence**:
+
 - Access procedures
 - Control logs
 - Review records
@@ -946,12 +1068,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Restrict information access.
 
 **Implementation**:
+
 - Define restrictions
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Access restrictions
 - Control implementations
 - Compliance records
@@ -961,12 +1085,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control source code access.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor access
 - Review regularly
 
 **Evidence**:
+
 - Access procedures
 - Control logs
 - Review records
@@ -976,12 +1102,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Implement secure authentication.
 
 **Implementation**:
+
 - Define requirements
 - Implement systems
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Authentication requirements
 - System implementations
 - Effectiveness metrics
@@ -991,12 +1119,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage system capacity.
 
 **Implementation**:
+
 - Define requirements
 - Monitor capacity
 - Plan for growth
 - Optimize usage
 
 **Evidence**:
+
 - Capacity requirements
 - Monitoring records
 - Planning documents
@@ -1006,12 +1136,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect against malware.
 
 **Implementation**:
+
 - Define protection measures
 - Implement controls
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Protection measures
 - Control implementations
 - Effectiveness records
@@ -1021,12 +1153,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage vulnerabilities.
 
 **Implementation**:
+
 - Define procedures
 - Identify vulnerabilities
 - Assess risks
 - Remediate issues
 
 **Evidence**:
+
 - Vulnerability procedures
 - Assessment reports
 - Remediation records
@@ -1036,12 +1170,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage configurations.
 
 **Implementation**:
+
 - Define procedures
 - Document configurations
 - Monitor changes
 - Review regularly
 
 **Evidence**:
+
 - Configuration procedures
 - Documentation
 - Change logs
@@ -1051,12 +1187,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Delete information securely.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Document deletion
 
 **Evidence**:
+
 - Deletion procedures
 - Control implementations
 - Deletion records
@@ -1066,12 +1204,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Mask sensitive data.
 
 **Implementation**:
+
 - Define requirements
 - Implement masking
 - Monitor effectiveness
 - Update as needed
 
 **Evidence**:
+
 - Masking requirements
 - Implementation records
 - Effectiveness assessments
@@ -1081,12 +1221,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Prevent data leakage.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Prevention procedures
 - Control implementations
 - Effectiveness records
@@ -1096,12 +1238,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Backup information.
 
 **Implementation**:
+
 - Define procedures
 - Implement backups
 - Test restores
 - Monitor effectiveness
 
 **Evidence**:
+
 - Backup procedures
 - Implementation records
 - Test results
@@ -1111,12 +1255,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Provide redundancy.
 
 **Implementation**:
+
 - Define requirements
 - Implement redundancy
 - Test failover
 - Monitor effectiveness
 
 **Evidence**:
+
 - Redundancy requirements
 - Implementation records
 - Test results
@@ -1126,12 +1272,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Log system activities.
 
 **Implementation**:
+
 - Define logging requirements
 - Implement logging
 - Monitor logs
 - Review regularly
 
 **Evidence**:
+
 - Logging requirements
 - Implementation records
 - Log reviews
@@ -1141,12 +1289,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Monitor system activities.
 
 **Implementation**:
+
 - Define monitoring procedures
 - Implement monitoring
 - Review activities
 - Respond to alerts
 
 **Evidence**:
+
 - Monitoring procedures
 - Implementation records
 - Review logs
@@ -1156,12 +1306,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Synchronize system clocks.
 
 **Implementation**:
+
 - Define requirements
 - Implement synchronization
 - Monitor accuracy
 - Update as needed
 
 **Evidence**:
+
 - Synchronization requirements
 - Implementation records
 - Accuracy monitoring
@@ -1171,12 +1323,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control utility programs.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor usage
 - Review regularly
 
 **Evidence**:
+
 - Utility procedures
 - Control implementations
 - Usage logs
@@ -1186,12 +1340,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control software installation.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Installation procedures
 - Control implementations
 - Compliance records
@@ -1201,12 +1357,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure networks.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Network requirements
 - Control implementations
 - Effectiveness records
@@ -1216,12 +1374,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure network services.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Service requirements
 - Control implementations
 - Effectiveness records
@@ -1231,12 +1391,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Filter web traffic.
 
 **Implementation**:
+
 - Define requirements
 - Implement filtering
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Filtering requirements
 - Implementation records
 - Effectiveness assessments
@@ -1246,12 +1408,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure network services.
 
 **Implementation**:
+
 - Define requirements
 - Implement controls
 - Monitor effectiveness
 - Update regularly
 
 **Evidence**:
+
 - Service requirements
 - Control implementations
 - Effectiveness records
@@ -1261,12 +1425,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Control network routing.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor routing
 - Review regularly
 
 **Evidence**:
+
 - Routing procedures
 - Control implementations
 - Routing logs
@@ -1276,12 +1442,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Apply secure engineering.
 
 **Implementation**:
+
 - Define principles
 - Train developers
 - Review code
 - Monitor compliance
 
 **Evidence**:
+
 - Engineering principles
 - Training records
 - Code reviews
@@ -1291,12 +1459,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Design secure systems.
 
 **Implementation**:
+
 - Define architecture principles
 - Apply to designs
 - Review implementations
 - Monitor effectiveness
 
 **Evidence**:
+
 - Architecture principles
 - Design reviews
 - Effectiveness assessments
@@ -1306,12 +1476,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Write secure code.
 
 **Implementation**:
+
 - Define coding standards
 - Train developers
 - Review code
 - Monitor compliance
 
 **Evidence**:
+
 - Coding standards
 - Training records
 - Code reviews
@@ -1321,12 +1493,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Test security.
 
 **Implementation**:
+
 - Define testing procedures
 - Conduct tests
 - Document results
 - Remediate issues
 
 **Evidence**:
+
 - Testing procedures
 - Test results
 - Remediation records
@@ -1336,12 +1510,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Test application security.
 
 **Implementation**:
+
 - Define procedures
 - Conduct tests
 - Document results
 - Remediate issues
 
 **Evidence**:
+
 - Testing procedures
 - Test results
 - Remediation records
@@ -1351,12 +1527,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Secure outsourced development.
 
 **Implementation**:
+
 - Define requirements
 - Assess providers
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Development requirements
 - Provider assessments
 - Compliance records
@@ -1366,12 +1544,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Separate environments.
 
 **Implementation**:
+
 - Define separation requirements
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Separation requirements
 - Control implementations
 - Compliance records
@@ -1381,12 +1561,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Manage changes.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Change procedures
 - Control implementations
 - Compliance records
@@ -1396,12 +1578,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect test data.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Test data procedures
 - Control implementations
 - Compliance records
@@ -1411,12 +1595,14 @@ ISO 27001:2022 organizes controls into 4 domains:
 **Control**: Protect systems during testing.
 
 **Implementation**:
+
 - Define procedures
 - Implement controls
 - Monitor compliance
 - Review regularly
 
 **Evidence**:
+
 - Testing procedures
 - Control implementations
 - Compliance records
@@ -1424,6 +1610,7 @@ ISO 27001:2022 organizes controls into 4 domains:
 ## Implementation Priority
 
 **High Priority** (Implement First):
+
 - A.5.1 Information security policies
 - A.5.15 Access control
 - A.5.17 Authentication information
@@ -1432,6 +1619,7 @@ ISO 27001:2022 organizes controls into 4 domains:
 - A.8.7 Protection from malware
 
 **Medium Priority** (Implement Second):
+
 - A.5.9 Inventory of information and other associated assets
 - A.5.12 Classification of information
 - A.6.3 Information security awareness, education and training
@@ -1440,6 +1628,7 @@ ISO 27001:2022 organizes controls into 4 domains:
 - A.8.15 Logging
 
 **Lower Priority** (Implement Later):
+
 - A.5.7 Threat intelligence
 - A.5.23 Information security for use of cloud services
 - A.8.11 Data masking
@@ -1458,4 +1647,4 @@ For each control, ensure you have:
 
 ---
 
-*This reference follows the Linear Method's technical specification approach, providing detailed information for quick lookup and implementation guidance.* 
+_This reference follows the Linear Method's technical specification approach, providing detailed information for quick lookup and implementation guidance._

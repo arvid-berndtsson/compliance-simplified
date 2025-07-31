@@ -17,6 +17,7 @@ This tutorial walks you through creating your first compliance project using our
 ## What You'll Build
 
 By the end of this tutorial, you'll have:
+
 - A compliance project scope document
 - A basic risk assessment framework
 - Your first security control implemented
@@ -41,23 +42,25 @@ Start by clearly defining what you're protecting:
 
 List your critical information assets:
 
-| Asset | Type | Owner | Criticality |
-|-------|------|-------|-------------|
-| Customer data | Data | [Name] | High |
-| Source code | Data | [Name] | High |
-| Employee records | Data | [Name] | Medium |
-| Office network | System | [Name] | Medium |
+| Asset            | Type   | Owner  | Criticality |
+| ---------------- | ------ | ------ | ----------- |
+| Customer data    | Data   | [Name] | High        |
+| Source code      | Data   | [Name] | High        |
+| Employee records | Data   | [Name] | Medium      |
+| Office network   | System | [Name] | Medium      |
 
 **Action**: Create your own asset inventory table.
 
 ## Step 3: Assess Basic Risks (10 minutes)
 
 For each high-criticality asset, identify:
+
 - What could go wrong?
 - How likely is it?
 - What's the impact?
 
 **Example**:
+
 - **Risk**: Customer data breach
 - **Likelihood**: Medium (we have basic security)
 - **Impact**: High (regulatory fines, reputation damage)
@@ -70,6 +73,7 @@ For each high-criticality asset, identify:
 Choose one high-priority risk and implement a basic control:
 
 **Example**: For customer data protection
+
 - **Control**: Password policy
 - **Implementation**: Require 12+ character passwords
 - **Documentation**: Create a simple policy document
@@ -81,7 +85,7 @@ Choose one high-priority risk and implement a basic control:
 ✅ Defined your compliance scope  
 ✅ Identified critical assets  
 ✅ Completed basic risk assessment  
-✅ Implemented your first security control  
+✅ Implemented your first security control
 
 ## Next Steps
 
@@ -94,17 +98,20 @@ Now that you have a foundation, choose your path:
 ## Troubleshooting
 
 **"I don't know what assets we have"**
+
 - Start with customer data, employee records, and source code
 - Ask your IT team or leadership for input
 
 **"Risk assessment seems overwhelming"**
+
 - Focus on the top 3 most critical assets first
 - Use simple High/Medium/Low ratings
 
 **"I'm not sure about scope"**
+
 - Start small - you can always expand later
 - Focus on customer-facing systems first
 
 ---
 
-*This tutorial follows the Linear Method's learning-oriented approach. Each step builds on the previous one, and you learn by doing.* 
+_This tutorial follows the Linear Method's learning-oriented approach. Each step builds on the previous one, and you learn by doing._

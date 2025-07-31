@@ -11,19 +11,22 @@ Provide actionable compliance guidance for tech founders, early-stage CISOs, sys
 This project is licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0).
 
 ### What this means:
+
 - ✅ **You can use, share, and modify** this software for any purpose
 - ✅ **You can use it commercially** (even for profit)
 - ✅ **You can distribute** modified versions
 
 ### Requirements:
+
 - 🔗 **Attribution**: You must preserve copyright notices and license information
 - 🔄 **ShareAlike**: If you modify the software, you must share your modifications under AGPL-3.0
 - 🌐 **Network Use**: If you run the software on a server and make it available to users, you must provide the source code
 - 📦 **Source Code**: You must provide the complete source code when distributing
 
 **Example attribution:**
+
 ```
-Based on "Compliance Simplified" by Arvid Berndtsson (https://github.com/arvid-berndtsson/compliance-simplified) 
+Based on "Compliance Simplified" by Arvid Berndtsson (https://github.com/arvid-berndtsson/compliance-simplified)
 licensed under AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.en.html)
 ```
 
@@ -37,17 +40,20 @@ licensed under AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.en.html)
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/arvid-berndtsson/compliance-simplified.git
    cd compliance-simplified
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Start the development server**
+
    ```bash
    pnpm start
    ```
@@ -138,4 +144,4 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 - [ ] Gap self-assessment tool
 - [ ] Policy template library
 - [ ] SOC 2 implementation guide
-- [ ] Community forum integration 
+- [ ] Community forum integration
