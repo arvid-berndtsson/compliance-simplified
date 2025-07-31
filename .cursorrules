@@ -1,0 +1,100 @@
+# Compliance Simplified - Cursor Rules
+
+## Project Overview
+This is a Next.js 15 application that provides compliance guidance for ISO 27001 and SOC 2 frameworks. The project uses TypeScript, Tailwind CSS, and MDX for content.
+
+## Technology Stack
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+- **Styling**: Tailwind CSS
+- **Content**: MDX for documentation
+- **Deployment**: Static export (GitHub Pages)
+
+## Coding Guidelines
+
+### TypeScript
+- Use strict TypeScript configuration
+- Define proper interfaces for all props and data structures
+- Use type annotations for function parameters and return types
+- Prefer `interface` over `type` for object shapes
+
+### React Components
+- Use functional components with hooks
+- Follow the "use client" directive for client-side components
+- Keep components focused and single-purpose
+- Use proper prop interfaces
+- Implement proper error boundaries where needed
+
+### Styling
+- Use Tailwind CSS classes for styling
+- Follow the design system defined in tailwind.config.js
+- Use semantic class names and avoid custom CSS when possible
+- Maintain consistent spacing and typography
+
+### File Naming
+- Use kebab-case for file names
+- Use PascalCase for component names
+- Use descriptive names that indicate purpose
+- Group related files in appropriate directories
+
+### Documentation Structure
+- Each framework (ISO 27001, SOC 2) has its own section
+- Each section contains: overview, quick-start, implementation, and reference pages
+- Use MDX for rich content with React components
+- Maintain consistent navigation structure
+
+### Component Guidelines
+- **Header**: Reusable header with navigation and search
+- **Footer**: Reusable footer with links and information
+- **LandingLayout**: Layout for homepage, about, privacy, terms, gap assessment
+- **DocsLayout**: Layout for all documentation pages with sidebar
+- **CollapsibleSidebar**: Collapsible navigation with framework sections
+
+### Search Implementation
+- Use React Context for global search state
+- Implement debounced search input
+- Provide search results with relevance scoring
+- Support keyboard navigation
+
+### Gap Assessment Tool
+- Use localStorage for persistence
+- Implement multi-step assessment process
+- Provide export functionality (CSV)
+- Include progress tracking and scoring
+
+## Content Guidelines
+- Write clear, actionable content
+- Avoid technical jargon when possible
+- Include practical examples and checklists
+- Maintain consistent tone and style
+- Use internal links to connect related content
+
+## Development Workflow
+1. Create feature branches for new functionality
+2. Test components in isolation
+3. Ensure responsive design works on all screen sizes
+4. Validate TypeScript types
+5. Test build process before committing
+
+## Common Patterns
+- Use layout components for consistent page structure
+- Implement proper loading states
+- Handle errors gracefully
+- Use semantic HTML elements
+- Ensure accessibility compliance
+
+## Dependencies
+- Next.js 15
+- React 18+
+- TypeScript 5+
+- Tailwind CSS 3+
+- MDX for content
+- pnpm for package management
+
+## Build and Deployment
+- Static export for GitHub Pages deployment
+- Optimized images and assets
+- Proper meta tags and SEO
+- Fast loading times
+- Mobile-first responsive design
