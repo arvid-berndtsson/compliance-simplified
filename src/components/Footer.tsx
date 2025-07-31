@@ -93,7 +93,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:arvid@arvid.tech"
+                  href="mailto:compliance@arvid.tech"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Contact Us

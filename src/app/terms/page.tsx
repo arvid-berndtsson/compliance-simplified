@@ -351,10 +351,10 @@ export default function TermsPage() {
                 <p>
                   <strong>Email:</strong>{" "}
                   <a
-                    href="mailto:arvid@arvid.tech"
+                    href="mailto:compliance@arvid.tech"
                     className="text-primary hover:text-primary/80"
                   >
-                    arvid@arvid.tech
+                    compliance@arvid.tech
                   </a>
                 </p>
                 <p>
@@ -494,7 +494,7 @@ export default function TermsPage() {
                 </li>
                 <li>
                   <a
-                    href="mailto:arvid@arvid.tech"
+                    href="mailto:compliance@arvid.tech"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Contact Us
