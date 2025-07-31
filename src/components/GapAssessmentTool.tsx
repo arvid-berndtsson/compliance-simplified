@@ -764,7 +764,11 @@ export default function GapAssessmentTool() {
   // Haptic feedback for mobile devices
   const triggerHapticFeedback = () => {
     if ('vibrate' in navigator) {
-      navigator.vibrate(50) // Short vibration
+      try {
+        navigator.vibrate(50) // Short vibration
+      } catch (error) {
+        console.error('Haptic feedback failed:', error)
+      }
     }
   }
 
