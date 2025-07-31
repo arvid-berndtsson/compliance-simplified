@@ -89,7 +89,11 @@
   }
   
   .prose ul {
-    @apply space-y-2 mb-4;
+    @apply space-y-2 mb-4 list-disc list-inside;
+  }
+  
+  .prose ol {
+    @apply space-y-2 mb-4 list-decimal list-inside;
   }
   
   .prose li {
