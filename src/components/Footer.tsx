@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { CONTACT_EMAIL } from '@/config/constants'
+import { CONTACT_EMAIL, GITHUB_URL } from '@/config/constants'
 
 
 export default function Footer() {
@@ -74,7 +74,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://github.com/arvid-berndtsson/compliance-simplified"
+                  href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
@@ -84,7 +84,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/arvid-berndtsson/compliance-simplified/issues"
+                  href={`${GITHUB_URL}/issues`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
