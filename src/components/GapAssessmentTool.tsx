@@ -768,7 +768,7 @@ export default function GapAssessmentTool() {
       try {
         navigator.vibrate(50) // Short vibration
       } catch (error) {
-        console.error('Haptic feedback failed:', error)
+        console.debug('Haptic feedback not supported or failed to trigger:', error)
       }
     }
   }
