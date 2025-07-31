@@ -29,6 +29,20 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     description: 'Visible support and resources allocated to security initiatives',
     weight: 4
   },
+  {
+    id: 'leadership-4',
+    category: 'Leadership & Commitment',
+    question: 'Is information security integrated into business processes?',
+    description: 'Security considerations are part of decision-making processes',
+    weight: 4
+  },
+  {
+    id: 'leadership-5',
+    category: 'Leadership & Commitment',
+    question: 'Do you have a security governance framework?',
+    description: 'Clear roles, responsibilities, and reporting structures for security',
+    weight: 4
+  },
 
   // Planning
   {
@@ -50,6 +64,27 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     category: 'Planning',
     question: 'Have you defined the scope of your ISMS?',
     description: 'Clear boundaries of what systems and processes are included',
+    weight: 4
+  },
+  {
+    id: 'planning-4',
+    category: 'Planning',
+    question: 'Do you have risk treatment plans?',
+    description: 'Documented plans for addressing identified security risks',
+    weight: 4
+  },
+  {
+    id: 'planning-5',
+    category: 'Planning',
+    question: 'Have you established security requirements for suppliers?',
+    description: 'Security criteria for third-party vendors and service providers',
+    weight: 3
+  },
+  {
+    id: 'planning-6',
+    category: 'Planning',
+    question: 'Do you have business continuity and disaster recovery plans?',
+    description: 'Plans to maintain operations during and after security incidents',
     weight: 4
   },
 
@@ -74,6 +109,27 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     question: 'Do you have documented procedures for key security processes?',
     description: 'Written procedures for access control, incident response, etc.',
     weight: 4
+  },
+  {
+    id: 'support-4',
+    category: 'Support',
+    question: 'Do you have a security awareness program?',
+    description: 'Ongoing education and communication about security threats',
+    weight: 3
+  },
+  {
+    id: 'support-5',
+    category: 'Support',
+    question: 'Do you have competent security personnel?',
+    description: 'Staff with appropriate skills and qualifications for security roles',
+    weight: 4
+  },
+  {
+    id: 'support-6',
+    category: 'Support',
+    question: 'Do you have internal communication processes for security?',
+    description: 'Channels for reporting security issues and concerns',
+    weight: 3
   },
 
   // Operation
@@ -105,6 +161,48 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     description: 'Processes for managing changes to systems and infrastructure',
     weight: 4
   },
+  {
+    id: 'operation-5',
+    category: 'Operation',
+    question: 'Do you have network security controls?',
+    description: 'Firewalls, segmentation, and network monitoring',
+    weight: 4
+  },
+  {
+    id: 'operation-6',
+    category: 'Operation',
+    question: 'Do you have endpoint security controls?',
+    description: 'Antivirus, encryption, and device management',
+    weight: 4
+  },
+  {
+    id: 'operation-7',
+    category: 'Operation',
+    question: 'Do you have secure development practices?',
+    description: 'Security considerations in software development lifecycle',
+    weight: 3
+  },
+  {
+    id: 'operation-8',
+    category: 'Operation',
+    question: 'Do you have data protection and privacy controls?',
+    description: 'Measures to protect sensitive data and ensure privacy',
+    weight: 4
+  },
+  {
+    id: 'operation-9',
+    category: 'Operation',
+    question: 'Do you have physical security controls?',
+    description: 'Physical access controls and environmental security',
+    weight: 3
+  },
+  {
+    id: 'operation-10',
+    category: 'Operation',
+    question: 'Do you have asset management procedures?',
+    description: 'Inventory and lifecycle management of information assets',
+    weight: 3
+  },
 
   // Performance Evaluation
   {
@@ -128,6 +226,27 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     description: 'Management reviews of the information security program',
     weight: 4
   },
+  {
+    id: 'performance-4',
+    category: 'Performance Evaluation',
+    question: 'Do you have security monitoring and logging?',
+    description: 'Continuous monitoring of systems and security events',
+    weight: 4
+  },
+  {
+    id: 'performance-5',
+    category: 'Performance Evaluation',
+    question: 'Do you conduct vulnerability assessments?',
+    description: 'Regular testing for security vulnerabilities',
+    weight: 4
+  },
+  {
+    id: 'performance-6',
+    category: 'Performance Evaluation',
+    question: 'Do you have compliance monitoring processes?',
+    description: 'Tracking compliance with policies and regulations',
+    weight: 3
+  },
 
   // Improvement
   {
@@ -149,6 +268,20 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     category: 'Improvement',
     question: 'Do you continuously improve your security program?',
     description: 'Ongoing efforts to enhance security effectiveness',
+    weight: 3
+  },
+  {
+    id: 'improvement-4',
+    category: 'Improvement',
+    question: 'Do you learn from security incidents?',
+    description: 'Post-incident analysis and lessons learned processes',
+    weight: 3
+  },
+  {
+    id: 'improvement-5',
+    category: 'Improvement',
+    question: 'Do you update security controls based on new threats?',
+    description: 'Adapting security measures to evolving threats',
     weight: 3
   }
 ] 
