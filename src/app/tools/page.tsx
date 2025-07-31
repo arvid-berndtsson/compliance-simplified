@@ -568,6 +568,35 @@ const categories = [
   'Training & Awareness'
 ];
 
+// Utility functions for pricing operations
+const normalizePrice = (pricing: Pricing): number => {
+  if (pricing.model === 'free') return 0;
+  const monthlyFactor = pricing.model.includes('year') ? 1 / 12 : 1;
+  return pricing.min * monthlyFactor;
+};
+
+const formatPricing = (pricing: Pricing): string => {
+  if (pricing.model === 'free') {
+    return 'Free';
+  }
+  
+  const currency = pricing.currency || 'USD';
+  const symbol = currency === 'USD' ? '$' : currency;
+  
+  if (pricing.min === pricing.max) {
+    return `${symbol}${pricing.min.toLocaleString()}/${pricing.model}`;
+  }
+  
+  return `${symbol}${pricing.min.toLocaleString()}-${pricing.max.toLocaleString()}/${pricing.model}`;
+};
+
+const getPriceColor = (pricing: Pricing) => {
+  if (pricing.model === 'free') return 'text-green-600';
+  if (pricing.min < 10) return 'text-blue-600';
+  if (pricing.min < 50) return 'text-yellow-600';
+  return 'text-red-600';
+};
+
 export default function ToolsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -586,13 +615,7 @@ export default function ToolsPage() {
       case 'rating':
         return b.rating - a.rating;
       case 'price':
-        // Extract numeric price for sorting using structured pricing
-        const normalizePrice = (pricing: Pricing): number => {
-          if (pricing.model === 'free') return 0;
-          const monthlyFactor = pricing.model.includes('year') ? 1 / 12 : 1;
-          return pricing.min * monthlyFactor;
-        };
-
+        // Use the normalized price for accurate sorting
         const aPrice = normalizePrice(a.pricing);
         const bPrice = normalizePrice(b.pricing);
         return aPrice - bPrice;
@@ -602,28 +625,6 @@ export default function ToolsPage() {
         return 0;
     }
   });
-
-  const formatPricing = (pricing: Pricing): string => {
-    if (pricing.model === 'free') {
-      return 'Free';
-    }
-    
-    const currency = pricing.currency || 'USD';
-    const symbol = currency === 'USD' ? '$' : currency;
-    
-    if (pricing.min === pricing.max) {
-      return `${symbol}${pricing.min.toLocaleString()}/${pricing.model}`;
-    }
-    
-    return `${symbol}${pricing.min.toLocaleString()}-${pricing.max.toLocaleString()}/${pricing.model}`;
-  };
-
-  const getPriceColor = (pricing: Pricing) => {
-    if (pricing.model === 'free') return 'text-green-600';
-    if (pricing.min < 10) return 'text-blue-600';
-    if (pricing.min < 50) return 'text-yellow-600';
-    return 'text-red-600';
-  };
 
   return (
     <LandingLayout>
