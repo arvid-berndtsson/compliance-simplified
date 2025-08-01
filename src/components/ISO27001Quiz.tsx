@@ -209,10 +209,6 @@ export default function ISO27001Quiz() {
               <span className="text-green-500">✓</span>
               <span>Multiple difficulty levels</span>
             </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-green-500">✓</span>
-              <span>Detailed explanations for each answer</span>
-            </li>
           </ul>
         </div>
 
