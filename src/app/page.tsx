@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LandingLayout from '@/components/LandingLayout'
+import { CERTIFICATE_THRESHOLD } from "@/data/iso27001Quiz";
 
 export default function HomePage() {
   return (
@@ -204,7 +205,8 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
               Take our interactive ISO 27001:2022 quiz to test your understanding of controls and annexes. 
-              Learn which security controls belong to which annex categories through fun, engaging questions.
+              Learn which security controls belong to which annex categories through fun, engaging questions. 
+              Score {CERTIFICATE_THRESHOLD}% or higher to earn a downloadable certificate!
             </p>
             <div className="mt-8">
               <Link

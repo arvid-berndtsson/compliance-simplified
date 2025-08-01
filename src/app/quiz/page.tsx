@@ -2,6 +2,7 @@
 
 import LandingLayout from "@/components/LandingLayout";
 import ISO27001Quiz from "@/components/ISO27001Quiz";
+import { CERTIFICATE_THRESHOLD } from "@/data/iso27001Quiz";
 
 export default function QuizPage() {
   return (
@@ -16,7 +17,7 @@ export default function QuizPage() {
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Test your knowledge of ISO 27001:2022 controls and their corresponding annexes. 
               This interactive quiz helps you understand how different security controls are organized 
-              and which annex they belong to.
+              and which annex they belong to. Score {CERTIFICATE_THRESHOLD}% or higher to earn a downloadable certificate!
             </p>
           </div>
 

@@ -5,8 +5,9 @@ import {
   QuizQuestion, 
   iso27001QuizQuestions, 
   annexDescriptions, 
-  getRandomQuestions 
+  getRandomQuestions
 } from '@/data/iso27001Quiz';
+
 
 interface QuizState {
   currentQuestionIndex: number;
@@ -19,7 +20,7 @@ interface QuizState {
   timeRemaining: number;
 }
 
-interface QuizResults {
+export interface QuizResults {
   totalQuestions: number;
   correctAnswers: number;
   score: number;
@@ -46,6 +47,7 @@ export default function ISO27001Quiz() {
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard' | 'all'>('all');
   const [quizStarted, setQuizStarted] = useState(false);
   const [startTime, setStartTime] = useState<number>(0);
+  const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
 
   const startQuiz = (selectedDifficulty: 'easy' | 'medium' | 'hard' | 'all') => {
     const quizQuestions = getRandomQuestions(10, selectedDifficulty);
@@ -90,6 +92,17 @@ export default function ISO27001Quiz() {
       const finalScore = isCorrect ? quizState.score + 1 : quizState.score;
       const timeTaken = Math.round((Date.now() - startTime) / 1000);
       
+      const results: QuizResults = {
+        totalQuestions: questions.length,
+        correctAnswers: finalScore,
+        score: finalScore,
+        timeTaken,
+        difficulty: difficulty === 'all' ? 'Mixed' : difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
+        questions,
+        userAnswers: newUserAnswers
+      };
+      
+      setQuizResults(results);
       setQuizState(prev => ({
         ...prev,
         score: finalScore,
@@ -123,6 +136,7 @@ export default function ISO27001Quiz() {
       showResults: false,
       timeRemaining: 0
     });
+    setQuizResults(null);
   };
 
   // Timer effect
@@ -146,6 +160,8 @@ export default function ISO27001Quiz() {
     return () => clearInterval(timer);
   }, [quizStarted, quizState.showResults, quizState.isAnswered]);
 
+
+
   const getScoreColor = (score: number, total: number) => {
     const percentage = (score / total) * 100;
     if (percentage >= 80) return 'text-green-600';
@@ -160,6 +176,8 @@ export default function ISO27001Quiz() {
     if (percentage >= 60) return 'Good work! Keep studying to improve your knowledge.';
     return 'Keep practicing! Review the controls and try again.';
   };
+
+
 
   if (!quizStarted) {
     return (
@@ -177,7 +195,7 @@ export default function ISO27001Quiz() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center space-x-2">
               <span className="text-green-500">✓</span>
-              <span>10 questions per quiz</span>
+              <span>50+ questions with full randomization</span>
             </li>
             <li className="flex items-center space-x-2">
               <span className="text-green-500">✓</span>
@@ -190,6 +208,10 @@ export default function ISO27001Quiz() {
             <li className="flex items-center space-x-2">
               <span className="text-green-500">✓</span>
               <span>Multiple difficulty levels</span>
+            </li>
+            <li className="flex items-center space-x-2">
+              <span className="text-green-500">✓</span>
+              <span>Detailed explanations for each answer</span>
             </li>
           </ul>
         </div>
@@ -243,37 +265,28 @@ export default function ISO27001Quiz() {
     );
   }
 
-  if (quizState.showResults) {
-    const results: QuizResults = {
-      totalQuestions: questions.length,
-      correctAnswers: quizState.score,
-      score: quizState.score,
-      timeTaken: Math.round((Date.now() - startTime) / 1000),
-      difficulty: difficulty === 'all' ? 'Mixed' : difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
-      questions,
-      userAnswers
-    };
+  if (quizState.showResults && quizResults) {
 
     return (
       <div className="bg-card border border-border rounded-lg p-6">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold mb-2">Quiz Results</h2>
-          <div className={`text-3xl font-bold mb-2 ${getScoreColor(results.score, results.totalQuestions)}`}>
-            {results.score}/{results.totalQuestions}
+          <div className={`text-3xl font-bold mb-2 ${getScoreColor(quizResults.score, quizResults.totalQuestions)}`}>
+            {quizResults.score}/{quizResults.totalQuestions}
           </div>
           <p className="text-muted-foreground mb-4">
-            {getScoreMessage(results.score, results.totalQuestions)}
+            {getScoreMessage(quizResults.score, quizResults.totalQuestions)}
           </p>
           <div className="text-sm text-muted-foreground">
-            Time taken: {results.timeTaken} seconds | Difficulty: {results.difficulty}
+            Time taken: {quizResults.timeTaken} seconds | Difficulty: {quizResults.difficulty}
           </div>
         </div>
 
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">Question Review:</h3>
           <div className="space-y-4">
-            {results.questions.map((question, index) => {
-              const userAnswer = results.userAnswers[index];
+            {quizResults.questions.map((question, index) => {
+              const userAnswer = quizResults.userAnswers[index];
               const isCorrect = userAnswer === question.correctAnswer;
               
               return (
@@ -314,6 +327,8 @@ export default function ISO27001Quiz() {
           </div>
         </div>
 
+
+
         <div className="flex flex-col sm:flex-row gap-3">
           <button
             onClick={resetQuiz}
@@ -335,83 +350,86 @@ export default function ISO27001Quiz() {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="bg-card border border-border rounded-lg p-6">
-      {/* Progress and Timer */}
-      <div className="flex justify-between items-center mb-6">
-        <div className="text-sm text-muted-foreground">
-          Question {quizState.currentQuestionIndex + 1} of {questions.length}
-        </div>
-        <div className="flex items-center space-x-4">
+    <>
+      <div className="bg-card border border-border rounded-lg p-6">
+        {/* Progress and Timer */}
+        <div className="flex justify-between items-center mb-6">
           <div className="text-sm text-muted-foreground">
-            Score: {quizState.score}
+            Question {quizState.currentQuestionIndex + 1} of {questions.length}
           </div>
-          <div className={`text-sm font-medium ${
-            quizState.timeRemaining <= 10 ? 'text-red-600' : 'text-muted-foreground'
-          }`}>
-            Time: {quizState.timeRemaining}s
+          <div className="flex items-center space-x-4">
+            <div className="text-sm text-muted-foreground">
+              Score: {quizState.score}
+            </div>
+            <div className={`text-sm font-medium ${
+              quizState.timeRemaining <= 10 ? 'text-red-600' : 'text-muted-foreground'
+            }`}>
+              Time: {quizState.timeRemaining}s
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Progress Bar */}
-      <div className="w-full bg-muted rounded-full h-2 mb-6">
-        <div 
-          className="bg-primary h-2 rounded-full transition-all duration-300"
-          style={{ width: `${((quizState.currentQuestionIndex + 1) / questions.length) * 100}%` }}
-        ></div>
-      </div>
+        {/* Progress Bar */}
+        <div className="w-full bg-muted rounded-full h-2 mb-6">
+          <div 
+            className="bg-primary h-2 rounded-full transition-all duration-300"
+            style={{ width: `${((quizState.currentQuestionIndex + 1) / questions.length) * 100}%` }}
+          ></div>
+        </div>
 
-      {/* Question */}
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-4">{currentQuestion.question}</h3>
-        
-        <div className="space-y-3">
-          {currentQuestion.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => handleAnswerSelect(option)}
-              disabled={quizState.isAnswered}
-              className={`w-full p-4 text-left rounded-lg border transition-all ${
-                quizState.selectedAnswer === option
-                  ? quizState.isCorrect
+        {/* Question */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-4">{currentQuestion.question}</h3>
+          
+          <div className="space-y-3">
+            {currentQuestion.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswerSelect(option)}
+                disabled={quizState.isAnswered}
+                className={`w-full p-4 text-left rounded-lg border transition-all ${
+                  quizState.selectedAnswer === option
+                    ? quizState.isCorrect
+                      ? 'bg-green-100 border-green-300 text-green-800'
+                      : 'bg-red-100 border-red-300 text-red-800'
+                    : quizState.isAnswered && option === currentQuestion.correctAnswer
                     ? 'bg-green-100 border-green-300 text-green-800'
-                    : 'bg-red-100 border-red-300 text-red-800'
-                  : quizState.isAnswered && option === currentQuestion.correctAnswer
-                  ? 'bg-green-100 border-green-300 text-green-800'
-                  : 'bg-background border-border hover:bg-muted'
-              } ${quizState.isAnswered ? 'cursor-default' : 'cursor-pointer'}`}
-            >
-              {option}
-            </button>
-          ))}
+                    : 'bg-background border-border hover:bg-muted'
+                } ${quizState.isAnswered ? 'cursor-default' : 'cursor-pointer'}`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Explanation */}
+        {quizState.isAnswered && (
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-2">Explanation:</h4>
+            <p className="text-blue-800 text-sm">{currentQuestion.explanation}</p>
+          </div>
+        )}
+
+        {/* Next Button */}
+        {quizState.isAnswered && (
+          <div className="flex justify-between items-center">
+            <button
+              onClick={resetQuiz}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Exit Quiz
+            </button>
+            <button
+              onClick={handleNextQuestion}
+              className="bg-primary text-primary-foreground py-2 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            >
+              {quizState.currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next Question'}
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Explanation */}
-      {quizState.isAnswered && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <h4 className="font-semibold text-blue-800 mb-2">Explanation:</h4>
-          <p className="text-blue-800 text-sm">{currentQuestion.explanation}</p>
-        </div>
-      )}
-
-      {/* Next Button */}
-      {quizState.isAnswered && (
-        <div className="flex justify-between items-center">
-          <button
-            onClick={resetQuiz}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Exit Quiz
-          </button>
-          <button
-            onClick={handleNextQuestion}
-            className="bg-primary text-primary-foreground py-2 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-          >
-            {quizState.currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next Question'}
-          </button>
-        </div>
-      )}
-    </div>
+    </>
   );
 } 
