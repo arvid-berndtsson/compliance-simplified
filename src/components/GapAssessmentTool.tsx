@@ -768,14 +768,14 @@ export default function GapAssessmentTool() {
       try {
         navigator.vibrate(50) // Short vibration
       } catch (error) {
-        console.debug('Haptic feedback not supported or failed to trigger:', error)
+        console.warn('Haptic feedback not supported or failed to trigger:', error)
       }
     }
   }
 
   // Toast notification helpers
   const showToast = (message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info') => {
-    const id = Math.random().toString(36).substr(2, 9)
+    const id = crypto.randomUUID()
     const newToast: Toast = { id, message, type }
     setToasts(prev => [...prev, newToast])
   }
