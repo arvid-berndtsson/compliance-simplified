@@ -79,6 +79,12 @@ export default function Header({ showSearch = false, variant = 'landing' }: Head
                     Tools
                   </Link>
                   <Link
+                    href="/quiz"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Quiz
+                  </Link>
+                  <Link
                     href="/about"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
