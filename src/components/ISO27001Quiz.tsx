@@ -147,8 +147,13 @@ export default function ISO27001Quiz() {
       setQuizState(prev => {
         if (prev.timeRemaining <= 1) {
           // Time's up - auto-answer as incorrect
-          handleAnswerSelect('timeout');
-          return prev;
+          return {
+            ...prev,
+            isAnswered: true,
+            isCorrect: false,
+            selectedAnswer: null,
+            timeRemaining: 0
+          };
         }
         return {
           ...prev,
