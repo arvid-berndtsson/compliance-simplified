@@ -41,7 +41,14 @@ export default function SimpleCertificate({ results, userName, onClose }: Simple
     day: 'numeric'
   });
 
-  const certificateId = `ISO27001-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+  // Generate a cryptographically secure random string for the certificate ID
+  function getSecureRandomString(length: number) {
+    const array = new Uint8Array(length);
+    window.crypto.getRandomValues(array);
+    // Convert to base36 and uppercase, similar to previous logic
+    return Array.from(array).map(b => b.toString(36)).join('').toUpperCase().substr(0, length);
+  }
+  const certificateId = `ISO27001-${Date.now()}-${getSecureRandomString(9)}`;
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
