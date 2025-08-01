@@ -73,6 +73,12 @@ export default function Header({ showSearch = false, variant = 'landing' }: Head
                     Gap Assessment
                   </Link>
                   <Link
+                    href="/tools"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Tools
+                  </Link>
+                  <Link
                     href="/about"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import LandingLayout from "@/components/LandingLayout";
+import { CONTACT_EMAIL } from '@/config/constants';
 
 export default function AboutPage() {
   return (
@@ -418,7 +419,7 @@ export default function AboutPage() {
                 Report Issues
               </a>
               <a
-                href="mailto:arvid@arvid.tech"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
               >
                 <svg
