@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { AssessmentQuestion, assessmentQuestions } from '../data/assessmentQuestions'
 import { ASSESSMENT_VERSION } from '@/config/constants'
+import { CERTIFICATE_THRESHOLD } from '@/data/iso27001Quiz'
 
 interface Toast {
   id: string
@@ -562,7 +563,7 @@ function ResultsVisualization({ score, categoryScores, organizationName }: Resul
             <h4 className="text-lg font-semibold mb-4">Success Metrics</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center p-4 bg-muted/30 rounded-lg">
-                <div className="text-2xl font-bold text-primary">80%+</div>
+                <div className="text-2xl font-bold text-primary">{CERTIFICATE_THRESHOLD}%+</div>
                 <div className="text-sm text-muted-foreground">Target Score</div>
               </div>
               <div className="text-center p-4 bg-muted/30 rounded-lg">

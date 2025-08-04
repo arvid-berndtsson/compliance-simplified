@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import LandingLayout from "@/components/LandingLayout";
 import { CONTACT_EMAIL } from '@/config/constants';
+import ISO27001Quiz from '@/components/ISO27001Quiz';
 
 interface Pricing {
   min: number;
@@ -601,6 +602,7 @@ export default function ToolsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'rating' | 'price' | 'name'>('rating');
+  const [activeTab, setActiveTab] = useState<'tools' | 'quiz'>('tools');
 
   const filteredTools = tools.filter(tool => {
     const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
@@ -633,16 +635,52 @@ export default function ToolsPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">
-              ISO 27001 Tools & Solutions
+              ISO 27001 Tools & Learning
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Discover the best tools and solutions to help you implement and maintain ISO 27001 compliance. 
-              From policy management to security monitoring, find the right tools for your organization.
+              Discover the best tools and solutions to help you implement and maintain ISO 27001 compliance, 
+              plus interactive learning resources to test your knowledge.
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="bg-card border border-border rounded-lg p-6 mb-8">
+          {/* Tabs */}
+          <div className="flex justify-center mb-8">
+            <div className="flex bg-muted rounded-lg p-1">
+              <button
+                onClick={() => setActiveTab('tools')}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === 'tools'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Tools & Solutions
+              </button>
+              <button
+                onClick={() => setActiveTab('quiz')}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === 'quiz'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Interactive Quiz
+              </button>
+            </div>
+          </div>
+
+          {/* Quiz Tab Content */}
+          {activeTab === 'quiz' && (
+            <div className="mb-8">
+              <ISO27001Quiz />
+            </div>
+          )}
+
+          {/* Tools Tab Content */}
+          {activeTab === 'tools' && (
+            <>
+              {/* Filters */}
+              <div className="bg-card border border-border rounded-lg p-6 mb-8">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search */}
               <div className="flex-1">
@@ -861,6 +899,8 @@ export default function ToolsPage() {
               </div>
             </div>
           </div>
+            </>
+          )}
         </div>
       </div>
     </LandingLayout>

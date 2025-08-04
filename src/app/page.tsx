@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LandingLayout from '@/components/LandingLayout'
+import { CERTIFICATE_THRESHOLD } from "@/data/iso27001Quiz";
 
 export default function HomePage() {
   return (
@@ -189,6 +190,57 @@ export default function HomePage() {
                 >
                   Start Assessment →
                 </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quiz Section */}
+      <section className="py-20 sm:py-32 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Test Your Knowledge
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+              Take our interactive ISO 27001:2022 quiz to test your understanding of controls and annexes. 
+              Learn which security controls belong to which annex categories through fun, engaging questions. 
+              Score {CERTIFICATE_THRESHOLD}% or higher to earn a downloadable certificate!
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/quiz"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Start Quiz
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-green-500">✓</span>
+                <span>Multiple difficulty levels</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-green-500">✓</span>
+                <span>Detailed explanations</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-green-500">✓</span>
+                <span>Track your progress</span>
               </div>
             </div>
           </div>
