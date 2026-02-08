@@ -24,7 +24,7 @@ export default function TermsPage() {
             </div>
             <nav className="hidden md:flex items-center space-x-6">
               <Link
-                href="/docs/intro"
+                href="/docs/iso27001/overview"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Documentation
@@ -444,7 +444,7 @@ export default function TermsPage() {
                 </li>
                 <li>
                   <Link
-                    href="/docs/intro"
+                    href="/docs/iso27001/overview"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Documentation

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
 interface SidebarItem {
-  name: string
+  label: string
   href: string
 }
 
@@ -90,7 +90,7 @@ export default function CollapsibleSidebar({ sections }: CollapsibleSidebarProps
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
                         }`}
                       >
-                        {item.name}
+                        {item.label}
                       </Link>
                     </li>
                   ))}

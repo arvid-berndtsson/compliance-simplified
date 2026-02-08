@@ -1,12 +1,15 @@
 "use client";
 
-import DocLayout from "@/components/DocLayout";
+import DocsShell from "@/components/DocsShell";
 import GlossaryContent from "./glossary.mdx";
 
 export default function GlossaryPage() {
   return (
-    <DocLayout title="Compliance Glossary">
+    <DocsShell
+      title="Compliance Glossary"
+      description="Quick definitions for ISO 27001 and SOC 2 terms used throughout the implementation guides."
+    >
       <GlossaryContent />
-    </DocLayout>
+    </DocsShell>
   );
 }
