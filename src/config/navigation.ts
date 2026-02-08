@@ -46,15 +46,6 @@ export const DOC_SECTIONS: DocSection[] = [
     ],
   },
   {
-    key: 'tutorials',
-    title: 'Tutorials',
-    items: [
-      { label: 'Quick Start', href: '/docs/tutorials/quick-start' },
-      { label: 'ISO 27001 Walkthrough', href: '/docs/tutorials/iso27001-walkthrough' },
-      { label: 'SOC 2 Walkthrough', href: '/docs/tutorials/soc2-walkthrough' },
-    ],
-  },
-  {
     key: 'reference',
     title: 'Reference',
     items: [{ label: 'Glossary', href: '/docs/reference/glossary' }],
@@ -62,7 +53,7 @@ export const DOC_SECTIONS: DocSection[] = [
 ]
 
 export const PRIMARY_NAV: NavItem[] = [
-  { label: 'Docs', href: '/docs/iso27001/overview' },
+  { label: 'Docs', href: '/docs' },
   { label: 'Gap Assessment', href: '/gap-assessment', cta: true },
   { label: 'Tools', href: '/tools' },
   { label: 'Quiz', href: '/quiz' },
@@ -74,9 +65,9 @@ export const FOOTER_GROUPS: NavGroup[] = [
     key: 'docs',
     title: 'Documentation',
     items: [
+      { label: 'Start Here', href: '/docs' },
       { label: 'ISO 27001 Overview', href: '/docs/iso27001/overview' },
       { label: 'SOC 2 Overview', href: '/docs/soc2/overview' },
-      { label: 'Quick Start Tutorial', href: '/docs/tutorials/quick-start' },
       { label: 'Glossary', href: '/docs/reference/glossary' },
     ],
   },
