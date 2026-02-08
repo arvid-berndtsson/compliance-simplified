@@ -43,6 +43,11 @@ export default function DocsShell({ children, title, description }: DocsShellPro
     () => DOC_SECTIONS.find((section) => section.key === currentPage?.sectionKey),
     [currentPage?.sectionKey],
   )
+  const isOverviewPage =
+    pathname === '/docs/iso27001/overview' ||
+    pathname === '/docs/iso27001/overview/' ||
+    pathname === '/docs/soc2/overview' ||
+    pathname === '/docs/soc2/overview/'
 
   const frameworkLabel =
     currentPage?.sectionKey === 'iso27001'
@@ -197,6 +202,38 @@ export default function DocsShell({ children, title, description }: DocsShellPro
                     })}
                   </nav>
                 )}
+                <div className="mt-5 grid gap-2 rounded-xl border border-border/60 bg-muted/20 p-4 sm:grid-cols-3">
+                  <Link href="/gap-assessment" className="rounded-lg bg-background px-3 py-2 text-sm hover:bg-muted">
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Quick Check</p>
+                    <p className="font-medium text-foreground">Run Gap Assessment</p>
+                  </Link>
+                  <Link href="/tools" className="rounded-lg bg-background px-3 py-2 text-sm hover:bg-muted">
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Templates</p>
+                    <p className="font-medium text-foreground">Open Tools</p>
+                  </Link>
+                  <Link href="/quiz" className="rounded-lg bg-background px-3 py-2 text-sm hover:bg-muted">
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Learning</p>
+                    <p className="font-medium text-foreground">Take Quiz</p>
+                  </Link>
+                </div>
+                {isOverviewPage && (
+                  <div className="mt-4 rounded-xl border border-border/60 bg-background p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Start Here</p>
+                    {frameworkLabel === 'ISO 27001' ? (
+                      <ol className="mt-2 space-y-1 text-sm text-muted-foreground">
+                        <li>1. Skim this overview for scope and control model.</li>
+                        <li>2. Run the gap assessment to identify priority gaps.</li>
+                        <li>3. Use quick start to sequence your first 30 days.</li>
+                      </ol>
+                    ) : (
+                      <ol className="mt-2 space-y-1 text-sm text-muted-foreground">
+                        <li>1. Skim this overview for criteria and report type.</li>
+                        <li>2. Review trust services criteria for your scope.</li>
+                        <li>3. Use implementation guide to collect evidence fast.</li>
+                      </ol>
+                    )}
+                  </div>
+                )}
               </header>
 
               <details className="mb-6 rounded-lg border border-border/60 bg-muted/20 lg:hidden" open>
@@ -257,10 +294,43 @@ export default function DocsShell({ children, title, description }: DocsShellPro
                   <div />
                 )}
               </nav>
+              <div className="mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Need a quick check instead of more reading?
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Link
+                    href="/gap-assessment"
+                    className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground"
+                  >
+                    Run Gap Assessment
+                  </Link>
+                  <Link
+                    href="/tools"
+                    className="rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground hover:bg-muted"
+                  >
+                    Open Tools
+                  </Link>
+                </div>
+              </div>
             </main>
 
             <aside className="hidden lg:block">
               <div className="sticky top-24 rounded-lg border border-border/60 bg-muted/20 p-4">
+                <div className="mb-4 rounded-lg border border-border/60 bg-background p-3">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Quick Checks</p>
+                  <div className="mt-2 space-y-2">
+                    <Link href="/gap-assessment" className="block text-sm font-medium text-foreground hover:text-primary">
+                      Run Gap Assessment
+                    </Link>
+                    <Link href="/tools" className="block text-sm font-medium text-foreground hover:text-primary">
+                      Open Tools
+                    </Link>
+                    <Link href="/quiz" className="block text-sm font-medium text-foreground hover:text-primary">
+                      Take Quiz
+                    </Link>
+                  </div>
+                </div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   On this page
                 </p>
