@@ -1,12 +1,15 @@
 "use client";
 
-import DocLayout from "@/components/DocLayout";
+import DocsShell from "@/components/DocsShell";
 import SOC2WalkthroughContent from "./soc2-walkthrough.mdx";
 
 export default function SOC2WalkthroughPage() {
   return (
-    <DocLayout title="SOC 2 Walkthrough: Complete Implementation Guide">
+    <DocsShell
+      title="SOC 2 Walkthrough: Complete Implementation Guide"
+      description="Step through a complete SOC 2 readiness and evidence lifecycle across all trust criteria."
+    >
       <SOC2WalkthroughContent />
-    </DocLayout>
+    </DocsShell>
   );
 }

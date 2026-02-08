@@ -1,12 +1,15 @@
 'use client'
 
-import DocsLayout from '@/components/DocsLayout'
+import DocsShell from '@/components/DocsShell'
 import SOC2OverviewContent from './soc2-overview.mdx'
 
 export default function SOC2OverviewPage() {
   return (
-    <DocsLayout title="SOC 2 Overview">
+    <DocsShell
+      title="SOC 2 Overview"
+      description="Learn the SOC 2 model, trust criteria, and how audit readiness maps to operational controls."
+    >
       <SOC2OverviewContent />
-    </DocsLayout>
+    </DocsShell>
   )
 } 
