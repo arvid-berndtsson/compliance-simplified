@@ -49,6 +49,42 @@ export default function DocsHomePage() {
               </Link>
             </div>
           </article>
+
+          <article className="rounded-2xl border border-border/60 bg-card p-6">
+            <h2 className="text-2xl font-semibold text-foreground">GDPR</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Essential for organizations processing EU/EEA personal data.</p>
+            <ol className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <li>1. Read the overview (10 min)</li>
+              <li>2. Map your data flows and legal bases</li>
+              <li>3. Use quick start to plan your first 30 days</li>
+            </ol>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <Link href="/docs/gdpr/overview" className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground">
+                Start GDPR
+              </Link>
+              <Link href="/docs/gdpr/articles" className="rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground hover:bg-muted">
+                Key Articles
+              </Link>
+            </div>
+          </article>
+
+          <article className="rounded-2xl border border-border/60 bg-card p-6">
+            <h2 className="text-2xl font-semibold text-foreground">SBOM</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Understand software supply chain transparency and compliance.</p>
+            <ol className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <li>1. Learn what SBOMs are and why they matter</li>
+              <li>2. Choose a format and generation tool</li>
+              <li>3. Integrate into your CI/CD pipeline</li>
+            </ol>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <Link href="/docs/explanation/sbom" className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground">
+                Learn SBOMs
+              </Link>
+              <Link href="/tools" className="rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground hover:bg-muted">
+                Open Tools
+              </Link>
+            </div>
+          </article>
         </section>
 
         <section className="mx-auto mt-8 grid max-w-5xl gap-4 rounded-2xl border border-border/60 bg-muted/20 p-6 md:grid-cols-3">

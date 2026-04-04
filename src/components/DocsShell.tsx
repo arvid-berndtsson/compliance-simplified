@@ -47,14 +47,18 @@ export default function DocsShell({ children, title, description }: DocsShellPro
     pathname === '/docs/iso27001/overview' ||
     pathname === '/docs/iso27001/overview/' ||
     pathname === '/docs/soc2/overview' ||
-    pathname === '/docs/soc2/overview/'
+    pathname === '/docs/soc2/overview/' ||
+    pathname === '/docs/gdpr/overview' ||
+    pathname === '/docs/gdpr/overview/'
 
   const frameworkLabel =
     currentPage?.sectionKey === 'iso27001'
       ? 'ISO 27001'
       : currentPage?.sectionKey === 'soc2'
         ? 'SOC 2'
-        : 'Shared Docs'
+        : currentPage?.sectionKey === 'gdpr'
+          ? 'GDPR'
+          : 'Shared Docs'
 
   const buildToc = useCallback(() => {
     const article = contentRef.current
@@ -224,6 +228,12 @@ export default function DocsShell({ children, title, description }: DocsShellPro
                         <li>1. Skim this overview for scope and control model.</li>
                         <li>2. Run the gap assessment to identify priority gaps.</li>
                         <li>3. Use quick start to sequence your first 30 days.</li>
+                      </ol>
+                    ) : frameworkLabel === 'GDPR' ? (
+                      <ol className="mt-2 space-y-1 text-sm text-muted-foreground">
+                        <li>1. Skim this overview for core principles and data subject rights.</li>
+                        <li>2. Map your personal data flows and legal bases.</li>
+                        <li>3. Use quick start to prioritize your first 30 days.</li>
                       </ol>
                     ) : (
                       <ol className="mt-2 space-y-1 text-sm text-muted-foreground">

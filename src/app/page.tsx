@@ -11,12 +11,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              ISO 27001 & SOC 2
+              ISO 27001, SOC 2 & GDPR
               <span className="block text-primary">Compliance Made Simple</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive guidance for implementing and maintaining ISO 27001
-              and SOC 2 compliance. Clear, actionable steps for organizations of
+              Comprehensive guidance for implementing and maintaining ISO 27001,
+              SOC 2, and GDPR compliance. Clear, actionable steps for organizations of
               all sizes.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -189,6 +189,72 @@ export default function HomePage() {
                   className="text-primary hover:text-primary/80 font-medium"
                 >
                   Start Assessment →
+                </Link>
+              </div>
+
+              {/* GDPR */}
+              <div className="group relative rounded-2xl border border-border/50 bg-card p-8 hover:border-border transition-colors">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="h-10 w-10 rounded-lg bg-rose-500/10 flex items-center justify-center">
+                    <svg
+                      className="h-6 w-6 text-rose-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    GDPR
+                  </h3>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Complete guide to EU data protection regulation, principles, data subject rights, and compliance.
+                </p>
+                <Link
+                  href="/docs/gdpr/overview"
+                  className="text-primary hover:text-primary/80 font-medium"
+                >
+                  Learn more →
+                </Link>
+              </div>
+
+              {/* SBOM */}
+              <div className="group relative rounded-2xl border border-border/50 bg-card p-8 hover:border-border transition-colors">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="h-10 w-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                    <svg
+                      className="h-6 w-6 text-cyan-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    SBOM
+                  </h3>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Understand Software Bill of Materials — supply chain transparency, formats, and tools.
+                </p>
+                <Link
+                  href="/docs/explanation/sbom"
+                  className="text-primary hover:text-primary/80 font-medium"
+                >
+                  Learn more →
                 </Link>
               </div>
             </div>

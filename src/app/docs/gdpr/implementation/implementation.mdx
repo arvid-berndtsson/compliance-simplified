@@ -1,0 +1,380 @@
+# GDPR Implementation Guide
+
+This guide covers the complete GDPR compliance journey, from initial planning through ongoing maintenance. Each section builds on the previous one.
+
+## Before You Begin
+
+GDPR compliance touches every part of your organization. Unlike technical certifications, it requires cultural change alongside process and technology updates. Budget 6-12 months for a thorough implementation.
+
+### What You'll Need
+
+- **Executive sponsor** with authority to allocate resources
+- **Cross-functional team** — Legal, IT, Security, HR, Marketing, Product
+- **Budget** for tools, legal review, and potential DPO appointment
+- **Access** to all systems that process personal data
+
+## Phase 1: Governance and Planning (Months 1-2)
+
+### 1.1 Establish Governance Structure
+
+**Appoint a project lead** or Data Protection Officer (DPO):
+
+| Role | Responsibility |
+|---|---|
+| DPO / Privacy Lead | Overall GDPR compliance strategy and oversight |
+| Legal Counsel | Legal basis assessment, contract review, regulatory liaison |
+| IT / Security Lead | Technical measures, data systems, breach response |
+| HR Representative | Employee data processing, training coordination |
+| Marketing Lead | Consent management, privacy notices, customer communication |
+
+**Determine if a DPO is mandatory** (Article 37):
+- Public authority or body
+- Core activities require large-scale, regular, systematic monitoring
+- Core activities involve large-scale processing of special category data
+
+Even if not mandatory, appointing a DPO demonstrates good practice.
+
+### 1.2 Comprehensive Data Mapping
+
+This is the most critical step. You cannot comply if you don't know what data you have.
+
+**For each department, document:**
+
+1. **What personal data** is collected (names, emails, IPs, biometrics, health data, financial data)
+2. **Why** it is collected (purpose for each data element)
+3. **Where** it is stored (databases, cloud services, spreadsheets, email, paper files)
+4. **Who** has access to it (internal roles, external vendors)
+5. **How long** it is retained (current practice and justification)
+6. **How** it flows between systems (integrations, exports, manual transfers)
+7. **Where** it goes geographically (EU, US, other countries)
+
+**Special attention to:**
+- Special category data (Article 9): racial origin, political opinions, religious beliefs, trade union membership, genetic data, biometric data, health data, sex life or orientation
+- Children's data (Article 8): additional protections required, consent from parents/guardians for children under 16 (or lower age set by member state, minimum 13)
+- Criminal conviction data (Article 10): additional restrictions apply
+
+### 1.3 Legal Basis Assessment
+
+**For every processing activity identified in data mapping:**
+
+1. **Determine the most appropriate legal basis** from Article 6
+2. **Document your reasoning** — this is critical for accountability
+3. **If relying on consent**, ensure it meets all GDPR requirements
+4. **If relying on legitimate interest**, conduct and document a Legitimate Interest Assessment (LIA):
+   - Purpose test: Is there a legitimate interest?
+   - Necessity test: Is processing necessary for that interest?
+   - Balancing test: Do the individual's interests override yours?
+
+### 1.4 Gap Analysis and Risk Assessment
+
+**Compare current state against GDPR requirements across all areas:**
+
+- Data subject rights handling
+- Privacy notices and transparency
+- Consent management
+- Data processing agreements
+- International data transfers
+- Security measures (Article 32)
+- Breach notification readiness
+- Data Protection Impact Assessments
+- Record keeping (ROPA)
+- Staff training and awareness
+
+**Prioritize gaps by:**
+- Likelihood of regulatory scrutiny
+- Potential impact on data subjects
+- Volume and sensitivity of data involved
+- Ease of remediation
+
+## Phase 2: Documentation and Policies (Months 2-4)
+
+### 2.1 Privacy Notices
+
+Create or update privacy notices for each audience:
+
+**External privacy notice** (for customers/users):
+- Controller identity and contact details
+- DPO contact details (if applicable)
+- Purposes and legal basis for each processing activity
+- Categories of personal data
+- Recipients or categories of recipients
+- International transfer details and safeguards
+- Retention periods for each data category
+- All data subject rights
+- Right to withdraw consent (if applicable)
+- Right to complain to supervisory authority
+- Whether data provision is statutory/contractual requirement
+- Automated decision-making details (if applicable)
+
+**Internal privacy notice** (for employees):
+- All of the above, adapted for employment context
+- Monitoring practices (email, internet, CCTV)
+- Background check processes
+- Special category data handling (health, diversity)
+
+**Key requirements:**
+- Written in clear, plain language
+- Easily accessible (not buried in terms and conditions)
+- Provided at the time of data collection
+- Updated when processing activities change
+
+### 2.2 Records of Processing Activities (ROPA)
+
+Maintain a formal ROPA as required by Article 30:
+
+**Controller ROPA must include:**
+- Name and contact details of the controller (and DPO)
+- Purposes of processing
+- Categories of data subjects and personal data
+- Categories of recipients
+- Transfers to third countries and safeguards
+- Retention periods
+- Description of security measures
+
+**Processor ROPA must include:**
+- Name and contact details of processor(s) and controller(s)
+- Categories of processing carried out
+- Transfers to third countries and safeguards
+- Description of security measures
+
+### 2.3 Internal Policies
+
+Draft and implement key internal policies:
+
+**Data Protection Policy**: Organization-wide principles and responsibilities
+
+**Data Retention Policy**: Defined retention periods for each data category with justification and deletion procedures
+
+**Data Breach Response Policy**: Detection, assessment, notification, and documentation procedures
+
+**Data Subject Rights Policy**: Procedures for handling each type of request
+
+**Data Protection Impact Assessment Policy**: When and how to conduct DPIAs
+
+**International Data Transfer Policy**: Approved transfer mechanisms and procedures
+
+**Acceptable Use Policy**: Rules for staff handling personal data
+
+### 2.4 Data Processing Agreements (DPAs)
+
+**For every processor (vendor, contractor, SaaS provider):**
+
+1. Execute a DPA that includes all Article 28 requirements:
+   - Processing only on documented instructions
+   - Confidentiality obligations for personnel
+   - Appropriate security measures
+   - Sub-processor approval and management
+   - Assistance with data subject rights
+   - Assistance with breach notification
+   - Data deletion or return after contract ends
+   - Audit rights
+
+2. **Assess processor compliance** — verify their security measures
+
+3. **Manage sub-processors** — require notification and approval for changes
+
+## Phase 3: Technical and Organizational Measures (Months 4-6)
+
+### 3.1 Security Measures (Article 32)
+
+Implement appropriate technical and organizational measures:
+
+**Technical measures:**
+- Encryption of personal data at rest and in transit (TLS 1.2+, AES-256)
+- Pseudonymization where possible
+- Access controls with least-privilege principle
+- Multi-factor authentication for systems containing personal data
+- Network segmentation to isolate personal data
+- Logging and monitoring of access to personal data
+- Regular vulnerability assessments and penetration testing
+- Automated backup and tested recovery procedures
+
+**Organizational measures:**
+- Clear data handling procedures
+- Role-based access reviews (quarterly minimum)
+- Clean desk and clear screen policies
+- Secure disposal of physical and digital media
+- Visitor management and physical security
+- Background checks for staff with data access (where lawful)
+
+### 3.2 Data Subject Rights Infrastructure
+
+Build systems and processes to handle rights requests:
+
+**Access requests (Article 15):**
+- Ability to search and export all personal data for an individual
+- Provide data in a commonly used, machine-readable format
+- Include information about processing purposes, categories, recipients
+
+**Erasure requests (Article 17):**
+- Ability to delete personal data across all systems
+- Propagate deletion to processors and third parties
+- Handle exceptions (legal obligations, public interest, legal claims)
+
+**Portability requests (Article 20):**
+- Export data in structured, commonly used, machine-readable format (JSON, CSV)
+- Transmit directly to another controller where technically feasible
+
+**General workflow:**
+1. Receive request through designated channel
+2. Verify identity of the requester
+3. Log the request with timestamp
+4. Assess scope and any exemptions
+5. Fulfill within one calendar month (extendable by two months for complex requests)
+6. Document response and reasoning
+
+### 3.3 Consent Management
+
+**Implement a consent management system:**
+
+- Capture granular consent for each purpose
+- Record timestamp, method, and version of notice shown
+- Enable easy withdrawal of consent
+- Re-consent when purposes change
+- Do not bundle consent with terms of service
+
+**Cookie consent:**
+- Block non-essential cookies until consent is given
+- Provide granular options (analytics, marketing, functionality)
+- Allow withdrawal at any time
+- Don't use dark patterns (making rejection harder than acceptance)
+
+### 3.4 Data Protection Impact Assessments (DPIAs)
+
+**DPIAs are mandatory when processing is likely to result in high risk (Article 35):**
+
+- Systematic and extensive profiling with significant effects
+- Large-scale processing of special category data
+- Systematic monitoring of publicly accessible areas
+
+**DPIA process:**
+1. Describe the processing (nature, scope, context, purposes)
+2. Assess necessity and proportionality
+3. Identify and assess risks to data subjects
+4. Identify measures to mitigate risks
+5. Document the assessment and outcomes
+6. Consult the supervisory authority if high risk remains (Article 36)
+
+### 3.5 International Data Transfers
+
+**For any transfer of personal data outside the EU/EEA:**
+
+1. **Check for an adequacy decision** — the European Commission has approved the destination country's data protection level
+2. **Use Standard Contractual Clauses (SCCs)** — the most common transfer mechanism
+3. **Binding Corporate Rules (BCRs)** — for intra-group transfers in multinational companies
+4. **Transfer Impact Assessments (TIAs)** — assess whether the destination country provides adequate protection in practice
+
+**Post-Schrems II requirements:**
+- Assess the laws and practices of the destination country
+- Implement supplementary measures if needed (additional encryption, pseudonymization)
+- Document your assessment
+
+## Phase 4: Training and Culture (Months 5-7)
+
+### 4.1 Staff Training Program
+
+**All staff training** (mandatory):
+- What is GDPR and why it matters
+- What constitutes personal data
+- The seven principles
+- How to recognize a data breach
+- How to handle data subject requests
+- Who to contact for privacy questions
+
+**Role-specific training:**
+- IT/Security: Technical measures, breach response, access controls
+- Marketing: Consent management, privacy-compliant campaigns, cookies
+- HR: Employee data processing, recruitment privacy, monitoring
+- Product/Engineering: Privacy by design, DPIAs, data minimization
+- Customer Support: Handling access/deletion requests, identity verification
+- Management: Accountability obligations, risk oversight, reporting
+
+### 4.2 Privacy by Design and Default (Article 25)
+
+Embed privacy into your development lifecycle:
+
+**Privacy by design:**
+- Consider privacy at the design stage of every project
+- Minimize data collection from the outset
+- Build in security measures from the start
+- Consider data subject rights in system architecture
+
+**Privacy by default:**
+- Default settings should be the most privacy-protective
+- Don't collect data that isn't strictly necessary
+- Limit data access to those who need it
+- Set appropriate retention periods automatically
+
+## Phase 5: Breach Response and Monitoring (Months 6-8)
+
+### 5.1 Breach Notification Process
+
+**Under GDPR, you must:**
+- Notify the supervisory authority within 72 hours of becoming aware (Article 33)
+- Notify affected data subjects without undue delay if high risk (Article 34)
+- Document all breaches regardless of notification requirement
+
+**Breach response workflow:**
+
+| Step | Action | Timeline |
+|---|---|---|
+| 1 | Detect and contain the breach | Immediately |
+| 2 | Assess nature, scope, and impact | Within hours |
+| 3 | Determine if notification is required | Within 24 hours |
+| 4 | Notify supervisory authority | Within 72 hours |
+| 5 | Notify data subjects (if high risk) | Without undue delay |
+| 6 | Document and conduct lessons learned | Within 2 weeks |
+
+### 5.2 Ongoing Monitoring
+
+**Establish continuous compliance monitoring:**
+
+- Regular access reviews for systems containing personal data
+- Periodic privacy impact reviews for existing processing activities
+- Monitoring of regulatory guidance and case law updates
+- Tracking data subject request metrics (volume, response times, outcomes)
+- Audit of processor compliance and DPA adherence
+- Review of data retention and deletion practices
+
+## Phase 6: Audit and Continuous Improvement (Ongoing)
+
+### 6.1 Internal Audits
+
+**Conduct regular GDPR compliance audits:**
+
+- Annual comprehensive audit covering all processing activities
+- Quarterly spot checks on high-risk areas
+- Post-incident reviews after any breach or near-miss
+- Pre-launch reviews for new products, services, or processing activities
+
+### 6.2 Management Reporting
+
+**Regular reporting to leadership:**
+
+- Compliance status dashboard
+- Data subject request metrics
+- Breach statistics and response performance
+- Training completion rates
+- Outstanding risks and remediation progress
+- Regulatory developments and required actions
+
+### 6.3 Staying Current
+
+GDPR enforcement and interpretation evolve continuously:
+
+- Monitor European Data Protection Board (EDPB) guidelines
+- Track national supervisory authority decisions
+- Follow Court of Justice of the European Union (CJEU) rulings
+- Review adequacy decisions and transfer mechanism updates
+- Update policies and procedures accordingly
+
+## Next Steps
+
+- **[GDPR Overview](/docs/gdpr/overview)** — Review core principles and rights
+- **[Key Articles Reference](/docs/gdpr/articles)** — Detailed article explanations
+- **[Quick Start Guide](/docs/gdpr/quick-start)** — 30-day action plan
+- **[Gap Assessment](/gap-assessment)** — Benchmark your compliance
+
+---
+
+*GDPR compliance is an ongoing commitment. This implementation guide provides the structure, but regular review and adaptation is essential as your organization and the regulatory landscape evolve.*

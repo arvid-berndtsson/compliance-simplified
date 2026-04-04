@@ -1,0 +1,310 @@
+# Software Bill of Materials (SBOM)
+
+A Software Bill of Materials (SBOM) is a formal, machine-readable inventory of all components, libraries, and dependencies that make up a software product. Think of it as a nutrition label for software.
+
+## What is an SBOM?
+
+An SBOM lists every component in your software — open-source libraries, proprietary modules, frameworks, and their versions. It enables organizations to understand exactly what's inside the software they build, buy, or operate.
+
+### Why SBOMs Matter
+
+- **Supply chain transparency**: Know exactly what components your software contains
+- **Vulnerability management**: Quickly identify if you're affected when a vulnerability is disclosed (e.g., Log4Shell)
+- **License compliance**: Track open-source license obligations across all dependencies
+- **Regulatory compliance**: Required or recommended by multiple regulations (US Executive Order 14028, EU Cyber Resilience Act, NIST)
+- **Risk management**: Assess the risk profile of your software supply chain
+- **Incident response**: Rapidly determine exposure when a new CVE is published
+
+### Real-World Example
+
+When the Log4Shell vulnerability (CVE-2021-44228) was disclosed in December 2021, organizations with SBOMs could immediately determine if their software used the affected Log4j library. Organizations without SBOMs spent days or weeks manually investigating their codebases and vendor software.
+
+## SBOM Formats
+
+Three main formats are in common use:
+
+### SPDX (Software Package Data Exchange)
+
+- **Maintained by**: Linux Foundation
+- **Standard**: ISO/IEC 5962:2021
+- **Format**: JSON, XML, YAML, RDF, tag-value
+- **Strengths**: ISO standardized, strong license compliance support, wide tooling
+
+### CycloneDX
+
+- **Maintained by**: OWASP Foundation
+- **Format**: JSON, XML, Protocol Buffers
+- **Strengths**: Security-focused, supports VEX (Vulnerability Exploitability Exchange), lightweight, easy to generate
+- **Use case**: Ideal for security and risk analysis workflows
+
+### SWID Tags (Software Identification Tags)
+
+- **Maintained by**: ISO/IEC 19770-2
+- **Format**: XML
+- **Strengths**: Asset management integration, installed software tracking
+- **Use case**: Enterprise asset inventory and management
+
+### Format Comparison
+
+| Feature | SPDX | CycloneDX | SWID |
+|---|---|---|---|
+| ISO Standard | Yes (5962) | No | Yes (19770-2) |
+| Security Focus | Moderate | Strong | Low |
+| License Tracking | Strong | Good | Limited |
+| VEX Support | Via linking | Built-in | No |
+| Ease of Generation | Moderate | Easy | Moderate |
+| Tooling Ecosystem | Large | Growing fast | Moderate |
+
+**Recommendation**: For most organizations, start with CycloneDX for its simplicity and security focus, or SPDX if license compliance is a primary concern.
+
+## What Goes in an SBOM
+
+A minimum viable SBOM should include:
+
+### Required Fields (NTIA Minimum Elements)
+
+| Field | Description | Example |
+|---|---|---|
+| **Supplier Name** | Who provides the component | "Apache Software Foundation" |
+| **Component Name** | Name of the component | "log4j-core" |
+| **Version** | Version identifier | "2.17.1" |
+| **Unique Identifier** | Universal ID for the component | CPE, PURL, or SWID tag |
+| **Dependency Relationship** | How components relate | "app depends on log4j-core" |
+| **Author of SBOM Data** | Who created the SBOM | "Acme Corp Build System" |
+| **Timestamp** | When the SBOM was generated | "2025-01-15T10:30:00Z" |
+
+### Additional Recommended Fields
+
+- **License information** — SPDX license identifier
+- **Hash values** — SHA-256 checksum for integrity verification
+- **Download location** — where the component can be obtained
+- **Known vulnerabilities** — CVEs associated with the version
+- **Patch status** — whether the component is current or outdated
+- **Component type** — library, framework, application, container, firmware
+
+## How to Generate SBOMs
+
+### Build-Time Generation (Recommended)
+
+Generate SBOMs during your build process for the most accurate results:
+
+**JavaScript/Node.js:**
+```bash
+# Using CycloneDX
+npx @cyclonedx/cyclonedx-npm --output-file sbom.json
+
+# Using Syft
+syft dir:. -o cyclonedx-json=sbom.json
+```
+
+**Python:**
+```bash
+# Using CycloneDX
+cyclonedx-py environment -o sbom.json --format json
+
+# Using pip-audit (also checks vulnerabilities)
+pip-audit --format cyclonedx-json -o sbom.json
+```
+
+**Java/Maven:**
+```bash
+# Using CycloneDX Maven plugin
+mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom
+```
+
+**Go:**
+```bash
+# Using CycloneDX
+cyclonedx-gomod mod -json -output sbom.json
+```
+
+**.NET:**
+```bash
+# Using CycloneDX
+dotnet CycloneDX /path/to/project.csproj -o sbom -j
+```
+
+### Container Image Analysis
+
+Generate SBOMs for container images:
+
+```bash
+# Using Syft (supports all major formats)
+syft alpine:latest -o cyclonedx-json=sbom.json
+
+# Using Docker Scout
+docker scout sbom myimage:latest
+
+# Using Trivy
+trivy image --format cyclonedx -o sbom.json myimage:latest
+```
+
+### Source Code Analysis
+
+Analyze source code repositories:
+
+```bash
+# Using Syft
+syft dir:/path/to/repo -o spdx-json=sbom.json
+
+# Using OSS Review Toolkit (ORT)
+ort analyze -i /path/to/repo -o /path/to/output
+```
+
+## Integrating SBOMs into Your Workflow
+
+### CI/CD Pipeline Integration
+
+Add SBOM generation to your build pipeline:
+
+1. **Generate** — Create an SBOM during every build
+2. **Store** — Archive SBOMs alongside build artifacts
+3. **Scan** — Check SBOM components against vulnerability databases
+4. **Gate** — Block releases if critical vulnerabilities are found
+5. **Publish** — Share SBOMs with customers or downstream consumers
+
+### Vulnerability Monitoring
+
+Use SBOMs for continuous vulnerability monitoring:
+
+1. **Ingest SBOMs** into a vulnerability management platform
+2. **Monitor CVE databases** (NVD, OSV, GitHub Advisory Database) for new disclosures
+3. **Correlate** new vulnerabilities against your SBOM inventory
+4. **Alert** relevant teams when affected components are found
+5. **Track** remediation progress
+
+### Tools for SBOM Management
+
+| Tool | Type | License | Key Features |
+|---|---|---|---|
+| **Syft** | Generator | Apache 2.0 | Multi-format, containers, source code |
+| **Grype** | Scanner | Apache 2.0 | Vulnerability scanning against SBOMs |
+| **Trivy** | Generator + Scanner | Apache 2.0 | All-in-one security scanner |
+| **OWASP Dependency-Track** | Platform | Apache 2.0 | SBOM management, risk analysis, monitoring |
+| **Guac** | Platform | Apache 2.0 | Supply chain graph analysis |
+| **Bomber** | Scanner | Apache 2.0 | SBOM vulnerability scanner |
+| **OSS Review Toolkit** | Generator + Analyzer | Apache 2.0 | License compliance, source analysis |
+
+## SBOM Best Practices
+
+### 1. Generate at Build Time
+- Build-time SBOMs are more accurate than post-hoc analysis
+- Include SBOM generation as a standard pipeline step
+- Version SBOMs alongside the software they describe
+
+### 2. Include Transitive Dependencies
+- Don't stop at direct dependencies
+- Transitive (indirect) dependencies often introduce the most risk
+- Many vulnerabilities exist in deeply nested dependencies
+
+### 3. Automate Vulnerability Correlation
+- Manually checking CVEs against SBOMs doesn't scale
+- Use tools like Grype, Trivy, or Dependency-Track for automated scanning
+- Set up alerts for newly disclosed vulnerabilities
+
+### 4. Establish SBOM Policies
+- Define minimum fields required in your SBOMs
+- Set vulnerability thresholds for release gates
+- Require SBOMs from your software vendors
+- Define retention periods for SBOM archives
+
+### 5. Share SBOMs with Stakeholders
+- Provide SBOMs to customers on request
+- Include SBOMs in procurement contracts
+- Publish SBOMs alongside software releases
+
+### 6. Keep SBOMs Current
+- Regenerate SBOMs on every build, not just releases
+- Update when dependencies change
+- Re-scan existing SBOMs when new vulnerabilities are disclosed
+
+## Regulatory Landscape
+
+SBOMs are increasingly required or recommended by regulations:
+
+### United States
+- **Executive Order 14028** (2021): Requires SBOMs for software sold to the federal government
+- **NIST SP 800-218** (SSDF): Recommends SBOM practices for secure software development
+- **FDA Guidance** (2023): Requires SBOMs for medical device software
+
+### European Union
+- **Cyber Resilience Act** (CRA): Requires vulnerability handling and disclosure, supported by SBOMs
+- **NIS2 Directive**: Supply chain security requirements that SBOMs help address
+- **GDPR**: While not explicitly requiring SBOMs, they support the security measures required by Article 32
+
+### Industry Standards
+- **ISO/IEC 5962:2021**: SPDX as an international standard for SBOMs
+- **NIST Cybersecurity Framework**: References supply chain risk management
+- **OWASP Software Component Verification Standard**: Defines SBOM verification practices
+
+## SBOMs and Compliance Frameworks
+
+### How SBOMs Support ISO 27001
+
+| ISO 27001 Control | How SBOMs Help |
+|---|---|
+| **A.8.9** Configuration management | Track all software components and versions |
+| **A.8.19** Installation of software | Verify approved components |
+| **A.8.28** Secure coding | Ensure dependencies are free of known vulnerabilities |
+| **A.5.7** Threat intelligence | Correlate threat data with your software inventory |
+
+### How SBOMs Support SOC 2
+
+| SOC 2 Criteria | How SBOMs Help |
+|---|---|
+| **CC3.2** Risk assessment | Identify and assess software supply chain risks |
+| **CC6.1** Logical access security | Verify integrity of software components |
+| **CC7.1** System monitoring | Monitor for vulnerable components |
+| **CC8.1** Change management | Track component changes across versions |
+
+### How SBOMs Support GDPR
+
+| GDPR Requirement | How SBOMs Help |
+|---|---|
+| **Article 32** Security of processing | Demonstrate knowledge and management of software risks |
+| **Article 25** Privacy by design | Assess privacy impact of components used |
+| **Article 35** DPIA | Include software composition in risk assessment |
+
+## Getting Started Checklist
+
+Ready to implement SBOMs in your organization? Follow this checklist:
+
+- [ ] **Choose a format** — CycloneDX or SPDX based on your needs
+- [ ] **Select a generation tool** — Syft, CycloneDX CLI, or ecosystem-specific tool
+- [ ] **Generate your first SBOM** — Start with one application
+- [ ] **Scan for vulnerabilities** — Use Grype, Trivy, or similar
+- [ ] **Review results** — Prioritize and remediate critical findings
+- [ ] **Add to CI/CD** — Automate generation in your build pipeline
+- [ ] **Set up monitoring** — Continuous vulnerability correlation
+- [ ] **Define policies** — Minimum fields, vulnerability thresholds, sharing rules
+- [ ] **Train your team** — Educate developers on SBOM concepts and tools
+- [ ] **Request from vendors** — Include SBOM requirements in procurement
+
+## Frequently Asked Questions
+
+### How often should I generate an SBOM?
+Generate an SBOM on every build. At minimum, generate one for every release. Dependencies can change between builds, and new vulnerabilities are disclosed daily.
+
+### Should I generate SBOMs for internal tools too?
+Yes. Internal tools often have weaker security practices and may contain vulnerable components. SBOMs help you maintain visibility across all software, not just customer-facing products.
+
+### What if my vendor won't provide an SBOM?
+You can generate an SBOM from binary artifacts using tools like Syft. However, this is less accurate than a build-time SBOM. Consider making SBOM provision a contractual requirement for future procurements.
+
+### How do I handle SBOM confidentiality?
+SBOMs may reveal your technology stack, which some consider sensitive. Share SBOMs under NDA with customers who request them. For public products, balance transparency with security considerations.
+
+### What's the difference between SBOM and SCA?
+Software Composition Analysis (SCA) is the process of scanning code for known vulnerabilities. An SBOM is the inventory itself. SCA tools often generate or consume SBOMs. They are complementary.
+
+## Next Steps
+
+- **[ISO 27001 Controls](/docs/iso27001/controls)** — See how SBOMs support control implementation
+- **[SOC 2 Criteria](/docs/soc2/criteria)** — Map SBOMs to trust services criteria
+- **[GDPR Overview](/docs/gdpr/overview)** — Understand how SBOMs support data protection
+- **[Tools](/tools)** — Find recommended SBOM generation and scanning tools
+- **[Glossary](/docs/reference/glossary)** — Key terms and definitions
+
+---
+
+*SBOMs are a foundational practice for software supply chain security. Start small, automate early, and expand coverage as your program matures.*
