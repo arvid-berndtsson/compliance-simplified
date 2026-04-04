@@ -54,5 +54,50 @@ export const searchIndex: SearchResult[] = [
     category: 'Reference',
     excerpt: 'Comprehensive glossary of compliance and information security terms to help you understand the language of compliance.',
     score: 0
+  },
+  {
+    id: 'gdpr-overview',
+    title: 'GDPR: General Data Protection Regulation',
+    content: 'GDPR is the European Union comprehensive data privacy law for protecting personal data of individuals in the EU/EEA.',
+    url: '/docs/gdpr/overview',
+    category: 'GDPR',
+    excerpt: 'The General Data Protection Regulation (GDPR) is the EU comprehensive data privacy law. It sets strict rules for how organizations collect, store, process, and share personal data.',
+    score: 0
+  },
+  {
+    id: 'gdpr-quick-start',
+    title: 'GDPR Quick Start Guide',
+    content: 'Get started with GDPR compliance in 30 days with this action plan covering data mapping, documentation, and processes.',
+    url: '/docs/gdpr/quick-start',
+    category: 'GDPR',
+    excerpt: 'A 30-day action plan to establish GDPR fundamentals, covering data inventory, legal basis review, privacy policies, data subject rights, and security measures.',
+    score: 0
+  },
+  {
+    id: 'gdpr-implementation',
+    title: 'GDPR Implementation Guide',
+    content: 'Complete step-by-step guide to building and maintaining GDPR compliance across your organization.',
+    url: '/docs/gdpr/implementation',
+    category: 'GDPR',
+    excerpt: 'Comprehensive GDPR implementation covering governance, data mapping, documentation, technical measures, training, breach response, and ongoing compliance.',
+    score: 0
+  },
+  {
+    id: 'gdpr-articles',
+    title: 'GDPR Key Articles Reference',
+    content: 'Detailed reference for the most important GDPR articles organized by theme.',
+    url: '/docs/gdpr/articles',
+    category: 'GDPR',
+    excerpt: 'Reference guide covering GDPR scope, principles, data subject rights, controller and processor obligations, security, breach notification, international transfers, and enforcement.',
+    score: 0
+  },
+  {
+    id: 'sbom',
+    title: 'Software Bill of Materials (SBOM)',
+    content: 'A Software Bill of Materials is a formal inventory of all components, libraries, and dependencies in a software product.',
+    url: '/docs/explanation/sbom',
+    category: 'Concepts',
+    excerpt: 'Learn what SBOMs are, why they matter for compliance and supply chain security, the main formats (SPDX, CycloneDX), how to generate them, and how they support ISO 27001, SOC 2, and GDPR.',
+    score: 0
   }
 ] 

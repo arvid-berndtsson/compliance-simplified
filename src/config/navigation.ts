@@ -38,11 +38,28 @@ export const DOC_SECTIONS: DocSection[] = [
     ],
   },
   {
+    key: 'gdpr',
+    title: 'GDPR',
+    items: [
+      { label: 'Overview', href: '/docs/gdpr/overview' },
+      { label: 'Quick Start', href: '/docs/gdpr/quick-start' },
+      { label: 'Implementation Guide', href: '/docs/gdpr/implementation' },
+      { label: 'Key Articles', href: '/docs/gdpr/articles' },
+    ],
+  },
+  {
     key: 'how-to',
     title: 'How-to Guides',
     items: [
       { label: 'Executive Buy-in', href: '/docs/how-to/executive-buyin' },
       { label: 'Scope Definition', href: '/docs/how-to/scope-definition' },
+    ],
+  },
+  {
+    key: 'explanation',
+    title: 'Concepts',
+    items: [
+      { label: 'SBOM', href: '/docs/explanation/sbom' },
     ],
   },
   {
@@ -68,6 +85,7 @@ export const FOOTER_GROUPS: NavGroup[] = [
       { label: 'Start Here', href: '/docs' },
       { label: 'ISO 27001 Overview', href: '/docs/iso27001/overview' },
       { label: 'SOC 2 Overview', href: '/docs/soc2/overview' },
+      { label: 'GDPR Overview', href: '/docs/gdpr/overview' },
       { label: 'Glossary', href: '/docs/reference/glossary' },
     ],
   },
