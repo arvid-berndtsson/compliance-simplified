@@ -151,7 +151,7 @@ export default function Header({ showSearch = false }: HeaderProps) {
             className="absolute inset-0 bg-black/30"
             aria-label="Close navigation overlay"
           />
-          <div className="relative ml-auto h-full w-[min(22rem,88vw)] overflow-y-auto border-l border-border/60 bg-background p-4 shadow-xl">
+          <div className="absolute right-0 top-0 z-10 h-full w-[min(22rem,88vw)] overflow-y-auto border-l border-border/60 bg-background p-4 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm font-semibold text-foreground">Navigation</p>
               <button
