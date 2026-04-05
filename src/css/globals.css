@@ -121,4 +121,28 @@
   .prose a {
     @apply text-primary hover:text-primary/80 underline underline-offset-4;
   }
+
+  .prose table {
+    @apply w-full border-collapse mb-6 text-sm;
+  }
+
+  .prose thead {
+    @apply border-b border-border;
+  }
+
+  .prose tbody tr {
+    @apply border-b border-border;
+  }
+
+  .prose tbody tr:last-child {
+    @apply border-b-0;
+  }
+
+  .prose th {
+    @apply px-4 py-2 text-left font-semibold text-foreground;
+  }
+
+  .prose td {
+    @apply px-4 py-2 text-muted-foreground;
+  }
 }
